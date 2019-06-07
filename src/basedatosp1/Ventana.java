@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,11 +26,19 @@ public class Ventana extends javax.swing.JFrame {
 
   private DefaultTableModel modelo;
     public Ventana() {
+        setIconImage(new ImageIcon(getClass().getResource("/basedatosp1/icono.jpg")).getImage());
         initComponents();
-        setTitle("Inventario");
+        this.setResizable(false);
+        setTitle("Rubix");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        Tabla();
+        Imagen img1 = new Imagen("/basedatosp1/Agregar1.jpg");
+        Imagen img2 = new Imagen("/basedatosp1/inventario1.jpg");
+        this.PanelAgregar.add(img1);
+        this.PanelAgregar.repaint();
+        this.PanelTabla.add(img2);
+        this.PanelTabla.repaint();
+        //Tabla();
     }
     public void Tabla(){
         
@@ -109,12 +118,16 @@ public class Ventana extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtIDm = new javax.swing.JTextField();
+        Competidores = new javax.swing.JPanel();
+        Clientes = new javax.swing.JPanel();
+        Proveedores = new javax.swing.JPanel();
+        Compras = new javax.swing.JPanel();
+        Pedidos = new javax.swing.JPanel();
+        Estadisticas = new javax.swing.JPanel();
 
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
 
         PanelAgregar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -172,7 +185,7 @@ public class Ventana extends javax.swing.JFrame {
         PanelAgregarLayout.setVerticalGroup(
             PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAgregarLayout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelAgregarLayout.createSequentialGroup()
                         .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -198,7 +211,7 @@ public class Ventana extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Agregar", PanelAgregar);
+        jTabbedPane1.addTab("Agregar Inventario", PanelAgregar);
 
         Tabla1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -325,10 +338,88 @@ public class Ventana extends javax.swing.JFrame {
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Tabla", PanelTabla);
+        jTabbedPane1.addTab("Inventario", PanelTabla);
+
+        javax.swing.GroupLayout CompetidoresLayout = new javax.swing.GroupLayout(Competidores);
+        Competidores.setLayout(CompetidoresLayout);
+        CompetidoresLayout.setHorizontalGroup(
+            CompetidoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 645, Short.MAX_VALUE)
+        );
+        CompetidoresLayout.setVerticalGroup(
+            CompetidoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Competidores", Competidores);
+
+        javax.swing.GroupLayout ClientesLayout = new javax.swing.GroupLayout(Clientes);
+        Clientes.setLayout(ClientesLayout);
+        ClientesLayout.setHorizontalGroup(
+            ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 645, Short.MAX_VALUE)
+        );
+        ClientesLayout.setVerticalGroup(
+            ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Clientes", Clientes);
+
+        javax.swing.GroupLayout ProveedoresLayout = new javax.swing.GroupLayout(Proveedores);
+        Proveedores.setLayout(ProveedoresLayout);
+        ProveedoresLayout.setHorizontalGroup(
+            ProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 645, Short.MAX_VALUE)
+        );
+        ProveedoresLayout.setVerticalGroup(
+            ProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Proveedores", Proveedores);
+
+        javax.swing.GroupLayout ComprasLayout = new javax.swing.GroupLayout(Compras);
+        Compras.setLayout(ComprasLayout);
+        ComprasLayout.setHorizontalGroup(
+            ComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 645, Short.MAX_VALUE)
+        );
+        ComprasLayout.setVerticalGroup(
+            ComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Compras", Compras);
+
+        javax.swing.GroupLayout PedidosLayout = new javax.swing.GroupLayout(Pedidos);
+        Pedidos.setLayout(PedidosLayout);
+        PedidosLayout.setHorizontalGroup(
+            PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 645, Short.MAX_VALUE)
+        );
+        PedidosLayout.setVerticalGroup(
+            PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Pedidos", Pedidos);
+
+        javax.swing.GroupLayout EstadisticasLayout = new javax.swing.GroupLayout(Estadisticas);
+        Estadisticas.setLayout(EstadisticasLayout);
+        EstadisticasLayout.setHorizontalGroup(
+            EstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 645, Short.MAX_VALUE)
+        );
+        EstadisticasLayout.setVerticalGroup(
+            EstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Estadísticas", Estadisticas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -505,9 +596,15 @@ public class Ventana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregar;
+    private javax.swing.JPanel Clientes;
+    private javax.swing.JPanel Competidores;
+    private javax.swing.JPanel Compras;
+    private javax.swing.JPanel Estadisticas;
     private javax.swing.JButton Guardar;
     private javax.swing.JPanel PanelAgregar;
     private javax.swing.JPanel PanelTabla;
+    private javax.swing.JPanel Pedidos;
+    private javax.swing.JPanel Proveedores;
     private javax.swing.JTable Tabla1;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JLabel jLabel1;
