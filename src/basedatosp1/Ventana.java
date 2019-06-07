@@ -38,7 +38,7 @@ public class Ventana extends javax.swing.JFrame {
         this.PanelAgregar.repaint();
         this.PanelTabla.add(img2);
         this.PanelTabla.repaint();
-        //Tabla();
+        Tabla();
     }
     public void Tabla(){
         
@@ -180,12 +180,12 @@ public class Ventana extends javax.swing.JFrame {
                             .addComponent(txtPrecio))
                         .addGap(90, 90, 90)
                         .addComponent(BotonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
         PanelAgregarLayout.setVerticalGroup(
             PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAgregarLayout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
+                .addContainerGap(89, Short.MAX_VALUE)
                 .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelAgregarLayout.createSequentialGroup()
                         .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -274,7 +274,7 @@ public class Ventana extends javax.swing.JFrame {
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelTablaLayout.createSequentialGroup()
                         .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
                             .addGroup(PanelTablaLayout.createSequentialGroup()
                                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel7)
@@ -338,7 +338,7 @@ public class Ventana extends javax.swing.JFrame {
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Inventario", PanelTabla);
@@ -347,11 +347,11 @@ public class Ventana extends javax.swing.JFrame {
         Competidores.setLayout(CompetidoresLayout);
         CompetidoresLayout.setHorizontalGroup(
             CompetidoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGap(0, 737, Short.MAX_VALUE)
         );
         CompetidoresLayout.setVerticalGroup(
             CompetidoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Competidores", Competidores);
@@ -360,11 +360,11 @@ public class Ventana extends javax.swing.JFrame {
         Clientes.setLayout(ClientesLayout);
         ClientesLayout.setHorizontalGroup(
             ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGap(0, 737, Short.MAX_VALUE)
         );
         ClientesLayout.setVerticalGroup(
             ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Clientes", Clientes);
@@ -373,11 +373,11 @@ public class Ventana extends javax.swing.JFrame {
         Proveedores.setLayout(ProveedoresLayout);
         ProveedoresLayout.setHorizontalGroup(
             ProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGap(0, 737, Short.MAX_VALUE)
         );
         ProveedoresLayout.setVerticalGroup(
             ProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Proveedores", Proveedores);
@@ -386,11 +386,11 @@ public class Ventana extends javax.swing.JFrame {
         Compras.setLayout(ComprasLayout);
         ComprasLayout.setHorizontalGroup(
             ComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGap(0, 737, Short.MAX_VALUE)
         );
         ComprasLayout.setVerticalGroup(
             ComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Compras", Compras);
@@ -399,11 +399,11 @@ public class Ventana extends javax.swing.JFrame {
         Pedidos.setLayout(PedidosLayout);
         PedidosLayout.setHorizontalGroup(
             PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGap(0, 737, Short.MAX_VALUE)
         );
         PedidosLayout.setVerticalGroup(
             PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Pedidos", Pedidos);
@@ -412,11 +412,11 @@ public class Ventana extends javax.swing.JFrame {
         Estadisticas.setLayout(EstadisticasLayout);
         EstadisticasLayout.setHorizontalGroup(
             EstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 645, Short.MAX_VALUE)
+            .addGap(0, 737, Short.MAX_VALUE)
         );
         EstadisticasLayout.setVerticalGroup(
             EstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 511, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Estadísticas", Estadisticas);
@@ -425,7 +425,9 @@ public class Ventana extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -438,7 +440,7 @@ public class Ventana extends javax.swing.JFrame {
     private void txtExisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExisActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtExisActionPerformed
-
+//Agregar elementos. Ingresamos nuevos elementos a la base de datos 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
          Conexion con = new Conexion();
          Connection conexion = con.Conectar();
@@ -513,7 +515,7 @@ public class Ventana extends javax.swing.JFrame {
             System.out.println("Error al eliminar");
         }
     }//GEN-LAST:event_botonEliminarActionPerformed
-
+// cuando seleccione un fila de la tabla lo datos se pasaran a las cajas de texto del panel de la tabla inventario
     private void Tabla1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla1MouseClicked
        int fila = Tabla1.getSelectedRow();
        txtIDm.setText(Tabla1.getValueAt(fila,0).toString());
@@ -523,7 +525,8 @@ public class Ventana extends javax.swing.JFrame {
        txtExisM.setText(Tabla1.getValueAt(fila, 4).toString());
  
     }//GEN-LAST:event_Tabla1MouseClicked
-     public void Actualizar(String nombre, float costo, float precio, int existencia, int id){
+    //con esta funcion podemas modificar la informacion de la base de datos y de la tabla de inventario 
+    public void Actualizar(String nombre, float costo, float precio, int existencia, int id){
          Conexion con = new Conexion();
          Connection conexion = con.Conectar();
          try {
@@ -540,7 +543,7 @@ public class Ventana extends javax.swing.JFrame {
          }
          
      }
-     
+     // con esta funcion dejamos el blanco las cajas de texto del panel de la tabla  de inventario
      public void LimpiarTxtPanelTabla(){
              txtNombreM.setText(null);
              txtCostoM.setText(null);
@@ -549,6 +552,7 @@ public class Ventana extends javax.swing.JFrame {
              txtIDm.setText(null);
          
      }
+     // Este es el boton de guardar del panel de la tabla de inventario que manda los datos de las cajas de texto a la funcion Actualizar 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
        int fila = Tabla1.getSelectedRow();
         if(fila>=0){
