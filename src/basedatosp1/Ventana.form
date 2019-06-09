@@ -159,12 +159,19 @@
             <Component class="javax.swing.JTextField" name="txtnombre">
             </Component>
             <Component class="javax.swing.JTextField" name="txtCosto">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCostoKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtPrecio">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtPrecioKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtExis">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtExisActionPerformed"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtExisKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="BotonAgregar">

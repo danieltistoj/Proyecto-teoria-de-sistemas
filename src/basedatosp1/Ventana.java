@@ -38,6 +38,7 @@ public class Ventana extends javax.swing.JFrame {
         this.PanelAgregar.repaint();
         this.PanelTabla.add(img2);
         this.PanelTabla.repaint();
+       
         Tabla();
     }
     public void Tabla(){
@@ -139,9 +140,26 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel5.setText("Existencias");
 
+        txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCostoKeyTyped(evt);
+            }
+        });
+
+        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPrecioKeyTyped(evt);
+            }
+        });
+
         txtExis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtExisActionPerformed(evt);
+            }
+        });
+        txtExis.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtExisKeyTyped(evt);
             }
         });
 
@@ -440,9 +458,9 @@ public class Ventana extends javax.swing.JFrame {
     private void txtExisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtExisActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtExisActionPerformed
-//Agregar elementos. Ingresamos nuevos elementos a la base de datos 
-    private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
-         Conexion con = new Conexion();
+//con esta funcion agregamos a la base de datos un nuevo producto 
+    public void Agregar(){
+   Conexion con = new Conexion();
          Connection conexion = con.Conectar();
         try {
            
@@ -466,7 +484,28 @@ public class Ventana extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
+        } 
+}
+
+//Agregar elementos. Ingresamos nuevos elementos a la base de datos 
+    private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
+        if(txtnombre.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Ingrese un nombre","Error",JOptionPane.ERROR_MESSAGE);
         }
+        else if(txtCosto.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Ingrese el costo","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtPrecio.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Ingrese el precio","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else if(txtExis.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Ingrese la existecias","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            Agregar();//se llama a la funcion Agregar
+        }
+        
+       
     }//GEN-LAST:event_BotonAgregarActionPerformed
 // buscar un elemento 
     private void txtbuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarKeyPressed
@@ -500,6 +539,8 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_txtbuscarKeyPressed
 //Eliminar un elemento
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+ 
+       
        String id = JOptionPane.showInputDialog(null, "Ingrese el ID del producto que desea eliminar");
        String sql = "DELETE FROM inventario WHERE ID="+id;
        int res = 0;
@@ -507,13 +548,18 @@ public class Ventana extends javax.swing.JFrame {
        Connection conect = con.Conectar();
         try {
             Statement st = (Statement) conect.createStatement();
-            st.executeUpdate(sql);
+           int num = st.executeUpdate(sql);
+           if(num>0){
             Tabla();
-            System.out.println("Eliminado");
+            JOptionPane.showMessageDialog(null,"Producto eliminado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
+           }else{
+               JOptionPane.showMessageDialog(null,"El producto no existe","Error",JOptionPane.ERROR_MESSAGE);
+           }
             
         } catch (SQLException ex) {
-            System.out.println("Error al eliminar");
+          JOptionPane.showMessageDialog(null,"Intente de nuevo. Valor incorrecto","Error",JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_botonEliminarActionPerformed
 // cuando seleccione un fila de la tabla lo datos se pasaran a las cajas de texto del panel de la tabla inventario
     private void Tabla1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Tabla1MouseClicked
@@ -562,6 +608,34 @@ public class Ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"No ha seleccionado una fila","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_GuardarActionPerformed
+//Accion de la caja de texto costo. solo permite numeros
+    private void txtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoKeyTyped
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo ingrese numeros","Error",JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_txtCostoKeyTyped
+//Accion de la caja de texto Precio. solo permite numeros 
+    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo ingrese numeros","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtPrecioKeyTyped
+//Accion de la caja de texto Exixstencia. Solo permite numeros
+    private void txtExisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExisKeyTyped
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo ingrese numeros","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtExisKeyTyped
   
     /**
      * @param args the command line arguments
