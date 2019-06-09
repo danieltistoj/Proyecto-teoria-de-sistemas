@@ -102,6 +102,7 @@ public class Ventana extends javax.swing.JFrame {
         txtExis = new javax.swing.JTextField();
         BotonAgregar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
+        BotonRegreasarMenu1 = new javax.swing.JButton();
         PanelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla1 = new javax.swing.JTable();
@@ -119,12 +120,6 @@ public class Ventana extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtIDm = new javax.swing.JTextField();
-        Competidores = new javax.swing.JPanel();
-        Clientes = new javax.swing.JPanel();
-        Proveedores = new javax.swing.JPanel();
-        Compras = new javax.swing.JPanel();
-        Pedidos = new javax.swing.JPanel();
-        Estadisticas = new javax.swing.JPanel();
 
         jLabel2.setText("jLabel2");
 
@@ -173,6 +168,14 @@ public class Ventana extends javax.swing.JFrame {
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/caja3.png"))); // NOI18N
 
+        BotonRegreasarMenu1.setBackground(new java.awt.Color(255, 255, 255));
+        BotonRegreasarMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/salir1.1.png"))); // NOI18N
+        BotonRegreasarMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonRegreasarMenu1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelAgregarLayout = new javax.swing.GroupLayout(PanelAgregar);
         PanelAgregar.setLayout(PanelAgregarLayout);
         PanelAgregarLayout.setHorizontalGroup(
@@ -198,7 +201,9 @@ public class Ventana extends javax.swing.JFrame {
                             .addComponent(txtPrecio))
                         .addGap(90, 90, 90)
                         .addComponent(BotonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(169, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(BotonRegreasarMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         PanelAgregarLayout.setVerticalGroup(
             PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,7 +230,9 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtExis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BotonRegreasarMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -360,84 +367,6 @@ public class Ventana extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Inventario", PanelTabla);
-
-        javax.swing.GroupLayout CompetidoresLayout = new javax.swing.GroupLayout(Competidores);
-        Competidores.setLayout(CompetidoresLayout);
-        CompetidoresLayout.setHorizontalGroup(
-            CompetidoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
-        );
-        CompetidoresLayout.setVerticalGroup(
-            CompetidoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Competidores", Competidores);
-
-        javax.swing.GroupLayout ClientesLayout = new javax.swing.GroupLayout(Clientes);
-        Clientes.setLayout(ClientesLayout);
-        ClientesLayout.setHorizontalGroup(
-            ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
-        );
-        ClientesLayout.setVerticalGroup(
-            ClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Clientes", Clientes);
-
-        javax.swing.GroupLayout ProveedoresLayout = new javax.swing.GroupLayout(Proveedores);
-        Proveedores.setLayout(ProveedoresLayout);
-        ProveedoresLayout.setHorizontalGroup(
-            ProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
-        );
-        ProveedoresLayout.setVerticalGroup(
-            ProveedoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Proveedores", Proveedores);
-
-        javax.swing.GroupLayout ComprasLayout = new javax.swing.GroupLayout(Compras);
-        Compras.setLayout(ComprasLayout);
-        ComprasLayout.setHorizontalGroup(
-            ComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
-        );
-        ComprasLayout.setVerticalGroup(
-            ComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Compras", Compras);
-
-        javax.swing.GroupLayout PedidosLayout = new javax.swing.GroupLayout(Pedidos);
-        Pedidos.setLayout(PedidosLayout);
-        PedidosLayout.setHorizontalGroup(
-            PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
-        );
-        PedidosLayout.setVerticalGroup(
-            PedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Pedidos", Pedidos);
-
-        javax.swing.GroupLayout EstadisticasLayout = new javax.swing.GroupLayout(Estadisticas);
-        Estadisticas.setLayout(EstadisticasLayout);
-        EstadisticasLayout.setHorizontalGroup(
-            EstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 737, Short.MAX_VALUE)
-        );
-        EstadisticasLayout.setVerticalGroup(
-            EstadisticasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 511, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Estadísticas", Estadisticas);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -636,6 +565,12 @@ public class Ventana extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Solo ingrese numeros","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_txtExisKeyTyped
+
+    private void BotonRegreasarMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRegreasarMenu1ActionPerformed
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            this.dispose();
+    }//GEN-LAST:event_BotonRegreasarMenu1ActionPerformed
   
     /**
      * @param args the command line arguments
@@ -674,15 +609,10 @@ public class Ventana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonAgregar;
-    private javax.swing.JPanel Clientes;
-    private javax.swing.JPanel Competidores;
-    private javax.swing.JPanel Compras;
-    private javax.swing.JPanel Estadisticas;
+    private javax.swing.JButton BotonRegreasarMenu1;
     private javax.swing.JButton Guardar;
     private javax.swing.JPanel PanelAgregar;
     private javax.swing.JPanel PanelTabla;
-    private javax.swing.JPanel Pedidos;
-    private javax.swing.JPanel Proveedores;
     private javax.swing.JTable Tabla1;
     private javax.swing.JButton botonEliminar;
     private javax.swing.JLabel jLabel1;
