@@ -22,10 +22,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Usuario
  */
-public class Ventana extends javax.swing.JFrame {
+public class Inventario extends javax.swing.JFrame {
 
   private DefaultTableModel modelo;
-    public Ventana() {
+    public Inventario() {
         setIconImage(new ImageIcon(getClass().getResource("/basedatosp1/icono.jpg")).getImage());
         initComponents();
         this.setResizable(false);
@@ -75,7 +75,7 @@ public class Ventana extends javax.swing.JFrame {
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(Ventana.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }
@@ -589,20 +589,21 @@ public class Ventana extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Inventario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Ventana().setVisible(true);
+                new Inventario().setVisible(true);
             }
         });
     }
