@@ -5,6 +5,12 @@
  */
 package basedatosp1;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -23,6 +29,9 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("Rubix");
+        
+        contra_inventario.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -34,6 +43,13 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        contra_inventario = new javax.swing.JDialog();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtContrasena = new javax.swing.JPasswordField();
+        boton_ingre = new javax.swing.JButton();
         BotonInventario = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -51,6 +67,65 @@ public class Menu extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         BotonSalir1 = new javax.swing.JButton();
+
+        contra_inventario.setBounds(new java.awt.Rectangle(0, 0, 400, 300));
+
+        jLabel9.setText("Usuario ");
+
+        jLabel10.setText("Contraseña");
+
+        boton_ingre.setText("Ingresar");
+        boton_ingre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_ingreActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                    .addComponent(txtContrasena))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(144, Short.MAX_VALUE)
+                .addComponent(boton_ingre, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(141, 141, 141))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addComponent(boton_ingre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout contra_inventarioLayout = new javax.swing.GroupLayout(contra_inventario.getContentPane());
+        contra_inventario.getContentPane().setLayout(contra_inventarioLayout);
+        contra_inventarioLayout.setHorizontalGroup(
+            contra_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        contra_inventarioLayout.setVerticalGroup(
+            contra_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -205,14 +280,46 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInventarioActionPerformed
-        Inventario inventario = new Inventario();
-        inventario.setVisible(true);
-        this.dispose();
+       
+        contra_inventario.setVisible(true);
+       
     }//GEN-LAST:event_BotonInventarioActionPerformed
 
     private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_BotonSalir1ActionPerformed
+
+    private void boton_ingreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_ingreActionPerformed
+        String nombre = txtUsuario.getText();
+        String contra = new String(txtContrasena.getPassword());
+        String contra2 = null;
+    
+
+         String sql = "SELECT * FROM usuario"+" WHERE contraseña='"+contra+"'";
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         Statement st;
+         try{
+            st = conexion.createStatement();   
+            ResultSet resultado = st.executeQuery(sql);
+             System.out.println("conectado");
+            
+            if(resultado.first()){
+                 contra2 = resultado.getString("contraseña");
+                
+                    Inventario inventario = new Inventario();
+                    inventario.setVisible(true);
+                    this.dispose();
+                    contra_inventario.dispose();
+                   
+                        }
+            
+        } catch (SQLException ex) {
+             System.out.println("el usuario no existe");
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //pasar a la ventana inventario
+    }//GEN-LAST:event_boton_ingreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +359,8 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonInventario;
     private javax.swing.JButton BotonSalir1;
+    private javax.swing.JButton boton_ingre;
+    private javax.swing.JDialog contra_inventario;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -260,6 +369,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -267,5 +377,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField txtContrasena;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
