@@ -38,7 +38,6 @@ public class Inventario extends javax.swing.JFrame {
         this.PanelAgregar.repaint();
         this.PanelTabla.add(img2);
         this.PanelTabla.repaint();
-       
         Tabla();
     }
     public void Tabla(){
@@ -89,7 +88,6 @@ public class Inventario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         PanelAgregar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -120,8 +118,6 @@ public class Inventario extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtIDm = new javax.swing.JTextField();
-
-        jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -620,7 +616,6 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
