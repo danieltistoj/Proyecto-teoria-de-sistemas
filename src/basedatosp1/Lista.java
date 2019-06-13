@@ -45,7 +45,7 @@ public class Lista {
             fondo = nuevo;  
         }
         size++;
-        fondo.getVenta().setId_venta(size);
+      
     }
 /*
     public void Eliminar(int dato){
