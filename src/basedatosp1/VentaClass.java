@@ -10,7 +10,8 @@ package basedatosp1;
  * @author Usuario
  */
 public class VentaClass {
-    private int id_venta = 0, id_producto, id_usuario, id_cliente;
+    private int id_venta = 0, id_usuario, id_cliente, num_productos;
+    private float total_venta;
     private String hora_fecha;
     private Lista productos;
 
@@ -20,14 +21,6 @@ public class VentaClass {
 
     public void setId_venta(int id_venta) {
         this.id_venta = id_venta;
-    }
-
-    public int getId_producto() {
-        return id_producto;
-    }
-
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
     }
 
     public int getId_usuario() {
@@ -61,6 +54,24 @@ public class VentaClass {
     public void setProductos(Lista productos) {
         this.productos = productos;
     }
+
+    public int getNum_productos() {
+        return num_productos;
+    }
+
+    public void setNum_productos(int num_productos) {
+        this.num_productos = num_productos;
+    }
+
+    public float getTotal_venta() {
+        return total_venta;
+    }
+
+    public void setTotal_venta(float total_venta) {
+        this.total_venta = total_venta;
+    }
+    
+    
     
     
     

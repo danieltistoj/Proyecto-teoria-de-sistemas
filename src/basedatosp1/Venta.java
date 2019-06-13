@@ -25,13 +25,16 @@ public class Venta extends javax.swing.JFrame {
     private int clienteId,telefonoCliente;
     private DefaultTableModel modeloProducto = new DefaultTableModel();
     private DefaultTableModel modeloProductoF = new DefaultTableModel();
+    private DefaultTableModel modeloProductoH = new DefaultTableModel();
     private DefaultTableModel modelo;
     ArrayList<Producto> listaProductos = new ArrayList<>();
+    ArrayList<Venta> listaVenta = new ArrayList<>();
+    ArrayList<VentaClass> listaHistorial = new ArrayList<>();
    
-    private Lista venta, productos;
+    private Lista ventas, productos;
     public Venta() {
          
-        venta = new Lista();
+        ventas = new Lista();
         productos = new Lista();
         
         initComponents();
@@ -55,6 +58,7 @@ public class Venta extends javax.swing.JFrame {
         
         setModelo();
         setModelFactura();
+        setModelHistorial();
         Tabla();
     }
     
@@ -242,6 +246,9 @@ public class Venta extends javax.swing.JFrame {
         Tabla_productosD = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         Tabla_productosC = new javax.swing.JTable();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TablaHistorial = new javax.swing.JTable();
 
         Facturacion.setBounds(new java.awt.Rectangle(0, 0, 445, 780));
 
@@ -684,6 +691,43 @@ public class Venta extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Cotización", jPanel2);
 
+        TablaHistorial.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        TablaHistorial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaHistorialMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(TablaHistorial);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Historial", jPanel5);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -759,9 +803,7 @@ public class Venta extends javax.swing.JFrame {
         int fila = Tabla_productosD.getSelectedRow();
        txtID.setText(Tabla_productosD.getValueAt(fila,0).toString());
        txtnombre.setText(Tabla_productosD.getValueAt(fila, 1).toString());
-       txtprecio.setText(Tabla_productosD.getValueAt(fila, 2).toString());
-       
-       
+       txtprecio.setText(Tabla_productosD.getValueAt(fila, 2).toString()); 
     }//GEN-LAST:event_Tabla_productosDMouseClicked
  public void Agregarventa(){
      
@@ -934,7 +976,34 @@ public class Venta extends javax.swing.JFrame {
         IngresarCliente1();
         IngresarCliente.dispose();
     }//GEN-LAST:event_boton_agregar_clienteActionPerformed
+public void setDatosHistorial(){
+     Object[] datos = new Object[modeloProductoH.getColumnCount()];
+        int i=1;
+        modeloProductoH.setRowCount(0);
+        for(VentaClass venta: listaHistorial){
+            datos[0] = venta.getId_venta();
+            datos[1] = venta.getId_usuario();
+            datos[2] = venta.getId_cliente();
+            datos[3] = venta.getNum_productos();
+            datos[4] = venta.getTotal_venta();
+            datos[5] = venta.getHora_fecha();
+            i++;
+            modeloProductoH.addRow(datos);
+        }
+        TablaHistorial.setModel(modeloProductoH);
+    
+} 
 
+ public void setModelHistorial(){
+        String[] cabecera = {"ID venta","ID usuario","ID cliente","No. Productos","Total De Venta","Hora y Fecha"};
+        modeloProductoH.setColumnIdentifiers(cabecera);
+        TablaHistorial.setModel(modeloProductoH);
+                
+        
+    }
+public void LlamarListaHistorial(VentaClass venta){
+        listaHistorial.add(venta);
+    }
     private void boton_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_FacturarActionPerformed
          String formato = "yyyy-MM-dd HH:mm:ss";
          DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
@@ -947,9 +1016,23 @@ public class Venta extends javax.swing.JFrame {
       venta.setId_usuario(Integer.parseInt(txtIDempleadoF.getText()));
       venta.setHora_fecha(FechaHora);
       venta.setProductos(productos);
+      venta.setTotal_venta(total);
+              
+      nodo.setVenta(venta);
+      ventas.InsertarFondo(nodo);
+      Nodo aux = ventas.getTope();
       
-        
+        LlamarListaHistorial(venta);
+        setDatosHistorial();
+        LimpiarTablaC();
+         
     }//GEN-LAST:event_boton_FacturarActionPerformed
+
+    private void TablaHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHistorialMouseClicked
+         int fila = TablaHistorial.getSelectedRow();
+         int id = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
+       
+    }//GEN-LAST:event_TablaHistorialMouseClicked
 
     /**
      * @param args the command line arguments
@@ -992,6 +1075,7 @@ public class Venta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Facturacion;
     private javax.swing.JDialog IngresarCliente;
+    private javax.swing.JTable TablaHistorial;
     private javax.swing.JTable Tabla_productosC;
     private javax.swing.JTable Tabla_productosD;
     private javax.swing.JButton boto_agregarcompra;
@@ -1024,10 +1108,12 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tabla_factura;
     private javax.swing.JTextField txtBuscar;

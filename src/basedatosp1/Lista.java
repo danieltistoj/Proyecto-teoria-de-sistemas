@@ -28,6 +28,9 @@ public class Lista {
             
         }
         size++;
+        if(tope.getVenta()!=null){
+            tope.getVenta().setNum_productos(size);
+        }
         
     }
     
@@ -45,6 +48,9 @@ public class Lista {
             fondo = nuevo;  
         }
         size++;
+        if(tope.getVenta()!=null){
+            tope.getVenta().setNum_productos(size);
+        }
       
     }
 /*
