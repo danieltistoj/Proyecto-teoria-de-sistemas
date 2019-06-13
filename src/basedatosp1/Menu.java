@@ -26,7 +26,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/basedatosp1/icono.jpg")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("Rubix");
@@ -76,7 +76,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel10.setText("Contraseña");
 
         boton_ingre.setBackground(new java.awt.Color(255, 255, 255));
-        boton_ingre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/acceso3.1.png"))); // NOI18N
+        boton_ingre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/acceso3.1.png"))); // NOI18N
         boton_ingre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_ingreActionPerformed(evt);
@@ -132,7 +132,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        BotonInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/inventario2.png"))); // NOI18N
+        BotonInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/inventario2.png"))); // NOI18N
         BotonInventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonInventarioActionPerformed(evt);
@@ -141,39 +141,44 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel1.setText("INVENTARIO");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/competidores2.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/competidores2.png"))); // NOI18N
 
         jLabel2.setText("COMPETIDORES");
 
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/ventas5.1.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventas5.1.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("VENTAS");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/finanzas4.1.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/finanzas4.1.png"))); // NOI18N
 
         jLabel4.setText("FINANZAS");
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/recursoshumanos3.1.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recursoshumanos3.1.png"))); // NOI18N
 
         jLabel5.setText("RECURSOS HUMANOS");
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/configuracion3.2.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion3.2.png"))); // NOI18N
 
         jLabel6.setText("CONFIGURACION");
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/ayuda1.1.png"))); // NOI18N
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ayuda1.1.png"))); // NOI18N
 
         jLabel7.setText("AYUDA");
 
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/compras3.1.png"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/compras3.1.png"))); // NOI18N
 
         jLabel8.setText("COMPRAS");
 
-        BotonSalir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/salir1.1.png"))); // NOI18N
+        BotonSalir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.1.png"))); // NOI18N
         BotonSalir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonSalir1ActionPerformed(evt);
@@ -283,7 +288,6 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInventarioActionPerformed
-       
         contra_inventario.setVisible(true);
        
     }//GEN-LAST:event_BotonInventarioActionPerformed
@@ -331,6 +335,12 @@ public class Menu extends javax.swing.JFrame {
         }
         //pasar a la ventana inventario
     }//GEN-LAST:event_boton_ingreActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Venta venta = new Venta();
+        venta.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

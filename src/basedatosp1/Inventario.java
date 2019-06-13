@@ -26,14 +26,14 @@ public class Inventario extends javax.swing.JFrame {
 
   private DefaultTableModel modelo;
     public Inventario() {
-        setIconImage(new ImageIcon(getClass().getResource("/basedatosp1/icono.jpg")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
         initComponents();
         this.setResizable(false);
         setTitle("Rubix");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        Imagen img1 = new Imagen("/basedatosp1/Agregar1.jpg");
-        Imagen img2 = new Imagen("/basedatosp1/inventario1.jpg");
+        Imagen img1 = new Imagen("/Imagenes/Agregar1.jpg");
+        Imagen img2 = new Imagen("/Imagenes/inventario1.jpg");
         this.PanelAgregar.add(img1);
         this.PanelAgregar.repaint();
         this.PanelTabla.add(img2);
@@ -159,7 +159,7 @@ public class Inventario extends javax.swing.JFrame {
         });
 
         BotonAgregar.setBackground(new java.awt.Color(255, 255, 255));
-        BotonAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/agregar1.1.png"))); // NOI18N
+        BotonAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agregar1.1.png"))); // NOI18N
         BotonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonAgregarActionPerformed(evt);
@@ -169,7 +169,7 @@ public class Inventario extends javax.swing.JFrame {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/caja3.png"))); // NOI18N
 
         BotonRegreasarMenu1.setBackground(new java.awt.Color(255, 255, 255));
-        BotonRegreasarMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/salir1.1.png"))); // NOI18N
+        BotonRegreasarMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.1.png"))); // NOI18N
         BotonRegreasarMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BotonRegreasarMenu1ActionPerformed(evt);
@@ -257,7 +257,7 @@ public class Inventario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Tabla1);
 
         Guardar.setBackground(new java.awt.Color(255, 255, 255));
-        Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/guadar1.2.png"))); // NOI18N
+        Guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guadar1.2.png"))); // NOI18N
         Guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GuardarActionPerformed(evt);
@@ -271,7 +271,7 @@ public class Inventario extends javax.swing.JFrame {
         });
 
         botonEliminar.setBackground(new java.awt.Color(255, 255, 255));
-        botonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/eliminar3.1.png"))); // NOI18N
+        botonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar3.1.png"))); // NOI18N
         botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonEliminarActionPerformed(evt);
@@ -363,7 +363,7 @@ public class Inventario extends javax.swing.JFrame {
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Inventario", PanelTabla);

@@ -91,7 +91,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/basedatosp1/acceso3.1.png"/>
+                  <Image iconType="3" name="/Imagenes/acceso3.1.png"/>
                 </Property>
               </Properties>
               <Events>
@@ -257,7 +257,7 @@
     <Component class="javax.swing.JButton" name="BotonInventario">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/basedatosp1/inventario2.png"/>
+          <Image iconType="3" name="/Imagenes/inventario2.png"/>
         </Property>
       </Properties>
       <Events>
@@ -272,7 +272,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/basedatosp1/competidores2.png"/>
+          <Image iconType="3" name="/Imagenes/competidores2.png"/>
         </Property>
       </Properties>
     </Component>
@@ -287,9 +287,12 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/basedatosp1/ventas5.1.png"/>
+          <Image iconType="3" name="/Imagenes/ventas5.1.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -299,7 +302,7 @@
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/basedatosp1/finanzas4.1.png"/>
+          <Image iconType="3" name="/Imagenes/finanzas4.1.png"/>
         </Property>
       </Properties>
     </Component>
@@ -311,7 +314,7 @@
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/basedatosp1/recursoshumanos3.1.png"/>
+          <Image iconType="3" name="/Imagenes/recursoshumanos3.1.png"/>
         </Property>
       </Properties>
     </Component>
@@ -326,7 +329,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/basedatosp1/configuracion3.2.png"/>
+          <Image iconType="3" name="/Imagenes/configuracion3.2.png"/>
         </Property>
       </Properties>
     </Component>
@@ -341,7 +344,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/basedatosp1/ayuda1.1.png"/>
+          <Image iconType="3" name="/Imagenes/ayuda1.1.png"/>
         </Property>
       </Properties>
     </Component>
@@ -356,7 +359,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/basedatosp1/compras3.1.png"/>
+          <Image iconType="3" name="/Imagenes/compras3.1.png"/>
         </Property>
       </Properties>
     </Component>
@@ -368,7 +371,7 @@
     <Component class="javax.swing.JButton" name="BotonSalir1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/basedatosp1/salir1.1.png"/>
+          <Image iconType="3" name="/Imagenes/salir1.1.png"/>
         </Property>
       </Properties>
       <Events>
