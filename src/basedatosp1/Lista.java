@@ -29,7 +29,8 @@ public class Lista {
         }
         size++;
         if(tope.getVenta()!=null){
-            tope.getVenta().setNum_productos(size);
+            //tope.getVenta().setNum_productos(size);
+            tope.getVenta().setId_venta(size);
         }
         
     }

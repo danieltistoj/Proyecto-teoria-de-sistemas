@@ -22,14 +22,17 @@ import javax.swing.table.DefaultTableModel;
 
 public class Venta extends javax.swing.JFrame {
     private  float total = 0;
-    private int clienteId,telefonoCliente;
+    private boolean aux_boolean;
+    private int clienteId,telefonoCliente, id_aux;
     private DefaultTableModel modeloProducto = new DefaultTableModel();
     private DefaultTableModel modeloProductoF = new DefaultTableModel();
     private DefaultTableModel modeloProductoH = new DefaultTableModel();
+     private DefaultTableModel modeloDetalle= new DefaultTableModel();//modelo para detalle venta 
     private DefaultTableModel modelo;
     ArrayList<Producto> listaProductos = new ArrayList<>();
     ArrayList<Venta> listaVenta = new ArrayList<>();
     ArrayList<VentaClass> listaHistorial = new ArrayList<>();
+    ArrayList<Producto> listaDetalle = new ArrayList<>();// array para detalle
    
     private Lista ventas, productos;
     public Venta() {
@@ -46,6 +49,7 @@ public class Venta extends javax.swing.JFrame {
         Facturacion.setTitle("Facturar");
         IngresarCliente.setLocationRelativeTo(null);
         IngresarCliente.setTitle("Ingresar Cliente");
+        Dialog_DetalleVenta.setLocationRelativeTo(null);
         
         txtUsuarioF.setEnabled(false);
         txtTotal.setEnabled(false);
@@ -59,6 +63,7 @@ public class Venta extends javax.swing.JFrame {
         setModelo();
         setModelFactura();
         setModelHistorial();
+        setModelDetalle();
         Tabla();
     }
     
@@ -100,6 +105,7 @@ public class Venta extends javax.swing.JFrame {
        
         
         Producto producto = new Producto(Integer.parseInt(id),Integer.parseInt(cantidad),nombre,Float.parseFloat(precio));
+        producto.setPrecioTotal(Integer.parseInt(cantidad)*Float.parseFloat(precio));
         
         Nodo nodo = new Nodo();
         nodo.setProducto(producto);
@@ -141,6 +147,7 @@ public class Venta extends javax.swing.JFrame {
         productos.setTope(null);
         productos.setFondo(null);
         productos.setSize(0);
+        
     }
     public void Tabla(){
         
@@ -219,6 +226,10 @@ public class Venta extends javax.swing.JFrame {
         txtEmailClin = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         boton_agregar_cliente = new javax.swing.JButton();
+        Dialog_DetalleVenta = new javax.swing.JDialog();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        Table_Detalle = new javax.swing.JTable();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -249,12 +260,19 @@ public class Venta extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         TablaHistorial = new javax.swing.JTable();
+        boton_DetalleDeVemta = new javax.swing.JButton();
 
         Facturacion.setBounds(new java.awt.Rectangle(0, 0, 445, 780));
 
         jLabel1.setText("NIT");
 
         jLabel2.setText("Nombre");
+
+        txtnombreF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombreFActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Telefono");
 
@@ -455,6 +473,49 @@ public class Venta extends javax.swing.JFrame {
                 .addGap(48, 48, 48)
                 .addComponent(boton_agregar_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
+        );
+
+        Dialog_DetalleVenta.setBounds(new java.awt.Rectangle(0, 0, 509, 700));
+
+        Table_Detalle.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane5.setViewportView(Table_Detalle);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(285, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout Dialog_DetalleVentaLayout = new javax.swing.GroupLayout(Dialog_DetalleVenta.getContentPane());
+        Dialog_DetalleVenta.getContentPane().setLayout(Dialog_DetalleVentaLayout);
+        Dialog_DetalleVentaLayout.setHorizontalGroup(
+            Dialog_DetalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        Dialog_DetalleVentaLayout.setVerticalGroup(
+            Dialog_DetalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -709,6 +770,13 @@ public class Venta extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(TablaHistorial);
 
+        boton_DetalleDeVemta.setText("Ver detalles de venta");
+        boton_DetalleDeVemta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_DetalleDeVemtaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -717,11 +785,17 @@ public class Venta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(449, 449, 449)
+                .addComponent(boton_DetalleDeVemta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(23, 23, 23)
+                .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -754,6 +828,7 @@ public class Venta extends javax.swing.JFrame {
         float res = Integer.parseInt(txtCantida.getText()) * Integer.parseInt(txtprecio.getText());
         total+=res;
         txtTotal.setText(Float.toString(total));
+        ModificarExistencia(RetornarExistencias());
         }
         else{
             JOptionPane.showMessageDialog(null,"Ingrese una cantidad","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -858,7 +933,7 @@ public class Venta extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
-  public void BuscarUsuario(){
+  public void BuscarUsuario(boolean aux_boolea){
          
          String id = txtIDempleadoF.getText();
          String sql = "SELECT * FROM usuario"+" WHERE idUsuario='"+id+"'";
@@ -872,9 +947,14 @@ public class Venta extends javax.swing.JFrame {
             if(resultado.first()){
                String nombre1 = resultado.getString("nombreU");
                String email = resultado.getString("email");
-               
-               txtUsuarioF.setText(nombre1);
-               txtemail.setText(email);
+               if(aux_boolea){
+                  
+               }
+               else{
+                txtUsuarioF.setText(nombre1);
+               txtemail.setText(email);     
+               }
+              
                    
                     
                    
@@ -919,8 +999,51 @@ public class Venta extends javax.swing.JFrame {
         } 
       
   }
+  //se busca al cliente y se manda a llamar a la funcion que busca al usuario
+  public void ModificarExistencia(int existen){
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         int nuevo_exist = existen-Integer.parseInt(txtCantida.getText());
+         try {
+            PreparedStatement statement = conexion.prepareStatement("UPDATE inventario SET existencia='"+nuevo_exist+"'");
+            statement.executeUpdate();
+           
+            Tabla();
+            JOptionPane.showMessageDialog(null,"Datos Actualizados","",JOptionPane.INFORMATION_MESSAGE);
+           
+               
+         } catch (SQLException ex) {
+             System.out.println("error al actualizar");
+         }
+      
+  }
+  public int RetornarExistencias(){
+         int exis_actual=0;
+         String sql = "SELECT * FROM inventario"+" WHERE nit_cliente='"+txtnombre.getText()+"'";
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         Statement st;
+         try{
+            st = conexion.createStatement();   
+            ResultSet resultado = st.executeQuery(sql);
+           
+            if(resultado.first()){
+               String ex = resultado.getString("existencia");
+               
+               exis_actual = Integer.parseInt(ex);
+            }
+            
+            
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null,"Datos incorrectos","",JOptionPane.ERROR_MESSAGE);
+             
+         //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      return exis_actual;
+  }
   public void CargarFactura(){
-      BuscarUsuario();
+      aux_boolean = false;
+      BuscarUsuario(aux_boolean);
          String nit = txtNit.getText();
          String sql = "SELECT * FROM cliente"+" WHERE nit_cliente='"+nit+"'";
          Conexion con = new Conexion();
@@ -960,7 +1083,7 @@ public class Venta extends javax.swing.JFrame {
     private void boton_cargar_facturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cargar_facturaActionPerformed
         
         if(txtNit.getText().length()!=0&&txtID.getText().length()!=0){
-        
+        aux_boolean=false;
         CargarFactura();
         }
         else{
@@ -1004,6 +1127,44 @@ public void setDatosHistorial(){
 public void LlamarListaHistorial(VentaClass venta){
         listaHistorial.add(venta);
     }
+    
+      public void setModelDetalle(){
+        String[] cabecera = {"ID","Nombre","Precio","Cantidad","Total"};
+        modeloDetalle.setColumnIdentifiers(cabecera);
+        Table_Detalle.setModel(modeloDetalle);
+                    
+    }
+ public void LlamarListaDetalle(Producto producto){
+     listaDetalle.add(producto);
+     
+ }
+ 
+ public void setDatosDetalle(){
+     Object[] datos = new Object[modeloDetalle.getColumnCount()];
+        int i=1;
+        modeloDetalle.setRowCount(0);
+        for(Producto producto: listaDetalle){
+            datos[0] = producto.getId_producto();
+            datos[1] = producto.getNombre();
+            datos[2] = producto.getPrecio();
+            datos[3] = producto.getCantidad();
+            datos[4] = producto.getPrecioTotal();
+            i++;
+            modeloDetalle.addRow(datos);
+        }
+        Table_Detalle.setModel(modeloDetalle);
+    
+} 
+    public Lista Productos(Lista productos){
+        Lista nuevaLista = new Lista();
+        Nodo aux = productos.getTope();
+        while(aux!=null){
+            nuevaLista.InsertarFondo(aux);
+            aux = aux.getSig();
+        }
+        return nuevaLista;
+    }
+ 
     private void boton_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_FacturarActionPerformed
          String formato = "yyyy-MM-dd HH:mm:ss";
          DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
@@ -1015,8 +1176,10 @@ public void LlamarListaHistorial(VentaClass venta){
       venta.setId_cliente(clienteId);
       venta.setId_usuario(Integer.parseInt(txtIDempleadoF.getText()));
       venta.setHora_fecha(FechaHora);
-      venta.setProductos(productos);
-      venta.setTotal_venta(total);
+     
+      venta.setProductos(Productos(productos));
+      float aux_total = Float.parseFloat(txtTotal.getText());
+      venta.setTotal_venta(aux_total);
               
       nodo.setVenta(venta);
       ventas.InsertarFondo(nodo);
@@ -1030,9 +1193,36 @@ public void LlamarListaHistorial(VentaClass venta){
 
     private void TablaHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHistorialMouseClicked
          int fila = TablaHistorial.getSelectedRow();
-         int id = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
-       
+          id_aux = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
+        JOptionPane.showMessageDialog(null,id_aux, "", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_TablaHistorialMouseClicked
+
+    private void boton_DetalleDeVemtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_DetalleDeVemtaActionPerformed
+       Dialog_DetalleVenta.setVisible(true);
+       Nodo aux = ventas.getTope();
+        System.out.println(id_aux);
+       while(aux!=null){
+           System.out.println(aux.getVenta().getId_venta());
+           if(id_aux==aux.getVenta().getId_venta()){
+               
+              Nodo aux2 = aux.getVenta().getProductos().getTope();
+               System.out.println(aux2);
+              while(aux2!=null){
+                  
+                  System.out.println(aux2.getProducto().getNombre());
+                  LlamarListaDetalle(aux2.getProducto());
+                  setDatosDetalle();
+                  aux2 = aux2.getSig();
+              }
+               aux = aux.getSig();
+           }
+       }
+       
+    }//GEN-LAST:event_boton_DetalleDeVemtaActionPerformed
+
+    private void txtnombreFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreFActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1073,13 +1263,16 @@ public void LlamarListaHistorial(VentaClass venta){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDialog Dialog_DetalleVenta;
     private javax.swing.JDialog Facturacion;
     private javax.swing.JDialog IngresarCliente;
     private javax.swing.JTable TablaHistorial;
     private javax.swing.JTable Tabla_productosC;
     private javax.swing.JTable Tabla_productosD;
+    private javax.swing.JTable Table_Detalle;
     private javax.swing.JButton boto_agregarcompra;
     private javax.swing.JButton botonRegresar;
+    private javax.swing.JButton boton_DetalleDeVemta;
     private javax.swing.JButton boton_Facturar;
     private javax.swing.JButton boton_agregar_cliente;
     private javax.swing.JButton boton_cargar_factura;
@@ -1110,10 +1303,12 @@ public void LlamarListaHistorial(VentaClass venta){
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tabla_factura;
     private javax.swing.JTextField txtBuscar;

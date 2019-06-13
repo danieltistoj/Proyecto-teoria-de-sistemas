@@ -10,7 +10,7 @@ package basedatosp1;
  * @author Usuario
  */
 public class VentaClass {
-    private int id_venta = 0, id_usuario, id_cliente, num_productos;
+    private int id_venta , id_usuario, id_cliente, num_productos;
     private float total_venta;
     private String hora_fecha;
     private Lista productos;
