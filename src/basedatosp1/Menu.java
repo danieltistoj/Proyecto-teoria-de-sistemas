@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -68,13 +69,14 @@ public class Menu extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         BotonSalir1 = new javax.swing.JButton();
 
-        contra_inventario.setBounds(new java.awt.Rectangle(0, 0, 400, 300));
+        contra_inventario.setBounds(new java.awt.Rectangle(0, 0, 400, 350));
 
         jLabel9.setText("Usuario ");
 
         jLabel10.setText("Contraseña");
 
-        boton_ingre.setText("Ingresar");
+        boton_ingre.setBackground(new java.awt.Color(255, 255, 255));
+        boton_ingre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/acceso3.1.png"))); // NOI18N
         boton_ingre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_ingreActionPerformed(evt);
@@ -90,15 +92,16 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                    .addComponent(txtContrasena))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(144, Short.MAX_VALUE)
-                .addComponent(boton_ingre, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(141, 141, 141))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                            .addComponent(txtContrasena)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(boton_ingre, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,9 +114,9 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addComponent(boton_ingre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(boton_ingre, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout contra_inventarioLayout = new javax.swing.GroupLayout(contra_inventario.getContentPane());
@@ -295,28 +298,36 @@ public class Menu extends javax.swing.JFrame {
         String contra2 = null;
     
 
-         String sql = "SELECT * FROM usuario"+" WHERE contraseña='"+contra+"'";
+         String sql = "SELECT * FROM usuario"+" WHERE contraseña='"+contra+"' && nombreU='"+nombre+"'";
          Conexion con = new Conexion();
          Connection conexion = con.Conectar();
          Statement st;
          try{
             st = conexion.createStatement();   
             ResultSet resultado = st.executeQuery(sql);
-             System.out.println("conectado");
+            //contra2 = resultado.getString("contraseña");
+            
+            resultado.first();
+             contra2 = resultado.getString("contraseña");
             
             if(resultado.first()){
-                 contra2 = resultado.getString("contraseña");
-                
+                // contra2 = resultado.getString("contraseña");
+                    txtUsuario.setText(null);
+                    txtContrasena.setText(null);
                     Inventario inventario = new Inventario();
                     inventario.setVisible(true);
                     this.dispose();
                     contra_inventario.dispose();
+                    
                    
                         }
             
+            
         } catch (SQLException ex) {
-             System.out.println("el usuario no existe");
-            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null,"Datos incorrectos","",JOptionPane.ERROR_MESSAGE);
+             txtUsuario.setText(null);
+             txtContrasena.setText(null);
+            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
         //pasar a la ventana inventario
     }//GEN-LAST:event_boton_ingreActionPerformed
