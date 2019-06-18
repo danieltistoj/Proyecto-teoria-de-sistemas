@@ -1160,12 +1160,51 @@ public void LlamarListaHistorial(VentaClass venta){
         }
         return nuevaLista;
     }
+    //ingresa los datos de la facturacion a la tabla venta en la base de datos
+    public void IngresarVentaBaseDatos(float precio_producto, int id_producto,int id_cliente,int id_usuario, String FechaHora) {
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+        try {
+           
+            String query ="INSERT INTO venta (Usuario_id,precio,idProducto,cliente_id,FechaHora) values(?,?,?,?,?)";
+            PreparedStatement statement = conexion.prepareStatement(query);
+            statement.setInt(1,id_usuario);
+            statement.setFloat(2,precio_producto);
+            statement.setInt(3,id_producto);
+            statement.setInt(4,id_cliente);
+            statement.setString(5,FechaHora);
+
+            statement.executeUpdate();
+            conexion.close(); 
+            JOptionPane.showMessageDialog(null,"Producto agregado correctamente","",JOptionPane.INFORMATION_MESSAGE); 
+            
+            //limpiar las cajas de texto
+            /*
+            txtnombre.setText(null);
+            txtCosto.setText(null);
+            txtPrecio.setText(null);
+            txtExis.setText(null);
+            Tabla();
+            */
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } 
+        
+    }
  
     private void boton_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_FacturarActionPerformed
          String formato = "yyyy-MM-dd HH:mm:ss";
          DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
          LocalDateTime ahora = LocalDateTime.now();
-         String FechaHora=formateador.format(ahora);
+         String FechaHora=formateador.format(ahora); //fecha y hora 
+         
+         Nodo aux = productos.getTope();
+         float precio_producto = aux.getProducto().getPrecio();
+         int   id_producto = aux.getProducto().getId_producto();
+         int id_cliente = clienteId;
+         int id_usuario = Integer.parseInt(txtIDempleadoF.getText());
+         IngresarVentaBaseDatos(precio_producto, id_producto, id_cliente, id_usuario, FechaHora);
         
       VentaClass venta = new VentaClass();
       Nodo nodo = new Nodo();
@@ -1179,7 +1218,7 @@ public void LlamarListaHistorial(VentaClass venta){
               
       nodo.setVenta(venta);
       ventas.InsertarFondo(nodo);
-      Nodo aux = ventas.getTope();
+      Nodo aux1 = ventas.getTope();
       
         LlamarListaHistorial(venta);
         setDatosHistorial();
