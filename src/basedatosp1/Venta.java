@@ -344,19 +344,15 @@ public class Venta extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(9, 9, 9))
-                            .addComponent(txtIDempleadoF, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(54, 54, 54))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(13, 13, 13)))
+                        .addComponent(jLabel1)
+                        .addGap(9, 9, 9))
+                    .addComponent(txtemail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                    .addComponent(txtIDempleadoF, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(54, 54, 54)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtTlefonoF, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                     .addComponent(txtNit)
@@ -828,7 +824,7 @@ public class Venta extends javax.swing.JFrame {
         float res = Integer.parseInt(txtCantida.getText()) * Integer.parseInt(txtprecio.getText());
         total+=res;
         txtTotal.setText(Float.toString(total));
-        ModificarExistencia(RetornarExistencias());
+        //ModificarExistencia(RetornarExistencias());
         }
         else{
             JOptionPane.showMessageDialog(null,"Ingrese una cantidad","ERROR",JOptionPane.ERROR_MESSAGE);
@@ -1005,7 +1001,7 @@ public class Venta extends javax.swing.JFrame {
          Connection conexion = con.Conectar();
          int nuevo_exist = existen-Integer.parseInt(txtCantida.getText());
          try {
-            PreparedStatement statement = conexion.prepareStatement("UPDATE inventario SET existencia='"+nuevo_exist+"'");
+            PreparedStatement statement = conexion.prepareStatement("UPDATE inventario SET existencia='"+nuevo_exist+"'nombre ='"+txtnombre.getText()+"'");
             statement.executeUpdate();
            
             Tabla();
@@ -1019,7 +1015,7 @@ public class Venta extends javax.swing.JFrame {
   }
   public int RetornarExistencias(){
          int exis_actual=0;
-         String sql = "SELECT * FROM inventario"+" WHERE nit_cliente='"+txtnombre.getText()+"'";
+         String sql = "SELECT * FROM inventario"+" WHERE nombre='"+txtnombre.getText()+"'";
          Conexion con = new Conexion();
          Connection conexion = con.Conectar();
          Statement st;
@@ -1194,7 +1190,7 @@ public void LlamarListaHistorial(VentaClass venta){
     private void TablaHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHistorialMouseClicked
          int fila = TablaHistorial.getSelectedRow();
           id_aux = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
-        JOptionPane.showMessageDialog(null,id_aux, "", JOptionPane.INFORMATION_MESSAGE);
+       
     }//GEN-LAST:event_TablaHistorialMouseClicked
 
     private void boton_DetalleDeVemtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_DetalleDeVemtaActionPerformed
