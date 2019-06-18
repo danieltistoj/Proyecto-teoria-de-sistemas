@@ -51,6 +51,13 @@ public class Menu extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txtContrasena = new javax.swing.JPasswordField();
         boton_ingre = new javax.swing.JButton();
+        contra_recursos = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        txtUsuario1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtContrasena1 = new javax.swing.JPasswordField();
+        boton_ingre1 = new javax.swing.JButton();
         BotonInventario = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -130,6 +137,67 @@ public class Menu extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        contra_recursos.setBounds(new java.awt.Rectangle(0, 0, 400, 350));
+
+        jLabel11.setText("Usuario ");
+
+        jLabel12.setText("Contraseña");
+
+        boton_ingre1.setBackground(new java.awt.Color(255, 255, 255));
+        boton_ingre1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/acceso3.1.png"))); // NOI18N
+        boton_ingre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_ingre1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel11))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtUsuario1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
+                            .addComponent(txtContrasena1)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(boton_ingre1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtContrasena1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(boton_ingre1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout contra_recursosLayout = new javax.swing.GroupLayout(contra_recursos.getContentPane());
+        contra_recursos.getContentPane().setLayout(contra_recursosLayout);
+        contra_recursosLayout.setHorizontalGroup(
+            contra_recursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        contra_recursosLayout.setVerticalGroup(
+            contra_recursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         BotonInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/inventario2.png"))); // NOI18N
@@ -160,6 +228,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel4.setText("FINANZAS");
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recursoshumanos3.1.png"))); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("RECURSOS HUMANOS");
 
@@ -342,6 +415,48 @@ public class Menu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        contra_recursos.setVisible(true);
+        contra_recursos.setTitle("Rubix/Login/Recursos Humanos");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void boton_ingre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_ingre1ActionPerformed
+        String nombre = txtUsuario1.getText();
+        String contra = new String(txtContrasena1.getPassword());
+        String contra2 = null;
+    
+
+         String sql = "SELECT * FROM usuario"+" WHERE contraseña='"+contra+"' && nombreU='"+nombre+"'";
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         Statement st;
+         try{
+            st = conexion.createStatement();   
+            ResultSet resultado = st.executeQuery(sql);
+            //contra2 = resultado.getString("contraseña");
+            
+            resultado.first();
+             contra2 = resultado.getString("contraseña");
+            
+            if(resultado.first()){
+                    txtUsuario1.setText(null);
+                    txtContrasena1.setText(null);
+                    recursosHumanos recursos = new recursosHumanos();
+                    recursos.setVisible(true);
+                    this.dispose();
+                    contra_recursos.dispose();
+                    
+                   
+                        }
+            
+            
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null,"Datos incorrectos","",JOptionPane.ERROR_MESSAGE);
+             txtUsuario1.setText(null);
+             txtContrasena1.setText(null);
+        }
+    }//GEN-LAST:event_boton_ingre1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -381,7 +496,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton BotonInventario;
     private javax.swing.JButton BotonSalir1;
     private javax.swing.JButton boton_ingre;
+    private javax.swing.JButton boton_ingre1;
     private javax.swing.JDialog contra_inventario;
+    private javax.swing.JDialog contra_recursos;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -391,6 +508,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -400,7 +519,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField txtContrasena;
+    private javax.swing.JPasswordField txtContrasena1;
     private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtUsuario1;
     // End of variables declaration//GEN-END:variables
 }
