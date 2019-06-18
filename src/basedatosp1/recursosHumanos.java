@@ -212,6 +212,7 @@ public class recursosHumanos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, salida);
             return;
         }else{
+            primeraVez = 0;
            System.out.println("Sin errores");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -223,20 +224,30 @@ public class recursosHumanos extends javax.swing.JFrame {
         JFileChooser chooser = new JFileChooser();
         int option = jf.showOpenDialog(recursosHumanos.this);
         if(option == 0){//Si es en aceptar
-            ruta = jf.getSelectedFile().getAbsolutePath();//jala la ruta   
+            ruta = jf.getSelectedFile().getAbsolutePath();//jala la ruta
+            primeraVez ++;
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
      private String validarCampos() {
         String salida = "";
+        if (nombre.getText().equals("")){
+            salida += "---> REVISAR EL CAMPO NOMBRE \n";
+        }
         if (!esNumero(telefono.getText())) {
             salida += "--> REVISAR CAMPO DE NUMERO DE TELEFONO \n";
         }
         if (!esNumero(cui.getText())) {
             salida += "--> REVISAR CAMPO DE CUI\n";
         }
+        if (nacimiento.getText().equals("")){
+            salida += "---> REVISAR EL CAMPO DEL LUGAR DE NACIMIENTO\n";
+        }
         if (!esNumero(telEmergencia.getText())) {
             salida += "--> REVISAR CAMPO DE TELÉFONO DE EMERGENCIA \n";
+        }
+        if(primeraVez == 0){
+            salida += "--> REVISAR SI CARGO LA FOTO \n";
         }
         if (!salida.equals("")) {
             salida = "VERIFIQUE LOS SIQUIETES PUNTOS \n\n\t" + salida;
