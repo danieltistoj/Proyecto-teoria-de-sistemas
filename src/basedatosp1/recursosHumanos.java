@@ -6,6 +6,7 @@
 package basedatosp1;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -206,6 +207,13 @@ public class recursosHumanos extends javax.swing.JFrame {
         System.out.println(cui.getText());
         System.out.println(telefono.getText());
         System.out.println(ruta);
+        String salida = validarCampos();
+        if (!salida.equals("")) {
+            JOptionPane.showMessageDialog(this, salida);
+            return;
+        }else{
+           System.out.println("Sin errores");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -219,6 +227,35 @@ public class recursosHumanos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+     private String validarCampos() {
+        String salida = "";
+        if (!esNumero(telefono.getText())) {
+            salida += "--> REVISAR CAMPO DE NUMERO DE TELEFONO \n";
+        }
+        if (!esNumero(cui.getText())) {
+            salida += "--> REVISAR CAMPO DE CUI\n";
+        }
+        if (!esNumero(telEmergencia.getText())) {
+            salida += "--> REVISAR CAMPO DE TELÉFONO DE EMERGENCIA \n";
+        }
+        if (!salida.equals("")) {
+            salida = "VERIFIQUE LOS SIQUIETES PUNTOS \n\n\t" + salida;
+        }
+        return salida;
+    }
+    
+     private boolean esNumero(String campo) {
+        char[] cadena = campo.toCharArray();
+        if (cadena.length == 0) {
+            return false;
+        }
+        for (int c = 0; c < cadena.length; c++) {
+            if (!Character.isDigit(cadena[c])) {
+                return false;
+            }
+        }
+        return true;
+    }
     /**
      * @param args the command line arguments
      */
