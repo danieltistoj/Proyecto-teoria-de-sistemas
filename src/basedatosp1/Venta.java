@@ -253,6 +253,7 @@ public class Venta extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         botonRegresar = new javax.swing.JButton();
+        BotonTemp = new javax.swing.JToggleButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tabla_productosD = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -263,6 +264,12 @@ public class Venta extends javax.swing.JFrame {
         boton_DetalleDeVemta = new javax.swing.JButton();
 
         Facturacion.setBounds(new java.awt.Rectangle(0, 0, 445, 780));
+
+        txtNit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNitKeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("NIT");
 
@@ -275,6 +282,12 @@ public class Venta extends javax.swing.JFrame {
         });
 
         jLabel5.setText("Telefono");
+
+        txtIDempleadoF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDempleadoFKeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("empledo");
 
@@ -415,8 +428,19 @@ public class Venta extends javax.swing.JFrame {
                 txtnombreClienActionPerformed(evt);
             }
         });
+        txtnombreClien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreClienKeyTyped(evt);
+            }
+        });
 
         jLabel17.setText("nombre");
+
+        txtTelefonoClin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoClinKeyTyped(evt);
+            }
+        });
 
         jLabel18.setText("telefono");
 
@@ -573,6 +597,12 @@ public class Venta extends javax.swing.JFrame {
 
         jLabel9.setText("Productos disponibles");
 
+        txtCantida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidaKeyTyped(evt);
+            }
+        });
+
         jLabel10.setText("Cantidad");
 
         jLabel11.setText("nombre");
@@ -594,6 +624,13 @@ public class Venta extends javax.swing.JFrame {
             }
         });
 
+        BotonTemp.setText("llamar las ventas");
+        BotonTemp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonTempActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -601,6 +638,9 @@ public class Venta extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(BotonTemp)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -663,7 +703,9 @@ public class Venta extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(botonRegresar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BotonTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCantida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
@@ -733,7 +775,7 @@ public class Venta extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1161,38 +1203,29 @@ public void LlamarListaHistorial(VentaClass venta){
         return nuevaLista;
     }
     //ingresa los datos de la facturacion a la tabla venta en la base de datos
-    public void IngresarVentaBaseDatos(float precio_producto, int id_producto,int id_cliente,int id_usuario, String FechaHora) {
+    public void IngresarVentaBaseDatos(int id_cliente,int id_usuario, String FechaHora) {
+        
          Conexion con = new Conexion();
          Connection conexion = con.Conectar();
         try {
            
-            String query ="INSERT INTO venta (Usuario_id,precio,idProducto,cliente_id,FechaHora) values(?,?,?,?,?)";
+            String query ="INSERT INTO venta (Usuario_id,cliente_id,FechaHora) values(?,?,?)";
             PreparedStatement statement = conexion.prepareStatement(query);
             statement.setInt(1,id_usuario);
-            statement.setFloat(2,precio_producto);
-            statement.setInt(3,id_producto);
-            statement.setInt(4,id_cliente);
-            statement.setString(5,FechaHora);
+            statement.setInt(2,id_cliente);
+            statement.setString(3,FechaHora);
 
             statement.executeUpdate();
             conexion.close(); 
             JOptionPane.showMessageDialog(null,"Producto agregado correctamente","",JOptionPane.INFORMATION_MESSAGE); 
             
-            //limpiar las cajas de texto
-            /*
-            txtnombre.setText(null);
-            txtCosto.setText(null);
-            txtPrecio.setText(null);
-            txtExis.setText(null);
-            Tabla();
-            */
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         } 
-        
+      
     }
- 
+ // es el boton que termina con la venta, y realiza la facturacion 
     private void boton_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_FacturarActionPerformed
          String formato = "yyyy-MM-dd HH:mm:ss";
          DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
@@ -1204,8 +1237,8 @@ public void LlamarListaHistorial(VentaClass venta){
          int   id_producto = aux.getProducto().getId_producto();
          int id_cliente = clienteId;
          int id_usuario = Integer.parseInt(txtIDempleadoF.getText());
-         IngresarVentaBaseDatos(precio_producto, id_producto, id_cliente, id_usuario, FechaHora);
-        
+         IngresarVentaBaseDatos(id_cliente, id_usuario, FechaHora);
+         
       VentaClass venta = new VentaClass();
       Nodo nodo = new Nodo();
       venta.setId_cliente(clienteId);
@@ -1228,7 +1261,7 @@ public void LlamarListaHistorial(VentaClass venta){
 
     private void TablaHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHistorialMouseClicked
          int fila = TablaHistorial.getSelectedRow();
-          id_aux = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
+         id_aux = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
        
     }//GEN-LAST:event_TablaHistorialMouseClicked
 
@@ -1258,6 +1291,76 @@ public void LlamarListaHistorial(VentaClass venta){
     private void txtnombreFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreFActionPerformed
+
+    private void BotonTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTempActionPerformed
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+        try {
+           
+            String query ="SELECT inventario.nombre FROM detalleventa WHERE venta_id='"+3+"'";
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            
+            //ResultSet rs = st.executeQuery(query);
+            //PreparedStatement statement = conexion.prepareStatement(query);
+            
+         
+           // statement.executeUpdate();
+           // conexion.close(); 
+          
+            JOptionPane.showMessageDialog(null,"Ingreso correctamente","",JOptionPane.INFORMATION_MESSAGE); 
+            
+          
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } 
+    }//GEN-LAST:event_BotonTempActionPerformed
+   //es para que en la cantidad no ingresen letras 
+    private void txtCantidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidaKeyTyped
+       char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo ingrese numeros","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtCantidaKeyTyped
+
+    private void txtNitKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNitKeyTyped
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo ingrese numeros","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtNitKeyTyped
+
+    private void txtIDempleadoFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDempleadoFKeyTyped
+        char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo ingrese numeros","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtIDempleadoFKeyTyped
+
+    private void txtnombreClienKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreClienKeyTyped
+       char validar = evt.getKeyChar();
+       if(Character.isDigit(validar)){
+           getToolkit().beep();
+           evt.consume();
+           JOptionPane.showMessageDialog(null,"Solo ingrese Letras","",JOptionPane.ERROR_MESSAGE);
+       }
+    }//GEN-LAST:event_txtnombreClienKeyTyped
+
+    private void txtTelefonoClinKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoClinKeyTyped
+         char validar = evt.getKeyChar();
+        if(Character.isLetter(validar)){
+            getToolkit().beep();
+            evt.consume();
+            JOptionPane.showMessageDialog(null,"Solo ingrese numeros","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtTelefonoClinKeyTyped
 
     /**
      * @param args the command line arguments
@@ -1298,6 +1401,7 @@ public void LlamarListaHistorial(VentaClass venta){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton BotonTemp;
     private javax.swing.JDialog Dialog_DetalleVenta;
     private javax.swing.JDialog Facturacion;
     private javax.swing.JDialog IngresarCliente;
