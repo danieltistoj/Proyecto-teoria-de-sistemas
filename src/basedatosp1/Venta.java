@@ -1040,7 +1040,8 @@ public class Venta extends javax.swing.JFrame {
         menu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
-  public void BuscarUsuario(boolean aux_boolea){
+ //Esta 
+    public void BuscarUsuario(){
          
          String id = txtIDempleadoF.getText();
          String sql = "SELECT * FROM usuario"+" WHERE idUsuario='"+id+"'";
@@ -1054,13 +1055,10 @@ public class Venta extends javax.swing.JFrame {
             if(resultado.first()){
                String nombre1 = resultado.getString("nombreU");
                String email = resultado.getString("email");
-               if(aux_boolea){
-                  
-               }
-               else{
-                txtUsuarioF.setText(nombre1);
+              
+               txtUsuarioF.setText(nombre1);
                txtemail.setText(email);     
-               }             
+                         
                         }
             
             
@@ -1102,7 +1100,7 @@ public class Venta extends javax.swing.JFrame {
         } 
       
   }
-  //se busca al cliente y se manda a llamar a la funcion que busca al usuario
+  //Esta funcion modifica el producto del inventario cuando se agrega un producto en la cotizacion (se modifica la existencia)
   public void ModificarExistencia(int existen){
          Conexion con = new Conexion();
          Connection conexion = con.Conectar();
@@ -1120,6 +1118,7 @@ public class Venta extends javax.swing.JFrame {
          }
       
   }
+  //Retorna la existencia del producto seleccionado y se lo manda a ModificarExistencia. esta funcion es a la hora de agregar un producto en la cotizacion
   public int RetornarExistencias(){
          int exis_actual=0;
          String sql = "SELECT * FROM inventario"+" WHERE nombre='"+txtnombre.getText()+"'";
@@ -1144,9 +1143,10 @@ public class Venta extends javax.swing.JFrame {
         }
       return exis_actual;
   }
+  //Esta funcion es para cargar los datos del cliente en la ventana facturacion 
   public void CargarFactura(){
       aux_boolean = false;
-      BuscarUsuario(aux_boolean);
+      BuscarUsuario();
          String nit = txtNit.getText();
          String sql = "SELECT * FROM cliente"+" WHERE nit_cliente='"+nit+"'";
          Conexion con = new Conexion();
@@ -1160,6 +1160,7 @@ public class Venta extends javax.swing.JFrame {
                String nombre = resultado.getString("nombre_cliente");
                String id = resultado.getString("id_cliente");
                String telefono = resultado.getString("telefono_cliente");
+               
                clienteId= Integer.parseInt(id);
                telefonoCliente = Integer.parseInt(telefono);
                
@@ -1186,7 +1187,7 @@ public class Venta extends javax.swing.JFrame {
     private void boton_cargar_facturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_cargar_facturaActionPerformed
         
         if(txtNit.getText().length()!=0&&txtID.getText().length()!=0){
-        aux_boolean=false;
+        //aux_boolean=false;
         CargarFactura();
         }
         else{
@@ -1358,28 +1359,27 @@ public void LlamarListaHistorial(VentaClass venta){
     }//GEN-LAST:event_txtnombreFActionPerformed
 
     private void BotonTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTempActionPerformed
-         Conexion con = new Conexion();
-         Connection conexion = con.Conectar();
-        try {
-           
-            String query ="SELECT inventario.nombre FROM detalleventa WHERE venta_id='"+3+"'";
-            Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            
-            //ResultSet rs = st.executeQuery(query);
-            //PreparedStatement statement = conexion.prepareStatement(query);
-            
          
-           // statement.executeUpdate();
-           // conexion.close(); 
-          
-            JOptionPane.showMessageDialog(null,"Ingreso correctamente","",JOptionPane.INFORMATION_MESSAGE); 
+           Conexion con = new Conexion();
+            Connection conexion = con.Conectar();
             
-          
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        } 
+            String sql = "SELECT * FROM venta";
+            
+            Statement st;
+                        
+            //String[] dato = new String[5];
+        try{
+            st = conexion.createStatement();   
+            ResultSet result = st.executeQuery(sql);
+            
+            while(result.next()){
+                System.out.println(result.getString(1));
+            }
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BotonTempActionPerformed
    //es para que en la cantidad no ingresen letras 
     private void txtCantidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidaKeyTyped
