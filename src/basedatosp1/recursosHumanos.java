@@ -5,10 +5,15 @@
  */
 package basedatosp1;
 
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import javax.swing.ImageIcon;
 /**
  *
  * @author ferna
@@ -19,6 +24,7 @@ public class recursosHumanos extends javax.swing.JFrame {
     public recursosHumanos() {
         initComponents();
         primeraVez = 0;
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
     }
 
     /**
@@ -203,17 +209,28 @@ public class recursosHumanos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        System.out.println(nombre.getText());
-        System.out.println(cui.getText());
-        System.out.println(telefono.getText());
-        System.out.println(ruta);
         String salida = validarCampos();
         if (!salida.equals("")) {
             JOptionPane.showMessageDialog(this, salida);
             return;
         }else{
             primeraVez = 0;
-           System.out.println("Sin errores");
+            Path origenPath = FileSystems.getDefault().getPath(ruta);
+            //Path destinoPath = FileSystems.getDefault().getPath("C:\\Users\\ferna\\Desktop\\otra\\jk.jpg");
+            //Path destinoPath = FileSystems.getDefault().getPath("src\\Imagenes\\jk.jpg");//para jalar archivos localmente
+            Path destinoPath = FileSystems.getDefault().getPath("src\\ImagenesEmpleados\\" + nombre.getText() + ".jpg");
+            try {
+                Files.move(origenPath, destinoPath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                System.err.println(e);
+            }
+            ruta = "";
+            nombre.setText("");
+            cui.setText("");
+            telefono.setText("");
+            nacimiento.setText("");
+            telEmergencia.setText("");
+            System.out.println("Sin errores");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
