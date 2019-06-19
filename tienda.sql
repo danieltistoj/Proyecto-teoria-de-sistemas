@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-06-2019 a las 22:47:23
+-- Tiempo de generación: 20-06-2019 a las 01:05:28
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.2.18
 
@@ -82,14 +82,23 @@ CREATE TABLE `empleados` (
   `nombreempleado` varchar(50) NOT NULL,
   `cui` int(30) NOT NULL,
   `telefono` int(30) NOT NULL,
-  `nacimiento` int(50) NOT NULL,
+  `nacimiento` varchar(20) NOT NULL,
   `telemergencia` int(30) NOT NULL,
   `genero` varchar(20) NOT NULL,
   `estadocivil` varchar(20) NOT NULL,
   `cargar` varchar(50) NOT NULL,
-  `contrasena` text NOT NULL,
-  `nivel_acceso` int(11) NOT NULL
+  `contrasena` varchar(20) NOT NULL,
+  `nivel_acceso` int(11) NOT NULL,
+  `email_empleado` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `empleados`
+--
+
+INSERT INTO `empleados` (`idempleado`, `nombreempleado`, `cui`, `telefono`, `nacimiento`, `telemergencia`, `genero`, `estadocivil`, `cargar`, `contrasena`, `nivel_acceso`, `email_empleado`) VALUES
+(1, 'daniel', 12345, 98765, '2/6/99', 32423447, 'M', 'soltero', 'algo', '1234', 2, 'daniel@gmail.com'),
+(2, 'pedro', 18887, 657789832, '5/7/98', 98172983, 'M', 'soltero', 'algo', '5678', 1, 'pedro@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -111,14 +120,14 @@ CREATE TABLE `inventario` (
 
 INSERT INTO `inventario` (`ID`, `nombre`, `costo`, `precio`, `existencia`) VALUES
 (9, '3x3x3 Wailong GTS M', 375, 401, 197),
-(10, '3x3x3 Valk Power M', 240, 300, 49),
+(10, '3x3x3 Valk Power M', 240, 300, 47),
 (11, '4x4x4 WuQue mini', 280, 350, 167),
 (12, '5x5x5 WuShuang', 320, 350, 249),
 (13, '5x5x5 Kirin', 250, 300, 143),
-(14, '6x6x6 Shadow', 375, 400, 87),
+(14, '6x6x6 Shadow', 375, 400, 85),
 (15, '6x6x6 Shadow M', 400, 450, 59),
-(16, '7x7x7 Hays 7', 545, 600, 100),
-(19, 'Square-1 Volt', 120, 180, 33);
+(16, '7x7x7 Hays 7', 545, 600, 99),
+(19, 'Square-1 Volt', 120, 180, 32);
 
 -- --------------------------------------------------------
 
@@ -164,7 +173,11 @@ INSERT INTO `venta` (`idVenta`, `Usuario_id`, `cliente_id`, `FechaHora`) VALUES
 (2, 1, 1, ''),
 (3, 1, 1, '2019-06-18 09:37:30'),
 (4, 1, 1, '2019-06-18 09:43:34'),
-(6, 1, 1, '2019-06-18 21:45:29');
+(6, 1, 1, '2019-06-18 21:45:29'),
+(7, 2, 1, '2019-06-19 16:17:43'),
+(8, 2, 1, '2019-06-19 16:55:12'),
+(9, 2, 1, '2019-06-19 16:58:57'),
+(10, 1, 1, '2019-06-19 16:59:57');
 
 --
 -- Índices para tablas volcadas
@@ -230,7 +243,7 @@ ALTER TABLE `detalleventa`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
@@ -248,7 +261,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `venta`
 --
 ALTER TABLE `venta`
-  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idVenta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas
@@ -265,8 +278,8 @@ ALTER TABLE `detalleventa`
 -- Filtros para la tabla `venta`
 --
 ALTER TABLE `venta`
-  ADD CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`Usuario_id`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE,
-  ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE;
+  ADD CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`cliente_id`) REFERENCES `cliente` (`id_cliente`) ON DELETE CASCADE,
+  ADD CONSTRAINT `venta_ibfk_4` FOREIGN KEY (`Usuario_id`) REFERENCES `empleados` (`idempleado`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
