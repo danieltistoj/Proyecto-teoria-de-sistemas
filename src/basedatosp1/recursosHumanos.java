@@ -13,6 +13,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import javax.swing.ImageIcon;
 /**
  *
@@ -51,9 +53,9 @@ public class recursosHumanos extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         telEmergencia = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        genero = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        estadocivil = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -78,17 +80,17 @@ public class recursosHumanos extends javax.swing.JFrame {
 
         jLabel3.setText("Teléfono personal");
 
-        jLabel4.setText("nacimiento");
+        jLabel4.setText("Municipio de nacimiento");
 
         jLabel5.setText("Teléfono emergencia");
 
         jLabel6.setText("genero");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
+        genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
 
         jLabel7.setText("Estado Civil");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero", "Casado" }));
+        estadocivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero", "Casado" }));
 
         jLabel8.setText("Cargar foto");
 
@@ -120,15 +122,15 @@ public class recursosHumanos extends javax.swing.JFrame {
                             .addComponent(jLabel7))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(telEmergencia))))
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(32, 32, 32)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(telefono, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
                             .addComponent(nacimiento)))
@@ -138,9 +140,9 @@ public class recursosHumanos extends javax.swing.JFrame {
                             .addComponent(jLabel8))
                         .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(genero, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -167,11 +169,11 @@ public class recursosHumanos extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(telEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(genero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox2)
+                    .addComponent(estadocivil)
                     .addComponent(jLabel8)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(87, 87, 87)
@@ -224,13 +226,33 @@ public class recursosHumanos extends javax.swing.JFrame {
             } catch (IOException e) {
                 System.err.println(e);
             }
+            Conexion con = new Conexion();
+            Connection conexion = con.Conectar();
+            try {
+
+                String query ="INSERT INTO empleados (nombreempleado, cui, telefono, nacimiento, telemergencia, genero, estadocivil, cargar) values(?,?,?,?,?,?,?,?)";
+                PreparedStatement statement = conexion.prepareStatement(query);
+                statement.setString(1,nombre.getText());
+                statement.setInt(2, Integer.valueOf(cui.getText()));
+                statement.setInt(3,Integer.valueOf(telefono.getText()) );
+                statement.setString(4, nacimiento.getText());
+                statement.setInt(5, Integer.valueOf(telEmergencia.getText()));
+                statement.setString(6, genero.getSelectedItem().toString());
+                statement.setString(7, estadocivil.getSelectedItem().toString());
+                statement.setString(8, "src\\ImagenesEmpleados\\" + nombre.getText() + ".jpg");
+                statement.executeUpdate();
+                conexion.close(); 
+                JOptionPane.showMessageDialog(null,"Producto agregado correctamente","",JOptionPane.INFORMATION_MESSAGE); 
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
+                e.printStackTrace();
+            } 
             ruta = "";
             nombre.setText("");
             cui.setText("");
             telefono.setText("");
             nacimiento.setText("");
             telEmergencia.setText("");
-            System.out.println("Sin errores");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -321,11 +343,11 @@ public class recursosHumanos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField cui;
+    private javax.swing.JComboBox<String> estadocivil;
+    private javax.swing.JComboBox<String> genero;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
