@@ -18,7 +18,7 @@ public class Conexion {
             //"jdbc:mysql://localhost:3306/tienda","root",""                  direccion daniel
             //"direccion fernando "      
             //conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tienda","root","");
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3307/tienda","root","" );
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tienda","root","" );
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al canectarse");

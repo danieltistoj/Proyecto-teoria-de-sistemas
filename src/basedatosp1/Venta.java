@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class Venta extends javax.swing.JFrame {
     private  float total = 0;
     private boolean aux_boolean;
-    private int clienteId,telefonoCliente, id_aux;
+    private int clienteId,telefonoCliente, id_aux, existencia_aux;
     private DefaultTableModel modeloProducto = new DefaultTableModel();
     private DefaultTableModel modeloProductoF = new DefaultTableModel();
     private DefaultTableModel modeloProductoH = new DefaultTableModel();
@@ -188,7 +188,51 @@ public class Venta extends javax.swing.JFrame {
         }
         
     }
-
+    //MODIFICAR INVENTARIO . esto es para cuando se cancela una compra en la cotizacion 
+    public void ModificarInventario(Nodo producto){
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+       int existencia_actual  =   RetornarExistenciaReferencia(producto.getProducto().getNombre());
+       
+         try {
+            PreparedStatement statement = conexion.prepareStatement("UPDATE inventario SET nombre='"+producto.getProducto().getNombre()
+                    +"',precio='"+producto.getProducto().getPrecio()
+                    +"',existencia='"+(existencia_actual+producto.getProducto().getCantidad())+"'WHERE ID='"+producto.getProducto().getId_producto()+"' ");
+            statement.executeUpdate();
+           
+            Tabla();
+            //JOptionPane.showMessageDialog(null,"Datos Actualizados","",JOptionPane.INFORMATION_MESSAGE);
+            
+               
+         } catch (SQLException ex) {
+             System.out.println("error al actualizar");
+         }
+    }
+    //RETORNAR EXISTENCIA POR REFERENCIA 
+   public int RetornarExistenciaReferencia(String nombre_producto){
+        int exis_actual=0;
+         String sql = "SELECT * FROM inventario"+" WHERE nombre='"+nombre_producto+"'";
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         Statement st;
+         try{
+            st = conexion.createStatement();   
+            ResultSet resultado = st.executeQuery(sql);
+           
+            if(resultado.first()){
+               String ex = resultado.getString("existencia");
+               
+               exis_actual = Integer.parseInt(ex);
+            }
+            
+            
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null,"No se ha podido retornar existencia actual del producto","",JOptionPane.ERROR_MESSAGE);
+             
+         //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      return exis_actual;
+   }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -859,23 +903,46 @@ public class Venta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 //boton agregar 
     private void boto_agregarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto_agregarcompraActionPerformed
-        
-        if(txtCantida.getText().length()!=0){
+        if(txtnombre.getText().length()!=0){// este  if ve si se a seleccionado un producto
+       
+        if(txtCantida.getText().length()!=0){// este if ve si se a ingresado una cantidad de producto
+            if(existencia_aux==0){// este if ve si hay existencias del producto
+                JOptionPane.showMessageDialog(null,"Ya no hay existencias de este producto","Error",JOptionPane.ERROR_MESSAGE);
+            }
+            else if(Integer.parseInt(txtCantida.getText())<=existencia_aux){//este else if ve si la cantidad ingresada es menor o igual a las existencias del producto
         LlamarLista();
         setDatos();
         float res = Integer.parseInt(txtCantida.getText()) * Integer.parseInt(txtprecio.getText());
         total+=res;
         txtTotal.setText(Float.toString(total));
-        //ModificarExistencia(RetornarExistencias());
+           
+       ModificarExistencia(RetornarExistencias());
+            }
+            else if(Integer.parseInt(txtCantida.getText())>existencia_aux){// si en dado caso la cantidad ingresada es mayor a las existencias, va a dar un error
+                JOptionPane.showMessageDialog(null,"La cantidad que ingreso es mayor a las existencias del producto","Error",JOptionPane.ERROR_MESSAGE);
+            }
         }
         else{
             JOptionPane.showMessageDialog(null,"Ingrese una cantidad","ERROR",JOptionPane.ERROR_MESSAGE);
         }
-        
+    }
+    else{
+           JOptionPane.showMessageDialog(null,"Seleccione antes un producto","Error",JOptionPane.ERROR_MESSAGE);
+      }
     }//GEN-LAST:event_boto_agregarcompraActionPerformed
 //boton cancelar pedido
     private void boton_concelarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_concelarcompraActionPerformed
+       if(Tabla_productosC.getRowCount()!=0){
+        Nodo aux = productos.getTope();
+        while(aux!=null){
+            ModificarInventario(aux);
+            aux = aux.getSig();
+        }
         LimpiarTablaC();
+       }
+       else{
+           JOptionPane.showMessageDialog(null,"No se ha realizado una cotizacion","Errro",JOptionPane.ERROR_MESSAGE);
+       }
     }//GEN-LAST:event_boton_concelarcompraActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
@@ -916,7 +983,9 @@ public class Venta extends javax.swing.JFrame {
         int fila = Tabla_productosD.getSelectedRow();
        txtID.setText(Tabla_productosD.getValueAt(fila,0).toString());
        txtnombre.setText(Tabla_productosD.getValueAt(fila, 1).toString());
-       txtprecio.setText(Tabla_productosD.getValueAt(fila, 2).toString()); 
+       txtprecio.setText(Tabla_productosD.getValueAt(fila, 3).toString()); 
+       existencia_aux = Integer.parseInt(Tabla_productosD.getValueAt(fila,4).toString());
+       
     }//GEN-LAST:event_Tabla_productosDMouseClicked
  public void Agregarventa(){
      
@@ -991,11 +1060,7 @@ public class Venta extends javax.swing.JFrame {
                else{
                 txtUsuarioF.setText(nombre1);
                txtemail.setText(email);     
-               }
-              
-                   
-                    
-                   
+               }             
                         }
             
             
@@ -1043,11 +1108,11 @@ public class Venta extends javax.swing.JFrame {
          Connection conexion = con.Conectar();
          int nuevo_exist = existen-Integer.parseInt(txtCantida.getText());
          try {
-            PreparedStatement statement = conexion.prepareStatement("UPDATE inventario SET existencia='"+nuevo_exist+"'nombre ='"+txtnombre.getText()+"'");
+            PreparedStatement statement = conexion.prepareStatement("UPDATE inventario SET existencia='"+nuevo_exist+"'WHERE nombre ='"+txtnombre.getText()+"'");
             statement.executeUpdate();
            
             Tabla();
-            JOptionPane.showMessageDialog(null,"Datos Actualizados","",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null,"Datos Actualizados","",JOptionPane.INFORMATION_MESSAGE);
            
                
          } catch (SQLException ex) {
