@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-06-2019 a las 19:44:41
+-- Tiempo de generación: 19-06-2019 a las 22:47:23
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.2.18
 
@@ -86,7 +86,9 @@ CREATE TABLE `empleados` (
   `telemergencia` int(30) NOT NULL,
   `genero` varchar(20) NOT NULL,
   `estadocivil` varchar(20) NOT NULL,
-  `cargar` varchar(50) NOT NULL
+  `cargar` varchar(50) NOT NULL,
+  `contrasena` text NOT NULL,
+  `nivel_acceso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -228,7 +230,7 @@ ALTER TABLE `detalleventa`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`
