@@ -1554,6 +1554,7 @@ public class Venta extends javax.swing.JFrame {
                         }
             
             
+            
         } catch (SQLException ex) {
              JOptionPane.showMessageDialog(null,"Datos incorrectos","",JOptionPane.ERROR_MESSAGE);
              
