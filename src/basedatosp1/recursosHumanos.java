@@ -100,6 +100,11 @@ public class recursosHumanos extends javax.swing.JFrame {
         jLabel7.setText("Estado Civil");
 
         estadocivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Soltero", "Casado" }));
+        estadocivil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadocivilActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Cargar foto");
 
@@ -140,11 +145,12 @@ public class recursosHumanos extends javax.swing.JFrame {
                             .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(acceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(telEmergencia)
-                            .addComponent(estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(acceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
@@ -308,6 +314,10 @@ public class recursosHumanos extends javax.swing.JFrame {
             primeraVez ++;
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void estadocivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadocivilActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estadocivilActionPerformed
 
      private String validarCampos() {
         String salida = "";

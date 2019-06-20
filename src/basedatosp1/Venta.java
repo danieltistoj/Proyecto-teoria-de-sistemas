@@ -29,6 +29,7 @@ public class Venta extends javax.swing.JFrame {
     private DefaultTableModel modeloProductoH = new DefaultTableModel();
      private DefaultTableModel modeloDetalle= new DefaultTableModel();//modelo para detalle venta 
     private DefaultTableModel modelo;
+    private DefaultTableModel modelo1;
     ArrayList<Producto> listaProductos = new ArrayList<>();
     ArrayList<Venta> listaVenta = new ArrayList<>();
     ArrayList<VentaClass> listaHistorial = new ArrayList<>();
@@ -60,9 +61,9 @@ public class Venta extends javax.swing.JFrame {
         txtTlefonoF.setEnabled(false);
         txtemail.setEnabled(false);
         
+        TablaHistorialVenta();
         setModelo();
         setModelFactura();
-        setModelHistorial();
         setModelDetalle();
         Tabla();
     }
@@ -264,6 +265,7 @@ public class Venta extends javax.swing.JFrame {
         boton_Facturar = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
         IngresarCliente = new javax.swing.JDialog();
         txtnombreClien = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -311,6 +313,7 @@ public class Venta extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         TablaHistorial = new javax.swing.JTable();
         boton_DetalleDeVemta = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
 
         Facturacion.setBounds(new java.awt.Rectangle(0, 0, 445, 930));
 
@@ -338,7 +341,7 @@ public class Venta extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("empledo");
+        jLabel6.setText(" Id empleado");
 
         jLabel14.setText("nombre");
 
@@ -379,6 +382,8 @@ public class Venta extends javax.swing.JFrame {
         jLabel23.setText("Cargar");
 
         jLabel24.setText("Facturar");
+
+        jLabel25.setText("2da calle 19-22 zona 3");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -421,32 +426,37 @@ public class Venta extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(23, 23, 23))
                                     .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addGap(4, 4, 4)
-                                        .addComponent(boton_cargar_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtnombreF, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTlefonoF, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(jLabel16)))
-                        .addGap(111, 111, 111))))
+                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addGap(23, 23, 23))
+                                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                                .addGap(4, 4, 4)
+                                                .addComponent(boton_cargar_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNit, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtnombreF, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTlefonoF, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel6Layout.createSequentialGroup()
+                                        .addGap(51, 51, 51)
+                                        .addComponent(jLabel16)))
+                                .addGap(111, 111, 111))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel25)
+                                .addGap(150, 150, 150))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel15)
-                .addGap(185, 185, 185))
+                .addGap(192, 192, 192))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -459,9 +469,11 @@ public class Venta extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
                     .addComponent(jLabel24))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                .addComponent(jLabel15)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel16)
                 .addGap(52, 52, 52)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -923,34 +935,44 @@ public class Venta extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(TablaHistorial);
 
-        boton_DetalleDeVemta.setText("Ver detalles de venta");
+        boton_DetalleDeVemta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/detalle1.1.png"))); // NOI18N
         boton_DetalleDeVemta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_DetalleDeVemtaActionPerformed(evt);
             }
         });
 
+        jLabel26.setText("Detalle Venta");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(482, 482, 482)
+                        .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(449, 449, 449)
-                .addComponent(boton_DetalleDeVemta)
+                .addGap(496, 496, 496)
+                .addComponent(jLabel26)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addGap(66, 66, 66))
         );
 
         jTabbedPane1.addTab("Historial", jPanel5);
@@ -1272,36 +1294,45 @@ public class Venta extends javax.swing.JFrame {
         IngresarCliente1();
         IngresarCliente.dispose();
     }//GEN-LAST:event_boton_agregar_clienteActionPerformed
-public void setDatosHistorial(){
-     Object[] datos = new Object[modeloProductoH.getColumnCount()];
-        int i=1;
-        modeloProductoH.setRowCount(0);
-        for(VentaClass venta: listaHistorial){
-            datos[0] = venta.getId_venta();
-            datos[1] = venta.getId_usuario();
-            datos[2] = venta.getId_cliente();
-            datos[3] = venta.getNum_productos();
-            datos[4] = venta.getTotal_venta();
-            datos[5] = venta.getHora_fecha();
-            i++;
-            modeloProductoH.addRow(datos);
+    //actualizar tabla de historial 
+    public void TablaHistorialVenta(){
+            Conexion con = new Conexion();
+            Connection conexion = con.Conectar();
+            
+            String sql = "SELECT * FROM venta";
+            
+            Statement st;
+            DefaultTableModel modelo1;
+            modelo1 = new DefaultTableModel();
+            modelo1.addColumn("ID Venta");
+            modelo1.addColumn("ID Empleado");
+            modelo1.addColumn("ID Cliente");
+            modelo1.addColumn("Fecha Hora");
+            
+            
+            TablaHistorial.setModel(modelo1);
+            
+            String[] dato = new String[4];
+        try{
+            st = conexion.createStatement();   
+            ResultSet result = st.executeQuery(sql);
+            
+            while(result.next()){
+                dato[0] = result.getString(1);
+                dato[1] = result.getString(2);
+                dato[2] = result.getString(3);
+                dato[3] = result.getString(4);
+                modelo1.addRow(dato);
+            }
+            TablaHistorial.setModel(modelo1);
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        TablaHistorial.setModel(modeloProductoH);
+     }
     
-} 
-
- public void setModelHistorial(){
-        String[] cabecera = {"ID venta","ID usuario","ID cliente","No. Productos","Total De Venta","Hora y Fecha"};
-        modeloProductoH.setColumnIdentifiers(cabecera);
-        TablaHistorial.setModel(modeloProductoH);
-                
-        
-    }
-public void LlamarListaHistorial(VentaClass venta){
-        listaHistorial.add(venta);
-    }
-    
-      public void setModelDetalle(){
+    public void setModelDetalle(){
         String[] cabecera = {"ID","Nombre","Precio","Cantidad","Total"};
         modeloDetalle.setColumnIdentifiers(cabecera);
         Table_Detalle.setModel(modeloDetalle);
@@ -1360,6 +1391,74 @@ public void LlamarListaHistorial(VentaClass venta){
         } 
       
     }
+    //Con esta funcion retornamos el id de la venta a la hora de facturar para luego poder relacionarla cono los productos que se vendieron 
+    public int ObtenerIdVenta(){
+        int id_producto =0;
+            Conexion con = new Conexion();
+            Connection conexion = con.Conectar();
+            String sql = "SELECT * FROM venta";
+            Statement st;         
+            //String[] dato = new String[5];
+           
+        try{
+            st = conexion.createStatement();   
+            ResultSet result = st.executeQuery(sql);
+            int conta=0;
+            
+            //este primer while es para contar cuantas ventas hay, para luego ponerselo al vector que va a contener a los IDs 
+            while(result.next()){
+               result.getString(1);
+               conta++; 
+            }
+          //Al vector se le ingresa el valor como esta, y no si por ejemplo conta es 9 no se pone 8 (conta-1), esto porque resulta un error 
+          //al final para retornar el ultimo valor si se pone el contador en este caso conta2 como (conta-1)
+            String[] ids = new String[conta];
+            // debe de volverce a hacer la consulta por que el result se queda digamos vacio.
+            //.........................................................
+           String sql2 = "SELECT * FROM venta";
+           Statement st2;
+            try {
+                int conta2=0;
+                st2 = conexion.createStatement();
+                ResultSet result2 = st2.executeQuery(sql2);
+                while(result2.next()){
+                    ids[conta2] =result2.getString(1);//ingresamos los IDs de ventas en el vector 
+                    conta2++;
+                }
+                id_producto = Integer.parseInt(ids[conta-1]);
+            } catch (Exception e) {
+                System.out.println("erro ***");
+                 Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, e);
+            }
+            
+         //................................................................  
+         
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       return id_producto;
+    }
+    
+    //esta funcion relaciona todos los productos con la venta. Las relaciones las va ingresando en detalleventa.
+    public void RelacionarProductoVenta(int id_venta, int id_producto){
+        Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+        try {
+           
+            String query ="INSERT INTO detalleventa (venta_id,producto_id) values(?,?)";
+            PreparedStatement statement = conexion.prepareStatement(query);
+            statement.setInt(1,id_venta);
+            statement.setInt(2,id_producto);
+           
+            statement.executeUpdate();
+            conexion.close(); 
+            System.out.println("relacion hecha con exito");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        } 
+        
+    }
  // es el boton que termina con la venta, y realiza la facturacion 
     private void boton_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_FacturarActionPerformed
          String formato = "yyyy-MM-dd HH:mm:ss";
@@ -1368,12 +1467,20 @@ public void LlamarListaHistorial(VentaClass venta){
          String FechaHora=formateador.format(ahora); //fecha y hora 
          
          Nodo aux = productos.getTope();
-         float precio_producto = aux.getProducto().getPrecio();
-         int   id_producto = aux.getProducto().getId_producto();
+       
          int id_cliente = clienteId;
          int id_usuario = Integer.parseInt(txtIDempleadoF.getText());
          IngresarVentaBaseDatos(id_cliente, id_usuario, FechaHora);
          
+         int id_venta = ObtenerIdVenta();
+         while(aux!=null){
+             RelacionarProductoVenta(id_venta,aux.getProducto().getId_producto());
+             aux = aux.getSig();
+         }
+         
+         
+         
+      /*   
       VentaClass venta = new VentaClass();
       Nodo nodo = new Nodo();
       venta.setId_cliente(clienteId);
@@ -1383,6 +1490,7 @@ public void LlamarListaHistorial(VentaClass venta){
       venta.setProductos(Productos(productos));
       float aux_total = Float.parseFloat(txtTotal.getText());
       venta.setTotal_venta(aux_total);
+         
               
       nodo.setVenta(venta);
       ventas.InsertarFondo(nodo);
@@ -1390,6 +1498,7 @@ public void LlamarListaHistorial(VentaClass venta){
       
         LlamarListaHistorial(venta);
         setDatosHistorial();
+        */
         LimpiarTablaC();
          
     }//GEN-LAST:event_boton_FacturarActionPerformed
@@ -1399,8 +1508,39 @@ public void LlamarListaHistorial(VentaClass venta){
          id_aux = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
        
     }//GEN-LAST:event_TablaHistorialMouseClicked
-
+ public void ListaIdProductos(){
+     String sql = "SELECT *FROM detalleventa WHERE venta_id LIKE '%" + id_aux + "%'";
+                
+       // modelo = new DefaultTableModel(null,titulos);
+        Conexion con = new Conexion();
+        Connection conect = con.Conectar();
+        try {
+            Statement st = (Statement) conect.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+           int conta=0;
+            while(rs.next()){
+                System.out.println(rs.getString("producto_id")); 
+             
+            }
+           
+        } catch (SQLException ex) {
+            System.out.println("ERROR");
+        }
+ }   
+ 
+ public void LimpiarTablaDetalle(){
+     modeloDetalle.setRowCount(0);
+     Table_Detalle.setModel(modeloDetalle);
+ }
+ 
     private void boton_DetalleDeVemtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_DetalleDeVemtaActionPerformed
+     
+        
+        
+        
+        
+        
+        /*
        Dialog_DetalleVenta.setVisible(true);
        Nodo aux = ventas.getTope();
         System.out.println(id_aux);
@@ -1420,7 +1560,7 @@ public void LlamarListaHistorial(VentaClass venta){
                aux = aux.getSig();
            }
        }
-       
+       */
     }//GEN-LAST:event_boton_DetalleDeVemtaActionPerformed
 
     private void txtnombreFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreFActionPerformed
@@ -1428,27 +1568,7 @@ public void LlamarListaHistorial(VentaClass venta){
     }//GEN-LAST:event_txtnombreFActionPerformed
 
     private void BotonTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTempActionPerformed
-         
-           Conexion con = new Conexion();
-            Connection conexion = con.Conectar();
-            
-            String sql = "SELECT * FROM venta";
-            
-            Statement st;
-                        
-            //String[] dato = new String[5];
-        try{
-            st = conexion.createStatement();   
-            ResultSet result = st.executeQuery(sql);
-            
-            while(result.next()){
-                System.out.println(result.getString(1));
-            }
-            
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
-        }
+         System.out.println(ObtenerIdVenta());
     }//GEN-LAST:event_BotonTempActionPerformed
    //es para que en la cantidad no ingresen letras 
     private void txtCantidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidaKeyTyped
@@ -1568,6 +1688,8 @@ public void LlamarListaHistorial(VentaClass venta){
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
