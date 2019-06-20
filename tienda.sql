@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-06-2019 a las 01:05:28
--- Versión del servidor: 10.1.40-MariaDB
--- Versión de PHP: 7.2.18
+-- Tiempo de generación: 20-06-2019 a las 22:58:03
+-- Versión del servidor: 10.3.15-MariaDB
+-- Versión de PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -97,8 +97,9 @@ CREATE TABLE `empleados` (
 --
 
 INSERT INTO `empleados` (`idempleado`, `nombreempleado`, `cui`, `telefono`, `nacimiento`, `telemergencia`, `genero`, `estadocivil`, `cargar`, `contrasena`, `nivel_acceso`, `email_empleado`) VALUES
-(1, 'daniel', 12345, 98765, '2/6/99', 32423447, 'M', 'soltero', 'algo', '1234', 2, 'daniel@gmail.com'),
-(2, 'pedro', 18887, 657789832, '5/7/98', 98172983, 'M', 'soltero', 'algo', '5678', 1, 'pedro@gmail.com');
+(1, 'daniel', 12345, 98765, 'quetzaltenango', 32423447, 'Masculino', 'soltero', '/ImagenesEmpleados/daniel.jpeg', '1234', 2, 'daniel@gmail.com'),
+(2, 'pedro', 18887, 657789832, 'Guatemala', 98172983, 'Masculino', 'soltero', '/ImagenesEmpleados/pedro.jpg', '5678', 1, 'pedro@gmail.com'),
+(3, 'fernando', 123, 123, 'quetzgo', 1234, 'Masculino', 'Soltero', 'src\\ImagenesEmpleados\\fernando.jpg', 'algo', 1, 'prueba@no.com');
 
 -- --------------------------------------------------------
 
@@ -243,7 +244,7 @@ ALTER TABLE `detalleventa`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idempleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `inventario`

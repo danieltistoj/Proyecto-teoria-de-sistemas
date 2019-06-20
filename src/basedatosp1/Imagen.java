@@ -10,8 +10,10 @@ import javax.swing.ImageIcon;
 
 public class Imagen extends javax.swing.JPanel {
     private String Nombre;
-    public Imagen(String Name) {
-        this.setSize(645, 490); 
+    private int ancho;
+    private int alto;
+    public Imagen(String Name, int ancho, int alto) {
+        this.setSize(ancho, alto); 
         this.Nombre = Name;
     }
     

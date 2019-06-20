@@ -46,7 +46,9 @@ public class Venta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("RUBIX / VENTAS");
         this.setResizable(false);
-        Imagen img1 = new Imagen("/Imagenes/VentasFondo.jpg");
+        Imagen img1 = new Imagen("/Imagenes/VentasFondo.jpg", 1078, 760);
+        this.jPanel2.add(img1);
+        this.jPanel2.repaint();
         Facturacion.setLocationRelativeTo(null);
         Facturacion.setTitle("Facturar");
         IngresarCliente.setLocationRelativeTo(null);

@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/Usuario/Documents/BaseDatosP1/src/basedatosp1/main.java</file>
             <file>file:/C:/Users/Usuario/Documents/BaseDatosP1/src/basedatosp1/Nodo.java</file>
             <file>file:/C:/Users/Usuario/Documents/BaseDatosP1/src/basedatosp1/Inventario.java</file>
@@ -14,6 +15,13 @@
             <file>file:/C:/Users/Usuario/Documents/BaseDatosP1/src/basedatosp1/Imagen.java</file>
             <file>file:/C:/Users/Usuario/Documents/BaseDatosP1/src/basedatosp1/Menu.java</file>
             <file>file:/C:/Users/Usuario/Documents/BaseDatosP1/src/basedatosp1/Venta.java</file>
+=======
+            <file>file:/C:/Users/ferna/Desktop/Proyecto-teoria-de-sistemas/Proyecto-teoria-de-sistemas/src/basedatosp1/recursosHumanos.java</file>
+            <file>file:/C:/Users/ferna/Desktop/Proyecto-teoria-de-sistemas/Proyecto-teoria-de-sistemas/src/basedatosp1/Conexion.java</file>
+            <file>file:/C:/Users/ferna/Desktop/Proyecto-teoria-de-sistemas/Proyecto-teoria-de-sistemas/src/basedatosp1/Menu.java</file>
+            <file>file:/C:/Users/ferna/Desktop/Proyecto-teoria-de-sistemas/Proyecto-teoria-de-sistemas/src/basedatosp1/Imagen.java</file>
+            <file>file:/C:/Users/ferna/Desktop/Proyecto-teoria-de-sistemas/Proyecto-teoria-de-sistemas/src/basedatosp1/Inventario.java</file>
+>>>>>>> 736e14993755ad4ae2f3c39514978329e6411bb0
         </group>
     </open-files>
 </project-private>
