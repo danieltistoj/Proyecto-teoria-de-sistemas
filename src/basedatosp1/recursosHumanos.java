@@ -190,7 +190,7 @@ public class recursosHumanos extends javax.swing.JFrame {
                             .addComponent(genero, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(contrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))))
-                .addContainerGap(334, Short.MAX_VALUE))
+                .addContainerGap(662, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -307,7 +307,7 @@ public class recursosHumanos extends javax.swing.JFrame {
                             .addGap(75, 75, 75)
                             .addComponent(jLabel15)))
                     .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(614, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1))
@@ -346,7 +346,7 @@ public class recursosHumanos extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 903, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1231, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

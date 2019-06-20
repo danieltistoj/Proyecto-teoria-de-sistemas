@@ -362,7 +362,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void BotonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInventarioActionPerformed
         contra_inventario.setVisible(true);
-       
+        contra_inventario.setLocationRelativeTo(null);
     }//GEN-LAST:event_BotonInventarioActionPerformed
 
     private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
@@ -418,6 +418,7 @@ public class Menu extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         contra_recursos.setVisible(true);
         contra_recursos.setTitle("Rubix/Login/Recursos Humanos");
+        contra_recursos.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void boton_ingre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_ingre1ActionPerformed
