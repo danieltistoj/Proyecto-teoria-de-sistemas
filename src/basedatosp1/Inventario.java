@@ -29,7 +29,7 @@ public class Inventario extends javax.swing.JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
         initComponents();
         this.setResizable(false);
-        setTitle("Rubix");
+        setTitle("Rubix/Inventario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         Imagen img1 = new Imagen("/Imagenes/Agregar1.jpg");

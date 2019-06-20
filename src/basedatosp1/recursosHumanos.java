@@ -23,10 +23,13 @@ import javax.swing.ImageIcon;
 public class recursosHumanos extends javax.swing.JFrame {
     private int primeraVez;
     private String ruta;
+    private String password;
     public recursosHumanos() {
         initComponents();
         primeraVez = 0;
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
+        setLocationRelativeTo(null);
+        setTitle("Rubix/Recursos Humanos");
     }
 
     /**
@@ -62,6 +65,8 @@ public class recursosHumanos extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         contrasena = new javax.swing.JPasswordField();
+        jLabel11 = new javax.swing.JLabel();
+        correo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
 
         jButton1.setText("jButton1");
@@ -88,7 +93,7 @@ public class recursosHumanos extends javax.swing.JFrame {
 
         jLabel5.setText("Teléfono emergencia");
 
-        jLabel6.setText("genero");
+        jLabel6.setText("Genero");
 
         genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
 
@@ -110,6 +115,8 @@ public class recursosHumanos extends javax.swing.JFrame {
         jLabel9.setText("Nivel de acceso");
 
         jLabel10.setText("contraseña");
+
+        jLabel11.setText("Correo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,10 +140,15 @@ public class recursosHumanos extends javax.swing.JFrame {
                             .addComponent(jLabel9))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(acceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(telEmergencia)))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(acceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(telEmergencia)
+                            .addComponent(estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(18, 18, 18)
+                        .addComponent(correo)))
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -161,7 +173,7 @@ public class recursosHumanos extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addGap(126, 126, 126))
+                .addGap(40, 40, 40))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,9 +209,13 @@ public class recursosHumanos extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
                     .addComponent(contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addGap(27, 27, 27))
         );
 
         jTabbedPane1.addTab("Ingresar Empleados", jPanel1);
@@ -251,7 +267,7 @@ public class recursosHumanos extends javax.swing.JFrame {
             Connection conexion = con.Conectar();
             try {
 
-                String query ="INSERT INTO empleados (nombreempleado, cui, telefono, nacimiento, telemergencia, genero, estadocivil, cargar, contrasena, nivel_acceso) values(?,?,?,?,?,?,?,?,?,?)";
+                String query ="INSERT INTO empleados (nombreempleado, cui, telefono, nacimiento, telemergencia, genero, estadocivil, cargar, contrasena, nivel_acceso, email_empleado) values(?,?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement statement = conexion.prepareStatement(query);
                 statement.setString(1,nombre.getText());
                 statement.setInt(2, Integer.valueOf(cui.getText()));
@@ -261,8 +277,11 @@ public class recursosHumanos extends javax.swing.JFrame {
                 statement.setString(6, genero.getSelectedItem().toString());
                 statement.setString(7, estadocivil.getSelectedItem().toString());
                 statement.setString(8, "src\\ImagenesEmpleados\\" + nombre.getText() + ".jpg");
-                statement.setInt(9, Integer.valueOf(acceso.getSelectedItem().toString()));
-                statement.setString(10, contrasena.getPassword().toString());
+                statement.setString(9, password);
+                System.out.println(Integer.valueOf(acceso.getSelectedItem().toString()));
+                System.out.println(password);
+                statement.setInt(10, Integer.valueOf(acceso.getSelectedItem().toString()));
+                statement.setString(11, correo.getText());
                 conexion.close(); 
                 JOptionPane.showMessageDialog(null,"Producto agregado correctamente","",JOptionPane.INFORMATION_MESSAGE); 
             } catch (Exception e) {
@@ -309,6 +328,14 @@ public class recursosHumanos extends javax.swing.JFrame {
         }
         if(primeraVez == 0){
             salida += "--> REVISAR SI CARGO LA FOTO \n";
+        }
+        if(contrasena.getPassword().length == 0) {
+             salida += "--> REVISAR EL CAMPO DE LA CONTRASEÑA\n";
+        }else{
+            password = new String(contrasena.getPassword());
+        }
+        if (correo.getText().equals("")){
+            salida += "---> REVISAR EL CAMPO DEL CORREO\n";
         }
         if (!salida.equals("")) {
             salida = "VERIFIQUE LOS SIQUIETES PUNTOS \n\n\t" + salida;
@@ -366,6 +393,7 @@ public class recursosHumanos extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> acceso;
     private javax.swing.JPasswordField contrasena;
+    private javax.swing.JTextField correo;
     private javax.swing.JTextField cui;
     private javax.swing.JComboBox<String> estadocivil;
     private javax.swing.JComboBox<String> genero;
@@ -374,6 +402,7 @@ public class recursosHumanos extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
