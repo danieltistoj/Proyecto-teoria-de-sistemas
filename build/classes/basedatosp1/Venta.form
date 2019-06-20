@@ -136,9 +136,11 @@
                           <Component id="boton_Facturar" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel23" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel24" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace pref="41" max="32767" attributes="0"/>
                       <Component id="jLabel15" min="-2" pref="22" max="-2" attributes="0"/>
@@ -625,7 +627,6 @@
                                           <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -682,11 +683,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="boton_concelarcompra" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
-                                  <Component id="boton_finalizarcompra" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
-                                  <Component id="boto_agregarcompra" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="boton_concelarcompra" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
+                              <Component id="boton_finalizarcompra" alignment="0" min="-2" pref="52" max="-2" attributes="0"/>
+                              <Component id="boto_agregarcompra" min="-2" pref="52" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="txtnombre" alignment="3" min="-2" max="-2" attributes="0"/>

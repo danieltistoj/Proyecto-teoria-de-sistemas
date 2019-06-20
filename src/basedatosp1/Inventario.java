@@ -32,8 +32,8 @@ public class Inventario extends javax.swing.JFrame {
         setTitle("Rubix/Inventario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        Imagen img1 = new Imagen("/Imagenes/Agregar1.jpg");
-        Imagen img2 = new Imagen("/Imagenes/inventario1.jpg");
+        Imagen img1 = new Imagen("/Imagenes/Agregar1.jpg", 733, 510);
+        Imagen img2 = new Imagen("/Imagenes/inventario1.jpg", 733, 510);
         this.PanelAgregar.add(img1);
         this.PanelAgregar.repaint();
         this.PanelTabla.add(img2);
