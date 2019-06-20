@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class Venta extends javax.swing.JFrame {
     private  float total = 0;
     private boolean aux_boolean;
-    private int clienteId,telefonoCliente, id_aux, existencia_aux;
+    private int clienteId,telefonoCliente, id_aux, existencia_aux, idE_temp, idC_temp;
     private DefaultTableModel modeloProducto = new DefaultTableModel();
     private DefaultTableModel modeloProductoF = new DefaultTableModel();
     private DefaultTableModel modeloProductoH = new DefaultTableModel();
@@ -35,7 +35,7 @@ public class Venta extends javax.swing.JFrame {
     ArrayList<VentaClass> listaHistorial = new ArrayList<>();
     ArrayList<Producto> listaDetalle = new ArrayList<>();// array para detalle
    
-    private Lista ventas, productos;
+    private Lista ventas, productos, productos2;
     public Venta() {
          
         ventas = new Lista();
@@ -44,6 +44,7 @@ public class Venta extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
         setLocationRelativeTo(null);
+        setTitle("RUBIX / VENTAS");
         this.setResizable(false);
         Imagen img1 = new Imagen("/Imagenes/VentasFondo.jpg");
         Facturacion.setLocationRelativeTo(null);
@@ -278,6 +279,10 @@ public class Venta extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         Table_Detalle = new javax.swing.JTable();
+        label_nombreE = new javax.swing.JLabel();
+        cuiE = new javax.swing.JLabel();
+        TelefonoE = new javax.swing.JLabel();
+        CorreoE = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -466,9 +471,10 @@ public class Venta extends javax.swing.JFrame {
                     .addComponent(boton_cargar_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton_Facturar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23)
-                    .addComponent(jLabel24))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel24)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -589,7 +595,7 @@ public class Venta extends javax.swing.JFrame {
                 .addContainerGap(65, Short.MAX_VALUE))
         );
 
-        Dialog_DetalleVenta.setBounds(new java.awt.Rectangle(0, 0, 509, 700));
+        Dialog_DetalleVenta.setBounds(new java.awt.Rectangle(0, 0, 595, 700));
 
         Table_Detalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -602,21 +608,53 @@ public class Venta extends javax.swing.JFrame {
 
             }
         ));
+        Table_Detalle.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Table_DetalleMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(Table_Detalle);
+
+        label_nombreE.setText("Nombre Empleado: ");
+
+        cuiE.setText("CUI Empleado: ");
+
+        TelefonoE.setText("Telefono Empleado:");
+
+        CorreoE.setText("Email Empleado:");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(label_nombreE)
+                            .addComponent(TelefonoE))
+                        .addGap(114, 114, 114)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CorreoE)
+                            .addComponent(cuiE)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(285, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(label_nombreE)
+                    .addComponent(cuiE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TelefonoE)
+                    .addComponent(CorreoE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -750,7 +788,6 @@ public class Venta extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(boto_agregarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(47, 47, 47)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -793,10 +830,9 @@ public class Venta extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(boton_concelarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(boton_finalizarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(boto_agregarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(boton_concelarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_finalizarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boto_agregarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1332,33 +1368,6 @@ public class Venta extends javax.swing.JFrame {
         }
      }
     
-    public void setModelDetalle(){
-        String[] cabecera = {"ID","Nombre","Precio","Cantidad","Total"};
-        modeloDetalle.setColumnIdentifiers(cabecera);
-        Table_Detalle.setModel(modeloDetalle);
-                    
-    }
- public void LlamarListaDetalle(Producto producto){
-     listaDetalle.add(producto);
-     
- }
- 
- public void setDatosDetalle(){
-     Object[] datos = new Object[modeloDetalle.getColumnCount()];
-        int i=1;
-        modeloDetalle.setRowCount(0);
-        for(Producto producto: listaDetalle){
-            datos[0] = producto.getId_producto();
-            datos[1] = producto.getNombre();
-            datos[2] = producto.getPrecio();
-            datos[3] = producto.getCantidad();
-            datos[4] = producto.getPrecioTotal();
-            i++;
-            modeloDetalle.addRow(datos);
-        }
-        Table_Detalle.setModel(modeloDetalle);
-    
-} 
     public Lista Productos(Lista productos){
         Lista nuevaLista = new Lista();
         Nodo aux = productos.getTope();
@@ -1440,15 +1449,17 @@ public class Venta extends javax.swing.JFrame {
     }
     
     //esta funcion relaciona todos los productos con la venta. Las relaciones las va ingresando en detalleventa.
-    public void RelacionarProductoVenta(int id_venta, int id_producto){
+    public void RelacionarProductoVenta(int id_venta, int id_producto,float precio_total,int cantidad){
         Conexion con = new Conexion();
          Connection conexion = con.Conectar();
         try {
            
-            String query ="INSERT INTO detalleventa (venta_id,producto_id) values(?,?)";
+            String query ="INSERT INTO detalleventa (venta_id,producto_id,cantidad,Total) values(?,?,?,?)";
             PreparedStatement statement = conexion.prepareStatement(query);
             statement.setInt(1,id_venta);
             statement.setInt(2,id_producto);
+            statement.setInt(3,cantidad );
+            statement.setFloat(4,precio_total);
            
             statement.executeUpdate();
             conexion.close(); 
@@ -1474,93 +1485,211 @@ public class Venta extends javax.swing.JFrame {
          
          int id_venta = ObtenerIdVenta();
          while(aux!=null){
-             RelacionarProductoVenta(id_venta,aux.getProducto().getId_producto());
+             RelacionarProductoVenta(id_venta,aux.getProducto().getId_producto(),aux.getProducto().getPrecioTotal(),aux.getProducto().getCantidad());
              aux = aux.getSig();
          }
          
          
-         
-      /*   
-      VentaClass venta = new VentaClass();
-      Nodo nodo = new Nodo();
-      venta.setId_cliente(clienteId);
-      venta.setId_usuario(Integer.parseInt(txtIDempleadoF.getText()));
-      venta.setHora_fecha(FechaHora);
      
-      venta.setProductos(Productos(productos));
-      float aux_total = Float.parseFloat(txtTotal.getText());
-      venta.setTotal_venta(aux_total);
-         
-              
-      nodo.setVenta(venta);
-      ventas.InsertarFondo(nodo);
-      Nodo aux1 = ventas.getTope();
-      
-        LlamarListaHistorial(venta);
-        setDatosHistorial();
-        */
         LimpiarTablaC();
+        TablaHistorialVenta();
          
     }//GEN-LAST:event_boton_FacturarActionPerformed
 
     private void TablaHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHistorialMouseClicked
          int fila = TablaHistorial.getSelectedRow();
          id_aux = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
+         idE_temp = Integer.parseInt(TablaHistorial.getValueAt(fila,1).toString());
+         idC_temp = Integer.parseInt(TablaHistorial.getValueAt(fila,2).toString());
+                 
+         
        
     }//GEN-LAST:event_TablaHistorialMouseClicked
- public void ListaIdProductos(){
+     
+    //con esta funcion encontramos todos id de los productos relacionados con una venta
+    public ArrayList  ListaIdProductos(){
      String sql = "SELECT *FROM detalleventa WHERE venta_id LIKE '%" + id_aux + "%'";
-                
+      ArrayList<String> id_productos = new ArrayList<>();          
        // modelo = new DefaultTableModel(null,titulos);
         Conexion con = new Conexion();
         Connection conect = con.Conectar();
+       int conta = 0;
         try {
             Statement st = (Statement) conect.createStatement();
             ResultSet rs = st.executeQuery(sql);
-           int conta=0;
-            while(rs.next()){
-                System.out.println(rs.getString("producto_id")); 
-             
-            }
+           while(rs.next()){
+               id_productos.add(rs.getString("producto_id"));
+               conta++;
+           } 
            
         } catch (SQLException ex) {
             System.out.println("ERROR");
         }
+        
+      return id_productos;
  }   
- 
+ //llenamos el array list con los productos que se hicienron en cada venta 
+    public void DetallesProductos(int id){
+         Producto producto = null;
+      
+         int cantidad;
+         String sql = "SELECT * FROM inventario"+" WHERE ID='"+id+"'";
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         Statement st;
+         try{
+            st = conexion.createStatement();   
+            ResultSet resultado = st.executeQuery(sql);
+           
+            if(resultado.first()){
+               String nombre1 = resultado.getString("nombre");
+               float precio_total = RetornarTotalDetalleVenta(id);// se llama a la funcioon que retorna el total de la compra de un producto (detalleventa)
+               cantidad = RetornarCantiDetalleVenta(id);//se llama a la funcion que retorna la cantidad que se conpro del producto (detalleventa)
+               float precio_unidad = Float.parseFloat(resultado.getString("precio"));
+              
+               producto = new Producto(id,cantidad,nombre1,precio_unidad);// se inicializa la el objeto producto 
+               producto.setPrecioTotal(precio_total);//se modifica el total del precio ya que no se ingresa en el constructor de la clase 
+               System.out.println("exito");
+                         
+                        }
+            
+            
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null,"Datos incorrectos","",JOptionPane.ERROR_MESSAGE);
+             
+            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         listaDetalle.add(producto);// se ingresa el producto o el objeto en el array list
+    }
+    //retorna la cantidad que se compro de ese producto
+     public int RetornarCantiDetalleVenta(int id){
+         int cantida=0;
+         String sql = "SELECT * FROM detalleventa"+" WHERE venta_id='"+id_aux+"' && producto_id='"+19+"'";
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         Statement st;
+         try{
+            st = conexion.createStatement();   
+            ResultSet resultado = st.executeQuery(sql);
+           
+            if(resultado.first()){
+               cantida = Integer.parseInt(resultado.getString("cantidad"));
+                        }
+            
+            
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null,"Datos incorrectos","",JOptionPane.ERROR_MESSAGE);
+             
+            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+       return cantida;
+    }
+     //retorna el total del prodcuto contidad * precio 
+     public float RetornarTotalDetalleVenta(int id){
+         float total1 = 0;
+         String sql = "SELECT * FROM detalleventa"+" WHERE venta_id='"+id_aux+"' && producto_id='"+id+"'";
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         Statement st;
+         try{
+            st = conexion.createStatement();   
+            ResultSet resultado = st.executeQuery(sql);
+           
+            if(resultado.first()){
+               total1 = Float.parseFloat(resultado.getString("Total"));
+                    
+                        }
+            
+            
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null,"Datos incorrectos","",JOptionPane.ERROR_MESSAGE);
+             
+            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return total1;
+    }
+     //se ingresan los productos al modelo de detalle de venta, que se han ingresando antes en un array list 
+        public void setDatosDetalle(){
+        Object[] datos = new Object[modeloDetalle.getColumnCount()];
+        int i=1;
+        modeloDetalle.setRowCount(0);
+        for(Producto producto: listaDetalle){
+            datos[0] = producto.getId_producto();
+            datos[1] = producto.getNombre();
+            datos[2] = producto.getPrecio();
+            datos[3] = producto.getCantidad();
+            datos[4] = producto.getPrecioTotal();
+            i++;
+            modeloDetalle.addRow(datos);
+        }
+        Table_Detalle.setModel(modeloDetalle);
+        
+    }
+    // con esta funcion se le ponen los encabezados a cado columna de la tabla de detalle de venta 
+     public void setModelDetalle(){
+        String[] cabecera = {"ID","Nombre","Precio","Cantidad","Total"};
+        modeloDetalle.setColumnIdentifiers(cabecera);
+        Table_Detalle.setModel(modeloDetalle);
+                    
+    }
+ // con esta funcion se limpia la tabla detalle de venta
  public void LimpiarTablaDetalle(){
      modeloDetalle.setRowCount(0);
      Table_Detalle.setModel(modeloDetalle);
+     listaDetalle.clear();
  }
  
+  public void BuscarEmpleadoDetalle(){
+         
+         String nombre1="";
+         String sql = "SELECT * FROM empleados"+" WHERE idempleado='"+idE_temp+"'";
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         Statement st;
+         try{
+            st = conexion.createStatement();   
+            ResultSet resultado = st.executeQuery(sql);
+           
+            if(resultado.first()){
+                nombre1 = "Nombre Empleado: "+resultado.getString("nombreempleado");
+               String email ="Email Empleado: "+ resultado.getString("email_empleado");
+               String cui ="CUI Empleado: "+resultado.getString("cui");
+               String telefono ="Telefono Empleado: "+resultado.getString("telefono");
+              label_nombreE.setText(nombre1);
+              cuiE.setText(cui);
+              CorreoE.setText(email);
+              TelefonoE.setText(telefono);
+             
+                         
+                        }
+            else{
+                System.out.println("no entro");
+            }
+            
+            
+        } catch (SQLException ex) {
+             System.out.println("error");
+             
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(nombre1);
+  }
+ //Este boton agrega los productos de la venta en la tabla que esta en el dialog: Dialog_DetalleVenta 
     private void boton_DetalleDeVemtaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_DetalleDeVemtaActionPerformed
-     
-        
-        
-        
-        
-        
-        /*
-       Dialog_DetalleVenta.setVisible(true);
-       Nodo aux = ventas.getTope();
-        System.out.println(id_aux);
-       while(aux!=null){
-           System.out.println(aux.getVenta().getId_venta());
-           if(id_aux==aux.getVenta().getId_venta()){
-               
-              Nodo aux2 = aux.getVenta().getProductos().getTope();
-               System.out.println(aux2);
-              while(aux2!=null){
-                  
-                  System.out.println(aux2.getProducto().getNombre());
-                  LlamarListaDetalle(aux2.getProducto());
-                  setDatosDetalle();
-                  aux2 = aux2.getSig();
-              }
-               aux = aux.getSig();
-           }
-       }
-       */
+      LimpiarTablaDetalle();
+      Dialog_DetalleVenta.setVisible(true);
+      ArrayList<String> listaCopiada = new ArrayList<String>(ListaIdProductos());
+      int size = listaCopiada.size();
+      int conta =0;
+      while(conta<size){
+          DetallesProductos(Integer.parseInt(listaCopiada.get(conta)));
+          conta++;
+      }
+      setDatosDetalle();
+      System.out.println(idE_temp);
+      BuscarEmpleadoDetalle();
+      
     }//GEN-LAST:event_boton_DetalleDeVemtaActionPerformed
 
     private void txtnombreFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreFActionPerformed
@@ -1615,6 +1744,11 @@ public class Venta extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Solo ingrese numeros","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_txtTelefonoClinKeyTyped
+//obtenemos el id del empleado y de la venta 
+    private void Table_DetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Table_DetalleMouseClicked
+
+       
+    }//GEN-LAST:event_Table_DetalleMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1656,6 +1790,7 @@ public class Venta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton BotonTemp;
+    private javax.swing.JLabel CorreoE;
     private javax.swing.JDialog Dialog_DetalleVenta;
     private javax.swing.JDialog Facturacion;
     private javax.swing.JDialog IngresarCliente;
@@ -1663,6 +1798,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JTable Tabla_productosC;
     private javax.swing.JTable Tabla_productosD;
     private javax.swing.JTable Table_Detalle;
+    private javax.swing.JLabel TelefonoE;
     private javax.swing.JButton boto_agregarcompra;
     private javax.swing.JButton botonRegresar;
     private javax.swing.JButton boton_DetalleDeVemta;
@@ -1671,6 +1807,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JButton boton_cargar_factura;
     private javax.swing.JButton boton_concelarcompra;
     private javax.swing.JButton boton_finalizarcompra;
+    private javax.swing.JLabel cuiE;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1710,6 +1847,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel label_nombreE;
     private javax.swing.JTable tabla_factura;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCantida;
