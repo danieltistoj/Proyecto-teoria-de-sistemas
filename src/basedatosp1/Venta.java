@@ -5,9 +5,14 @@
  */
 package basedatosp1;
 
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -357,7 +362,7 @@ public class Venta extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         txt_URL_pdf = new javax.swing.JTextField();
         boton_buscar_archivo_ = new javax.swing.JToggleButton();
-        boton_generar_pdf = new javax.swing.JToggleButton();
+        boton_generar_pdf_ = new javax.swing.JToggleButton();
         jLabel31 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
@@ -558,10 +563,11 @@ public class Venta extends javax.swing.JFrame {
                     .addComponent(boton_Facturar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(Boton_cancelar_factura, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24)
-                    .addComponent(jLabel8))
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel23)
+                        .addComponent(jLabel8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -756,7 +762,12 @@ public class Venta extends javax.swing.JFrame {
             }
         });
 
-        boton_generar_pdf.setText("Generar");
+        boton_generar_pdf_.setText("Generar");
+        boton_generar_pdf_.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_generar_pdf_ActionPerformed(evt);
+            }
+        });
 
         jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/pdf2.1.png"))); // NOI18N
         jLabel31.setText("jLabel31");
@@ -775,7 +786,7 @@ public class Venta extends javax.swing.JFrame {
                         .addComponent(txt_URL_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(boton_generar_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(boton_generar_pdf_, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(118, 118, 118))))
         );
         jPanel8Layout.setVerticalGroup(
@@ -786,7 +797,7 @@ public class Venta extends javax.swing.JFrame {
                     .addComponent(boton_buscar_archivo_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txt_URL_pdf))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(boton_generar_pdf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(boton_generar_pdf_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -1774,7 +1785,7 @@ public class Venta extends javax.swing.JFrame {
     //retorna la cantidad que se compro de ese producto
      public int RetornarCantiDetalleVenta(int id){
          int cantida=0;
-         String sql = "SELECT * FROM detalleventa"+" WHERE venta_id='"+id_aux+"' && producto_id='"+19+"'";
+         String sql = "SELECT * FROM detalleventa"+" WHERE venta_id='"+id_aux+"' && producto_id='"+id+"'";
          Conexion con = new Conexion();
          Connection conexion = con.Conectar();
          Statement st;
@@ -2030,6 +2041,22 @@ public class Venta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_boton_buscar_archivo_ActionPerformed
 
+    private void boton_generar_pdf_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_generar_pdf_ActionPerformed
+       String ruta = txt_URL_pdf.getText();
+        try {
+            FileOutputStream archivo = new FileOutputStream(ruta+".pdf");
+            Document doc = new Document();
+            PdfWriter.getInstance(doc, archivo);
+            doc.open();
+            doc.add(new Paragraph(contenidofinal));
+            doc.close();
+            JOptionPane.showMessageDialog(null,"Archivo creado exitosamente","",JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null,"Error","",JOptionPane.ERROR_MESSAGE);
+           
+        }
+    }//GEN-LAST:event_boton_generar_pdf_ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2089,7 +2116,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JButton boton_cargar_factura;
     private javax.swing.JButton boton_concelarcompra;
     private javax.swing.JButton boton_finalizarcompra;
-    private javax.swing.JToggleButton boton_generar_pdf;
+    private javax.swing.JToggleButton boton_generar_pdf_;
     private javax.swing.JLabel cuiE;
     private javax.swing.JLabel emailClien_label;
     private javax.swing.JLabel jLabel1;

@@ -135,10 +135,12 @@
                           <Component id="Boton_cancelar_factura" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel23" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace pref="45" max="32767" attributes="0"/>
                       <Component id="jLabel15" min="-2" pref="22" max="-2" attributes="0"/>
@@ -692,7 +694,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="boton_generar_pdf" min="-2" pref="81" max="-2" attributes="0"/>
+                                  <Component id="boton_generar_pdf_" min="-2" pref="81" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -708,7 +710,7 @@
                               <Component id="txt_URL_pdf" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="boton_generar_pdf" max="32767" attributes="0"/>
+                          <Component id="boton_generar_pdf_" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Component id="jLabel31" alignment="0" max="32767" attributes="0"/>
@@ -731,10 +733,13 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_buscar_archivo_ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JToggleButton" name="boton_generar_pdf">
+                <Component class="javax.swing.JToggleButton" name="boton_generar_pdf_">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Generar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_generar_pdf_ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel31">
                   <Properties>
