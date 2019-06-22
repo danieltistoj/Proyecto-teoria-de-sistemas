@@ -702,7 +702,7 @@ public class Venta extends javax.swing.JFrame {
                 .addContainerGap(48, Short.MAX_VALUE))
         );
 
-        Dialog_DetalleVenta.setBounds(new java.awt.Rectangle(0, 0, 595, 820));
+        Dialog_DetalleVenta.setBounds(new java.awt.Rectangle(0, 0, 595, 930));
 
         Table_Detalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -854,8 +854,9 @@ public class Venta extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel27)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1719,7 +1720,8 @@ public class Venta extends javax.swing.JFrame {
          id_aux = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
          idE_temp = Integer.parseInt(TablaHistorial.getValueAt(fila,1).toString());
          idC_temp = Integer.parseInt(TablaHistorial.getValueAt(fila,2).toString());
-         contenido_encebezado += TablaHistorial.getValueAt(fila,3).toString()+"\n\n";//se le une al encabezado la fecha y hora 
+         contenido_encebezado += TablaHistorial.getValueAt(fila,3).toString()+"\n";//se le une al encabezado la fecha y hora 
+         contenido_encebezado+="No. "+id_aux+"\n\n";
          
        
     }//GEN-LAST:event_TablaHistorialMouseClicked
@@ -1764,13 +1766,10 @@ public class Venta extends javax.swing.JFrame {
                float precio_total = RetornarTotalDetalleVenta(id);// se llama a la funcioon que retorna el total de la compra de un producto (detalleventa)
                cantidad = RetornarCantiDetalleVenta(id);//se llama a la funcion que retorna la cantidad que se conpro del producto (detalleventa)
                float precio_unidad = Float.parseFloat(resultado.getString("precio"));
-               
                contenido_productos+="\n"+nombre1+" --------------------- Q"+precio_total;
               
                producto = new Producto(id,cantidad,nombre1,precio_unidad);// se inicializa la el objeto producto 
                producto.setPrecioTotal(precio_total);//se modifica el total del precio ya que no se ingresa en el constructor de la clase 
-               System.out.println("exito");
-                         
                         }
             
             
@@ -1945,6 +1944,7 @@ public class Venta extends javax.swing.JFrame {
       BuscarEmpleadoDetalle();// se busca el empleado segun el empleado para pasar sus datos al Label correspondiente 
       BuscarClienteDetalle();// con esta funcion se busca el cliente para pasar sus datos al Label correspondiente 
       contenidofinal = contenido_encebezado+contenido_Empleado+"\n\n"+conte_cliente+contenido_productos;//se unen todos los encabezados 
+        System.out.println(contenidofinal);
     }
     else{
         JOptionPane.showMessageDialog(this,"Debe de seleccionar una venta","Advertencia",JOptionPane.WARNING_MESSAGE);

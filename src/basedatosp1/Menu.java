@@ -317,7 +317,7 @@ public class Menu extends javax.swing.JFrame {
         String contra2 = null;
     
 
-         String sql = "SELECT * FROM usuario"+" WHERE contraseña='"+contra+"' && nombreU='"+nombre+"'";
+         String sql = "SELECT * FROM empleados"+" WHERE contrasena='"+contra+"' && nombreempleado='"+nombre+"'";
          Conexion con = new Conexion();
          Connection conexion = con.Conectar();
          Statement st;
@@ -327,14 +327,15 @@ public class Menu extends javax.swing.JFrame {
             //contra2 = resultado.getString("contraseña");
             
             resultado.first();
-             contra2 = resultado.getString("contraseña");
+             contra2 = resultado.getString("contrasena");
+             int nivel = Integer.parseInt(resultado.getString("nivel_acceso"));
             
             if(resultado.first()){
                 // contra2 = resultado.getString("contraseña");
                 txtUsuario.setText(null);
                 txtContrasena.setText(null);
                 if(clave_entrar_modulo==1){
-                    Inventario inventario = new Inventario();
+                    Inventario inventario = new Inventario(nivel);
                     inventario.setVisible(true);
                     dialog_contra.dispose();
                 }

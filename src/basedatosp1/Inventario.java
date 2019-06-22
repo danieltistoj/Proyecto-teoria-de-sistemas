@@ -24,8 +24,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Inventario extends javax.swing.JFrame {
 
-  private DefaultTableModel modelo;
-    public Inventario() {
+    private int nivel;
+    private DefaultTableModel modelo;
+    public Inventario(int nivel) {
+        this.nivel = nivel;
+        
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
         initComponents();
         this.setResizable(false);
@@ -38,7 +41,22 @@ public class Inventario extends javax.swing.JFrame {
         this.PanelAgregar.repaint();
         this.PanelTabla.add(img2);
         this.PanelTabla.repaint();
+       //BotonAgregar.setEnabled(false);
         Tabla();
+        Bloquear();
+    }
+    public void Bloquear(){
+        try {
+            if(nivel==1){
+                BotonAgregar.setEnabled(false);
+                Guardar.setEnabled(false);
+                botonEliminar.setEnabled(false);
+            }
+        } catch (Exception e) {
+            System.out.println("error");
+        }
+        
+        
     }
     public void Tabla(){
         
@@ -599,7 +617,7 @@ public class Inventario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inventario().setVisible(true);
+              //  new Inventario().setVisible(true);
             }
         });
     }
