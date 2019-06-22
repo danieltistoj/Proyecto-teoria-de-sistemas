@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -73,6 +74,7 @@ public class Venta extends javax.swing.JFrame {
         Tabla();
         Cerrar();
        CerrarFacturacion();
+       CerrarNuevoCliente();
     }
     public void Cerrar(){
         try {
@@ -105,11 +107,19 @@ public class Venta extends javax.swing.JFrame {
     
         public void CerrarFacturacion(){
         try {
-            Facturacion.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            Facturacion.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
             this.setVisible(true);
         } catch (Exception e) {
         }
     }
+        
+        public void CerrarNuevoCliente(){
+            try {
+                IngresarCliente.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+                
+            } catch (Exception e) {
+            }
+        }
     
        
     public void setModelo(){
@@ -321,6 +331,7 @@ public class Venta extends javax.swing.JFrame {
         txtEmailClin = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         boton_agregar_cliente = new javax.swing.JButton();
+        Boton_cancelar_cliente = new javax.swing.JToggleButton();
         Dialog_DetalleVenta = new javax.swing.JDialog();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
@@ -585,7 +596,7 @@ public class Venta extends javax.swing.JFrame {
                 .addGap(0, 28, Short.MAX_VALUE))
         );
 
-        IngresarCliente.setBounds(new java.awt.Rectangle(0, 0, 278, 298));
+        IngresarCliente.setBounds(new java.awt.Rectangle(0, 0, 278, 310));
 
         txtnombreClien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -619,14 +630,21 @@ public class Venta extends javax.swing.JFrame {
             }
         });
 
+        Boton_cancelar_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/cancelar1.2.png"))); // NOI18N
+        Boton_cancelar_cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_cancelar_clienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout IngresarClienteLayout = new javax.swing.GroupLayout(IngresarCliente.getContentPane());
         IngresarCliente.getContentPane().setLayout(IngresarClienteLayout);
         IngresarClienteLayout.setHorizontalGroup(
             IngresarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(IngresarClienteLayout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addGroup(IngresarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IngresarClienteLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IngresarClienteLayout.createSequentialGroup()
+                .addGroup(IngresarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(IngresarClienteLayout.createSequentialGroup()
+                        .addContainerGap(48, Short.MAX_VALUE)
                         .addGroup(IngresarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IngresarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel17)
@@ -636,11 +654,13 @@ public class Venta extends javax.swing.JFrame {
                         .addGroup(IngresarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtEmailClin)
                             .addComponent(txtTelefonoClin)
-                            .addComponent(txtnombreClien, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, IngresarClienteLayout.createSequentialGroup()
-                        .addComponent(boton_agregar_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86))))
+                            .addComponent(txtnombreClien, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
+                    .addGroup(IngresarClienteLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(boton_agregar_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Boton_cancelar_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31))
         );
         IngresarClienteLayout.setVerticalGroup(
             IngresarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -657,9 +677,11 @@ public class Venta extends javax.swing.JFrame {
                 .addGroup(IngresarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtEmailClin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19))
-                .addGap(31, 31, 31)
-                .addComponent(boton_agregar_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(IngresarClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Boton_cancelar_cliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton_agregar_cliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         Dialog_DetalleVenta.setBounds(new java.awt.Rectangle(0, 0, 595, 820));
@@ -739,7 +761,9 @@ public class Venta extends javax.swing.JFrame {
                                         .addComponent(cuiE)
                                         .addComponent(CorreoE))
                                     .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createSequentialGroup()
+                                    .addGap(20, 20, 20)
+                                    .addComponent(label_nit)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(label_telefonoC)
                                     .addGap(82, 82, 82))))
@@ -750,9 +774,7 @@ public class Venta extends javax.swing.JFrame {
                                 .addComponent(jLabel28))))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(245, 245, 245)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(label_nit)
-                            .addComponent(jLabel29))))
+                        .addComponent(jLabel29)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1250,41 +1272,7 @@ public class Venta extends javax.swing.JFrame {
        existencia_aux = Integer.parseInt(Tabla_productosD.getValueAt(fila,4).toString());
        
     }//GEN-LAST:event_Tabla_productosDMouseClicked
- public void Agregarventa(){
-     
-   Conexion con = new Conexion();
-         Connection conexion = con.Conectar();
-         
-        try {
-             String formato = "yyyy-MM-dd HH:mm:ss";
-            DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
-            LocalDateTime ahora = LocalDateTime.now();
-            String FechaHora=formateador.format(ahora);
-            
-            String query ="INSERT INTO venta (Usuario_id,precio,idProducto,cliente_id,FechaHora) values(?,?,?,?,?)";
-            PreparedStatement statement = conexion.prepareStatement(query);
-            statement.setInt(1,Integer.parseInt(txtIDempleadoF.getText()));
-            statement.setFloat(2,total);
-            statement.setInt(3,clienteId);
-            statement.setInt(4,9);
-            statement.setString(5,FechaHora);
-
-            statement.executeUpdate();
-            conexion.close(); 
-            JOptionPane.showMessageDialog(null,"La venta se ha agregado","",JOptionPane.INFORMATION_MESSAGE); 
-            
-            //limpiar las cajas de texto
-            total = 0;
-            clienteId =0;
-            txtIDempleadoF.setText(null);
-            //Tabla();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        } 
-    
-}
-    
+ 
     private void boton_finalizarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_finalizarcompraActionPerformed
       if(this.Tabla_productosC.getRowCount() == 0 && this.Tabla_productosC.getSelectedRow() == -1){
           JOptionPane.showMessageDialog(this,"Debe de realizar una cotizacion antes de facturar","Error",JOptionPane.ERROR_MESSAGE);
@@ -1606,9 +1594,19 @@ public class Venta extends javax.swing.JFrame {
         } 
         
     }
+    public void LimpiarCajasTextoFactura(){
+        txtNit.setText(null);
+        txtnombreF.setText(null);
+        txtUsuarioF.setText(null);
+        txtemail.setText(null);
+        txtIDempleadoF.setText(null);
+        txtTlefonoF.setText(null);
+        
+    }
  // es el boton que termina con la venta, y realiza la facturacion 
     private void boton_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_FacturarActionPerformed
-         String formato = "yyyy-MM-dd HH:mm:ss";
+         if(txtnombreF.getText().length()!=0){
+        String formato = "yyyy-MM-dd HH:mm:ss";
          DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
          LocalDateTime ahora = LocalDateTime.now();
          String FechaHora=formateador.format(ahora); //fecha y hora 
@@ -1626,7 +1624,12 @@ public class Venta extends javax.swing.JFrame {
          }
         LimpiarTablaC();
         TablaHistorialVenta();
+        LimpiarCajasTextoFactura();
         Facturacion.dispose();
+         }
+         else{
+             JOptionPane.showMessageDialog(null,"Debe de cargar para cumplir con todos los campos de la factura","Error",JOptionPane.ERROR_MESSAGE);
+         }
     }//GEN-LAST:event_boton_FacturarActionPerformed
 
     private void TablaHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHistorialMouseClicked
@@ -1926,9 +1929,20 @@ public class Venta extends javax.swing.JFrame {
                 }
                 LimpiarTablaC();
                }
+                LimpiarCajasTextoFactura();
                 Facturacion.dispose();
        }
     }//GEN-LAST:event_Boton_cancelar_facturaActionPerformed
+
+    private void Boton_cancelar_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_cancelar_clienteActionPerformed
+       int confirmar = JOptionPane.showConfirmDialog(null,"Desea Cancelar la operacion","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE); 
+        if(confirmar==JOptionPane.YES_OPTION){
+           txtnombreClien.setText(null);
+           txtTelefonoClin.setText(null);
+           txtEmailClin.setText(null);
+           IngresarCliente.dispose();
+       }
+    }//GEN-LAST:event_Boton_cancelar_clienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1969,6 +1983,7 @@ public class Venta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton Boton_cancelar_cliente;
     private javax.swing.JToggleButton Boton_cancelar_factura;
     private javax.swing.JLabel CorreoE;
     private javax.swing.JDialog Dialog_DetalleVenta;

@@ -20,18 +20,28 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class Menu extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Menu
-     */
+    /* 
+    clave inventario =1
+    clave competidores = 2
+    clave ventas = 3
+    clave finanazas =4 
+    clave recursos humanos = 5
+    *
+    *
+    clave algo = num
+    
+    clave_entrar_modulo
+    */
+    private int clave_entrar_modulo;
     public Menu() {
+        
         initComponents();
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("Rubix");
         
-        contra_inventario.setLocationRelativeTo(null);
+        dialog_contra.setLocationRelativeTo(null);
         
     }
 
@@ -44,29 +54,22 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        contra_inventario = new javax.swing.JDialog();
+        dialog_contra = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtContrasena = new javax.swing.JPasswordField();
         boton_ingre = new javax.swing.JButton();
-        contra_recursos = new javax.swing.JDialog();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        txtUsuario1 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        txtContrasena1 = new javax.swing.JPasswordField();
-        boton_ingre1 = new javax.swing.JButton();
         BotonInventario = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        boton_modulo_venta = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        boton_Rhumanos_modulo = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
@@ -76,7 +79,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         BotonSalir1 = new javax.swing.JButton();
 
-        contra_inventario.setBounds(new java.awt.Rectangle(0, 0, 400, 350));
+        dialog_contra.setBounds(new java.awt.Rectangle(0, 0, 400, 350));
 
         jLabel9.setText("Usuario ");
 
@@ -126,76 +129,15 @@ public class Menu extends javax.swing.JFrame {
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout contra_inventarioLayout = new javax.swing.GroupLayout(contra_inventario.getContentPane());
-        contra_inventario.getContentPane().setLayout(contra_inventarioLayout);
-        contra_inventarioLayout.setHorizontalGroup(
-            contra_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout dialog_contraLayout = new javax.swing.GroupLayout(dialog_contra.getContentPane());
+        dialog_contra.getContentPane().setLayout(dialog_contraLayout);
+        dialog_contraLayout.setHorizontalGroup(
+            dialog_contraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        contra_inventarioLayout.setVerticalGroup(
-            contra_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        dialog_contraLayout.setVerticalGroup(
+            dialog_contraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        contra_recursos.setBounds(new java.awt.Rectangle(0, 0, 400, 350));
-
-        jLabel11.setText("Usuario ");
-
-        jLabel12.setText("Contraseña");
-
-        boton_ingre1.setBackground(new java.awt.Color(255, 255, 255));
-        boton_ingre1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/acceso3.1.png"))); // NOI18N
-        boton_ingre1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_ingre1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel11))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUsuario1, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                            .addComponent(txtContrasena1)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(boton_ingre1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(txtUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(txtContrasena1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(boton_ingre1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout contra_recursosLayout = new javax.swing.GroupLayout(contra_recursos.getContentPane());
-        contra_recursos.getContentPane().setLayout(contra_recursosLayout);
-        contra_recursosLayout.setHorizontalGroup(
-            contra_recursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        contra_recursosLayout.setVerticalGroup(
-            contra_recursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -213,11 +155,11 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel2.setText("COMPETIDORES");
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventas5.1.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        boton_modulo_venta.setBackground(new java.awt.Color(255, 255, 255));
+        boton_modulo_venta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventas5.1.png"))); // NOI18N
+        boton_modulo_venta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                boton_modulo_ventaActionPerformed(evt);
             }
         });
 
@@ -227,10 +169,10 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel4.setText("FINANZAS");
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recursoshumanos3.1.png"))); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        boton_Rhumanos_modulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recursoshumanos3.1.png"))); // NOI18N
+        boton_Rhumanos_modulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                boton_Rhumanos_moduloActionPerformed(evt);
             }
         });
 
@@ -288,7 +230,7 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(jLabel8)
                                 .addGap(68, 68, 68)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boton_modulo_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,7 +240,7 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(56, 56, 56)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(boton_Rhumanos_modulo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 45, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,9 +276,9 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(BotonInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(boton_modulo_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(boton_Rhumanos_modulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -361,8 +303,8 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonInventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonInventarioActionPerformed
-        contra_inventario.setVisible(true);
-        contra_inventario.setLocationRelativeTo(null);
+        clave_entrar_modulo=1;
+        dialog_contra.setVisible(true);
     }//GEN-LAST:event_BotonInventarioActionPerformed
 
     private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
@@ -389,12 +331,25 @@ public class Menu extends javax.swing.JFrame {
             
             if(resultado.first()){
                 // contra2 = resultado.getString("contraseña");
-                    txtUsuario.setText(null);
-                    txtContrasena.setText(null);
+                txtUsuario.setText(null);
+                txtContrasena.setText(null);
+                if(clave_entrar_modulo==1){
                     Inventario inventario = new Inventario();
                     inventario.setVisible(true);
-                    this.dispose();
-                    contra_inventario.dispose();
+                    dialog_contra.dispose();
+                }
+                if(clave_entrar_modulo==3){
+                    Venta venta = new Venta();
+                    venta.setVisible(true);
+                    dialog_contra.dispose();
+                }
+                if(clave_entrar_modulo==5){
+                    recursosHumanos recursos = new recursosHumanos();
+                    recursos.setVisible(true);
+                    dialog_contra.dispose();
+                    
+                }
+                this.dispose();
                     
                    
                         }
@@ -409,54 +364,16 @@ public class Menu extends javax.swing.JFrame {
         //pasar a la ventana inventario
     }//GEN-LAST:event_boton_ingreActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Venta venta = new Venta();
-        venta.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void boton_modulo_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_modulo_ventaActionPerformed
+        clave_entrar_modulo = 3;
+        dialog_contra.setVisible(true);
+    }//GEN-LAST:event_boton_modulo_ventaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        contra_recursos.setVisible(true);
-        contra_recursos.setTitle("Rubix/Login/Recursos Humanos");
-        contra_recursos.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void boton_ingre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_ingre1ActionPerformed
-        String nombre = txtUsuario1.getText();
-        String contra = new String(txtContrasena1.getPassword());
-        String contra2 = null;
-    
-
-         String sql = "SELECT * FROM usuario"+" WHERE contraseña='"+contra+"' && nombreU='"+nombre+"'";
-         Conexion con = new Conexion();
-         Connection conexion = con.Conectar();
-         Statement st;
-         try{
-            st = conexion.createStatement();   
-            ResultSet resultado = st.executeQuery(sql);
-            //contra2 = resultado.getString("contraseña");
-            
-            resultado.first();
-             contra2 = resultado.getString("contraseña");
-            
-            if(resultado.first()){
-                    txtUsuario1.setText(null);
-                    txtContrasena1.setText(null);
-                    recursosHumanos recursos = new recursosHumanos();
-                    recursos.setVisible(true);
-                    this.dispose();
-                    contra_recursos.dispose();
-                    
-                   
-                        }
-            
-            
-        } catch (SQLException ex) {
-             JOptionPane.showMessageDialog(null,"Datos incorrectos","",JOptionPane.ERROR_MESSAGE);
-             txtUsuario1.setText(null);
-             txtContrasena1.setText(null);
-        }
-    }//GEN-LAST:event_boton_ingre1ActionPerformed
+    private void boton_Rhumanos_moduloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_Rhumanos_moduloActionPerformed
+        clave_entrar_modulo = 5;
+        dialog_contra.setVisible(true);
+        dialog_contra.setTitle("Rubix/Login/Recursos Humanos"); 
+    }//GEN-LAST:event_boton_Rhumanos_moduloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -496,21 +413,17 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonInventario;
     private javax.swing.JButton BotonSalir1;
+    private javax.swing.JButton boton_Rhumanos_modulo;
     private javax.swing.JButton boton_ingre;
-    private javax.swing.JButton boton_ingre1;
-    private javax.swing.JDialog contra_inventario;
-    private javax.swing.JDialog contra_recursos;
+    private javax.swing.JButton boton_modulo_venta;
+    private javax.swing.JDialog dialog_contra;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -520,10 +433,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField txtContrasena;
-    private javax.swing.JPasswordField txtContrasena1;
     private javax.swing.JTextField txtUsuario;
-    private javax.swing.JTextField txtUsuario1;
     // End of variables declaration//GEN-END:variables
 }
