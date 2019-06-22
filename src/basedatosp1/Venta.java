@@ -7,6 +7,7 @@ package basedatosp1;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,18 +21,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Venta extends javax.swing.JFrame {
+    //los estring sirven para ir guardando datos que luego que ingresaran en un pdf
+    private String contenido_encebezado = "                RUBIX   \n"+"Guatemala, Quetzaltenango, Quetzaltenango\n"
+   ,contenido_Empleado="***Empleado***\n",conte_cliente="***Cliente***\n", contenido_productos="\n\n***Producto***",contenidofinal;
     private  float total = 0;
     private boolean aux_boolean;
+    // las variables idE_temp y idC_temp se utilizan como variables temporales a la hora de buscar los datos de un empleado o cliente. Se utiliza en Detalle Venta 
     private int clienteId,telefonoCliente, id_aux, existencia_aux, idE_temp, idC_temp;
     private DefaultTableModel modeloProducto = new DefaultTableModel();
     private DefaultTableModel modeloProductoF = new DefaultTableModel();
     private DefaultTableModel modeloProductoH = new DefaultTableModel();
-     private DefaultTableModel modeloDetalle= new DefaultTableModel();//modelo para detalle venta 
+    private DefaultTableModel modeloDetalle= new DefaultTableModel();//modelo para detalle venta 
     private DefaultTableModel modelo;
     private DefaultTableModel modelo1;
     ArrayList<Producto> listaProductos = new ArrayList<>();
@@ -41,7 +47,6 @@ public class Venta extends javax.swing.JFrame {
    
     private Lista ventas, productos, productos2;
     public Venta() {
-         
         ventas = new Lista();
         productos = new Lista();
         initComponents();
@@ -76,6 +81,7 @@ public class Venta extends javax.swing.JFrame {
        CerrarFacturacion();
        CerrarNuevoCliente();
     }
+    //en esta funcion hace que la ventana de venta no se cierre 
     public void Cerrar(){
         try {
             this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -89,6 +95,7 @@ public class Venta extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
+    //es para poner una condicion a la hora de cerrar la ventana 
     public void confirmarSalida(){
         int confirmar = JOptionPane.showConfirmDialog(this,"Esta seguro de cerra la aplicacion?. Perdera la cotizacion que haya realizado","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
         if(confirmar==JOptionPane.YES_OPTION){
@@ -104,7 +111,7 @@ public class Venta extends javax.swing.JFrame {
         }
         
     }
-    
+    //botn para que no se cierre el dialog de facturacion 
         public void CerrarFacturacion(){
         try {
             Facturacion.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
@@ -112,7 +119,7 @@ public class Venta extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }
-        
+        //funcion que sirve para que no se cierre el dialog de nuevo cliente 
         public void CerrarNuevoCliente(){
             try {
                 IngresarCliente.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
@@ -347,6 +354,11 @@ public class Venta extends javax.swing.JFrame {
         label_telefonoC = new javax.swing.JLabel();
         emailClien_label = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        txt_URL_pdf = new javax.swing.JTextField();
+        boton_buscar_archivo_ = new javax.swing.JToggleButton();
+        boton_generar_pdf = new javax.swing.JToggleButton();
+        jLabel31 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -732,74 +744,127 @@ public class Venta extends javax.swing.JFrame {
         jLabel29.setForeground(new java.awt.Color(0, 102, 225));
         jLabel29.setText("Productos");
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        txt_URL_pdf.setBackground(new java.awt.Color(204, 204, 204));
+
+        boton_buscar_archivo_.setText("Buscar");
+        boton_buscar_archivo_.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_buscar_archivo_ActionPerformed(evt);
+            }
+        });
+
+        boton_generar_pdf.setText("Generar");
+
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/pdf2.1.png"))); // NOI18N
+        jLabel31.setText("jLabel31");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(boton_buscar_archivo_, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_URL_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(boton_generar_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118))))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(boton_buscar_archivo_, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txt_URL_pdf))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(boton_generar_pdf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addGap(21, 21, 21)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(TelefonoE)
-                                        .addComponent(label_nombreE)))
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addGap(42, 42, 42)
-                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(emailClien_label)
-                                        .addComponent(nombreClabel))))
-                            .addGap(114, 114, 114)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(cuiE)
-                                        .addComponent(CorreoE))
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(jPanel7Layout.createSequentialGroup()
-                                    .addGap(20, 20, 20)
-                                    .addComponent(label_nit)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(label_telefonoC)
-                                    .addGap(82, 82, 82))))
-                        .addGroup(jPanel7Layout.createSequentialGroup()
-                            .addGap(229, 229, 229)
-                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel27)
-                                .addComponent(jLabel28))))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addComponent(jLabel29)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addComponent(emailClien_label)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(nombreClabel)
+                                .addGap(175, 175, 175)
+                                .addComponent(label_nit)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(label_telefonoC))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TelefonoE)
+                                    .addComponent(label_nombreE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cuiE)
+                                    .addComponent(CorreoE))))
+                        .addGap(97, 97, 97))))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addGap(223, 223, 223)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel27)
+                                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel28)
+                                        .addComponent(jLabel29)))))
+                        .addGap(0, 14, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel27)
-                .addGap(31, 31, 31)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_nombreE)
-                    .addComponent(cuiE))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TelefonoE)
-                    .addComponent(CorreoE))
-                .addGap(36, 36, 36)
-                .addComponent(jLabel28)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(label_nit)
-                    .addComponent(nombreClabel)
-                    .addComponent(label_telefonoC))
-                .addGap(33, 33, 33)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cuiE)
+                            .addComponent(label_nombreE))
+                        .addGap(97, 97, 97)
+                        .addComponent(jLabel28)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nombreClabel)
+                            .addComponent(label_nit)
+                            .addComponent(label_telefonoC)))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CorreoE)
+                            .addComponent(TelefonoE))))
+                .addGap(18, 18, 18)
                 .addComponent(emailClien_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(jLabel29)
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1633,11 +1698,17 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_FacturarActionPerformed
 
     private void TablaHistorialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaHistorialMouseClicked
+        contenidofinal="";
+        contenido_encebezado = "                RUBIX   \n"+"Guatemala, Quetzaltenango, Quetzaltenango\n";
+        contenido_Empleado="***Empleado***\n";
+        conte_cliente="***Cliente***\n";
+        contenido_productos="\n\n***Producto***";
+        
          int fila = TablaHistorial.getSelectedRow();
          id_aux = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
          idE_temp = Integer.parseInt(TablaHistorial.getValueAt(fila,1).toString());
          idC_temp = Integer.parseInt(TablaHistorial.getValueAt(fila,2).toString());
-                 
+         contenido_encebezado += TablaHistorial.getValueAt(fila,3).toString()+"\n\n";//se le une al encabezado la fecha y hora 
          
        
     }//GEN-LAST:event_TablaHistorialMouseClicked
@@ -1682,6 +1753,8 @@ public class Venta extends javax.swing.JFrame {
                float precio_total = RetornarTotalDetalleVenta(id);// se llama a la funcioon que retorna el total de la compra de un producto (detalleventa)
                cantidad = RetornarCantiDetalleVenta(id);//se llama a la funcion que retorna la cantidad que se conpro del producto (detalleventa)
                float precio_unidad = Float.parseFloat(resultado.getString("precio"));
+               
+               contenido_productos+="\n"+nombre1+" --------------------- Q"+precio_total;
               
                producto = new Producto(id,cantidad,nombre1,precio_unidad);// se inicializa la el objeto producto 
                producto.setPrecioTotal(precio_total);//se modifica el total del precio ya que no se ingresa en el constructor de la clase 
@@ -1789,7 +1862,7 @@ public class Venta extends javax.swing.JFrame {
             ResultSet resultado = st.executeQuery(sql);
            
             if(resultado.first()){
-                nombre1 = "Nombre Empleado: "+resultado.getString("nombreempleado");
+               nombre1 = "Nombre Empleado: "+resultado.getString("nombreempleado");
                String email ="Email Empleado: "+ resultado.getString("email_empleado");
                String cui ="CUI Empleado: "+resultado.getString("cui");
                String telefono ="Telefono Empleado: "+resultado.getString("telefono");
@@ -1797,6 +1870,7 @@ public class Venta extends javax.swing.JFrame {
               cuiE.setText(cui);
               CorreoE.setText(email);
               TelefonoE.setText(telefono);
+              contenido_Empleado+="\n"+nombre1+"----"+email+"\n"+cui+"----"+telefono; // se agrega los datos del empleado a esta variable para prepadarla para un pdf
              
                          
                         }
@@ -1827,7 +1901,7 @@ public class Venta extends javax.swing.JFrame {
                 label_telefonoC.setText("Telefono: "+resultado.getString("telefono_cliente"));
                 emailClien_label.setText("Email: "+resultado.getString("email_cliente"));
              
-                         
+                conte_cliente+="\n"+nombreClabel.getText()+"----"+label_nit.getText()+"\n"+label_telefonoC.getText()+"----"+emailClien_label.getText();// se prepara la variable para agregarla a un pdf
                         }
             else{
                 System.out.println("no entro");
@@ -1849,14 +1923,17 @@ public class Venta extends javax.swing.JFrame {
       ArrayList<String> listaCopiada = new ArrayList<String>(ListaIdProductos());
       int size = listaCopiada.size();
       int conta =0;
+      //con este ciclo se van ingresando los productos a la lista detalle
       while(conta<size){
           DetallesProductos(Integer.parseInt(listaCopiada.get(conta)));
           conta++;
       }
-      setDatosDetalle();
-      System.out.println(idE_temp);
-      BuscarEmpleadoDetalle();
-      BuscarClienteDetalle();
+     
+      setDatosDetalle();//con esta funcion se ingresan los productos de la Listadetalle a la tabla de historia 
+      //System.out.println(idE_temp);
+      BuscarEmpleadoDetalle();// se busca el empleado segun el empleado para pasar sus datos al Label correspondiente 
+      BuscarClienteDetalle();// con esta funcion se busca el cliente para pasar sus datos al Label correspondiente 
+      contenidofinal = contenido_encebezado+contenido_Empleado+"\n\n"+conte_cliente+contenido_productos;//se unen todos los encabezados 
     }
     else{
         JOptionPane.showMessageDialog(this,"Debe de seleccionar una venta","Advertencia",JOptionPane.WARNING_MESSAGE);
@@ -1944,6 +2021,15 @@ public class Venta extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_Boton_cancelar_clienteActionPerformed
 
+    private void boton_buscar_archivo_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_buscar_archivo_ActionPerformed
+        JFileChooser dlg = new JFileChooser();
+        int opcion = dlg.showSaveDialog(null);
+        if(opcion == JFileChooser.APPROVE_OPTION){
+            File expediente = dlg.getSelectedFile();
+            txt_URL_pdf.setText(expediente.toString());
+        }
+    }//GEN-LAST:event_boton_buscar_archivo_ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1999,9 +2085,11 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JButton boton_DetalleDeVemta;
     private javax.swing.JButton boton_Facturar;
     private javax.swing.JButton boton_agregar_cliente;
+    private javax.swing.JToggleButton boton_buscar_archivo_;
     private javax.swing.JButton boton_cargar_factura;
     private javax.swing.JButton boton_concelarcompra;
     private javax.swing.JButton boton_finalizarcompra;
+    private javax.swing.JToggleButton boton_generar_pdf;
     private javax.swing.JLabel cuiE;
     private javax.swing.JLabel emailClien_label;
     private javax.swing.JLabel jLabel1;
@@ -2028,6 +2116,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2041,6 +2130,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -2062,6 +2152,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JTextField txtTlefonoF;
     private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtUsuarioF;
+    private javax.swing.JTextField txt_URL_pdf;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txtnombreClien;
