@@ -149,7 +149,7 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jButton8" min="-2" pref="96" max="-2" attributes="0"/>
-                                  <Component id="jButton1" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="boton_competidores" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           </Group>
@@ -170,7 +170,7 @@
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jButton3" min="-2" pref="96" max="-2" attributes="0"/>
+                              <Component id="boton_finanzas" min="-2" pref="96" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                               <Component id="boton_Rhumanos_modulo" min="-2" pref="95" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="45" max="32767" attributes="0"/>
@@ -178,7 +178,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jButton7" min="-2" pref="96" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="BotonSalir1" min="-2" pref="86" max="-2" attributes="0"/>
+                              <Component id="Boton_Salir1" min="-2" pref="86" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -219,10 +219,10 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="jButton1" alignment="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="boton_competidores" alignment="0" pref="0" max="32767" attributes="0"/>
                   <Component id="BotonInventario" min="-2" pref="85" max="-2" attributes="0"/>
                   <Component id="boton_modulo_venta" pref="0" max="32767" attributes="0"/>
-                  <Component id="jButton3" pref="0" max="32767" attributes="0"/>
+                  <Component id="boton_finanzas" pref="0" max="32767" attributes="0"/>
                   <Component id="boton_Rhumanos_modulo" pref="0" max="32767" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -245,7 +245,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="BotonSalir1" min="-2" pref="68" max="-2" attributes="0"/>
+                      <Component id="Boton_Salir1" min="-2" pref="68" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -269,7 +269,7 @@
         <Property name="text" type="java.lang.String" value="INVENTARIO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="boton_competidores">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Imagenes/competidores2.png"/>
@@ -299,7 +299,7 @@
         <Property name="text" type="java.lang.String" value="VENTAS"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="boton_finanzas">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Imagenes/finanzas4.1.png"/>
@@ -371,14 +371,14 @@
         <Property name="text" type="java.lang.String" value="COMPRAS"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="BotonSalir1">
+    <Component class="javax.swing.JButton" name="Boton_Salir1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Imagenes/salir1.1.png"/>
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonSalir1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Boton_Salir1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

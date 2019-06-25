@@ -5,6 +5,7 @@
  */
 package basedatosp1;
 
+import java.awt.Cursor;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,6 +41,14 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setTitle("Rubix");
+        BotonInventario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_competidores.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_modulo_venta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_finanzas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_Rhumanos_modulo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        Boton_Salir1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        boton_ingre.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
         dialog_contra.setLocationRelativeTo(null);
         
@@ -63,11 +72,11 @@ public class Menu extends javax.swing.JFrame {
         boton_ingre = new javax.swing.JButton();
         BotonInventario = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        boton_competidores = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         boton_modulo_venta = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        boton_finanzas = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         boton_Rhumanos_modulo = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -77,7 +86,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        BotonSalir1 = new javax.swing.JButton();
+        Boton_Salir1 = new javax.swing.JButton();
 
         dialog_contra.setBounds(new java.awt.Rectangle(0, 0, 400, 350));
 
@@ -151,7 +160,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel1.setText("INVENTARIO");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/competidores2.png"))); // NOI18N
+        boton_competidores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/competidores2.png"))); // NOI18N
 
         jLabel2.setText("COMPETIDORES");
 
@@ -165,7 +174,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel3.setText("VENTAS");
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/finanzas4.1.png"))); // NOI18N
+        boton_finanzas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/finanzas4.1.png"))); // NOI18N
 
         jLabel4.setText("FINANZAS");
 
@@ -193,10 +202,10 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel8.setText("COMPRAS");
 
-        BotonSalir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.1.png"))); // NOI18N
-        BotonSalir1.addActionListener(new java.awt.event.ActionListener() {
+        Boton_Salir1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.1.png"))); // NOI18N
+        Boton_Salir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSalir1ActionPerformed(evt);
+                Boton_Salir1ActionPerformed(evt);
             }
         });
 
@@ -224,7 +233,7 @@ public class Menu extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(boton_competidores, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(46, 46, 46))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel8)
@@ -238,14 +247,14 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(boton_finanzas, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(56, 56, 56)
                                 .addComponent(boton_Rhumanos_modulo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 45, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(Boton_Salir1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -274,10 +283,10 @@ public class Menu extends javax.swing.JFrame {
                         .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(boton_competidores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(BotonInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boton_modulo_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(boton_finanzas, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(boton_Rhumanos_modulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -295,7 +304,7 @@ public class Menu extends javax.swing.JFrame {
                         .addContainerGap(51, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BotonSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Boton_Salir1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
 
@@ -307,9 +316,9 @@ public class Menu extends javax.swing.JFrame {
         dialog_contra.setVisible(true);
     }//GEN-LAST:event_BotonInventarioActionPerformed
 
-    private void BotonSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalir1ActionPerformed
+    private void Boton_Salir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Salir1ActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_BotonSalir1ActionPerformed
+    }//GEN-LAST:event_Boton_Salir1ActionPerformed
 
     private void boton_ingreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_ingreActionPerformed
         String nombre = txtUsuario.getText();
@@ -413,13 +422,13 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonInventario;
-    private javax.swing.JButton BotonSalir1;
+    private javax.swing.JButton Boton_Salir1;
     private javax.swing.JButton boton_Rhumanos_modulo;
+    private javax.swing.JButton boton_competidores;
+    private javax.swing.JButton boton_finanzas;
     private javax.swing.JButton boton_ingre;
     private javax.swing.JButton boton_modulo_venta;
     private javax.swing.JDialog dialog_contra;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;

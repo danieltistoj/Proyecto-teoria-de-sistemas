@@ -9,6 +9,7 @@ package basedatosp1;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.Cursor;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -77,6 +78,22 @@ public class Venta extends javax.swing.JFrame {
         txtTlefonoF.setEnabled(false);
         txtemail.setEnabled(false);
         
+        boto_agregarcompra.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_concelarcompra.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_finalizarcompra.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_DetalleDeVemta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        boton_cargar_factura.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_Facturar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        Boton_cancelar_factura.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        boton_agregar_cliente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        Boton_cancelar_cliente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        boton_buscar_archivo_.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_generar_pdf_.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        
+        botonRegresar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         TablaHistorialVenta();
         setModelo();
         setModelFactura();
@@ -1292,7 +1309,7 @@ public class Venta extends javax.swing.JFrame {
 //boton cancelar pedido
     private void boton_concelarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_concelarcompraActionPerformed
        int confirmar = JOptionPane.showConfirmDialog(null,"Esta seguro que quiere cancelar ?","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
-        if(confirmar==JOptionPane.YES_OPTION){
+       if(confirmar==JOptionPane.YES_OPTION){
                 if(Tabla_productosC.getRowCount()!=0){
                 Nodo aux = productos.getTope();
                 while(aux!=null){
@@ -1310,7 +1327,7 @@ public class Venta extends javax.swing.JFrame {
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
-
+// es para buscar los productos del inventario, se buscan en la tabla de productos disponibles 
     private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
         String[] titulos = {"ID","Nombre","Costo","Precio","Existencias"};
         String[] registro = new String[5];
@@ -1364,9 +1381,31 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_finalizarcompraActionPerformed
 
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+
+        if(this.Tabla_productosC.getRowCount() == 0 && this.Tabla_productosC.getSelectedRow() == -1){
         Menu menu = new Menu();
         menu.setVisible(true);
         this.dispose();
+         
+        }
+        else{
+            int respuesta = JOptionPane.showConfirmDialog(null,"Si sale la cotizacion que tenga se perdera","Alerta!",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(respuesta == JOptionPane.YES_OPTION){
+                Nodo aux = productos.getTope();
+                while(aux!=null){
+                    ModificarInventario(aux);// se modifica producto por producto para que regrese las existencias a como estaban antes de agregar el producto a la tabla de cotizacion
+                    aux = aux.getSig();
+                }
+                LimpiarTablaC();// se limpia la tabla de cotizacion 
+                    
+                    Menu menu = new Menu();
+                    menu.setVisible(true);
+                    this.dispose();
+            }
+            
+        }
+              
+        
     }//GEN-LAST:event_botonRegresarActionPerformed
  //Esta 
     public void BuscarUsuario(){
