@@ -105,6 +105,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        fondo_menu = new javax.swing.JLabel();
 
         dialog_contra.setBounds(new java.awt.Rectangle(0, 0, 400, 350));
 
@@ -168,6 +169,10 @@ public class Menu extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(1, 2, 1920, 1080));
+        setMaximumSize(new java.awt.Dimension(802, 477));
+        setMinimumSize(new java.awt.Dimension(802, 477));
+        getContentPane().setLayout(null);
 
         BotonInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/inventario2.png"))); // NOI18N
         BotonInventario.addActionListener(new java.awt.event.ActionListener() {
@@ -175,12 +180,20 @@ public class Menu extends javax.swing.JFrame {
                 BotonInventarioActionPerformed(evt);
             }
         });
+        getContentPane().add(BotonInventario);
+        BotonInventario.setBounds(57, 132, 101, 85);
 
         jLabel1.setText("INVENTARIO");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(77, 110, 69, 16);
 
         boton_competidores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/competidores2.png"))); // NOI18N
+        getContentPane().add(boton_competidores);
+        boton_competidores.setBounds(205, 132, 100, 85);
 
         jLabel2.setText("COMPETIDORES");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(205, 110, 92, 16);
 
         boton_modulo_venta.setBackground(new java.awt.Color(255, 255, 255));
         boton_modulo_venta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventas5.1.png"))); // NOI18N
@@ -189,12 +202,20 @@ public class Menu extends javax.swing.JFrame {
                 boton_modulo_ventaActionPerformed(evt);
             }
         });
+        getContentPane().add(boton_modulo_venta);
+        boton_modulo_venta.setBounds(351, 132, 96, 85);
 
         jLabel3.setText("VENTAS");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(372, 110, 46, 16);
 
         boton_finanzas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/finanzas4.1.png"))); // NOI18N
+        getContentPane().add(boton_finanzas);
+        boton_finanzas.setBounds(498, 132, 96, 85);
 
         jLabel4.setText("FINANZAS");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(514, 110, 56, 16);
 
         boton_Rhumanos_modulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recursoshumanos3.1.png"))); // NOI18N
         boton_Rhumanos_modulo.addActionListener(new java.awt.event.ActionListener() {
@@ -202,112 +223,43 @@ public class Menu extends javax.swing.JFrame {
                 boton_Rhumanos_moduloActionPerformed(evt);
             }
         });
+        getContentPane().add(boton_Rhumanos_modulo);
+        boton_Rhumanos_modulo.setBounds(650, 132, 95, 85);
 
         jLabel5.setText("RECURSOS HUMANOS");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(635, 110, 126, 16);
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion3.2.png"))); // NOI18N
+        getContentPane().add(jButton6);
+        jButton6.setBounds(351, 281, 94, 97);
 
         jLabel6.setText("CONFIGURACION");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(351, 259, 94, 16);
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ayuda1.1.png"))); // NOI18N
+        getContentPane().add(jButton7);
+        jButton7.setBounds(498, 281, 96, 97);
 
         jLabel7.setText("AYUDA");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(527, 259, 39, 16);
 
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/compras3.1.png"))); // NOI18N
+        getContentPane().add(jButton8);
+        jButton8.setBounds(209, 281, 96, 97);
 
         jLabel8.setText("COMPRAS");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(224, 259, 59, 16);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(BotonInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(59, 59, 59)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(boton_competidores, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(46, 46, 46))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(68, 68, 68)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boton_modulo_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(boton_finanzas, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(56, 56, 56)
-                                .addComponent(boton_Rhumanos_modulo, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(57, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addGap(236, 236, 236))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(65, 65, 65)
-                .addComponent(jLabel5)
-                .addGap(41, 41, 41))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(boton_competidores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(BotonInventario, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boton_modulo_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(boton_finanzas, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(boton_Rhumanos_modulo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(jLabel8)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(51, Short.MAX_VALUE))
-        );
+        fondo_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/fondo_menu_3.jpg"))); // NOI18N
+        getContentPane().add(fondo_menu);
+        fondo_menu.setBounds(-270, -10, 1090, 440);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -425,6 +377,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton boton_ingre;
     private javax.swing.JButton boton_modulo_venta;
     private javax.swing.JDialog dialog_contra;
+    private javax.swing.JLabel fondo_menu;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
