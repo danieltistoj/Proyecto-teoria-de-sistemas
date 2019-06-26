@@ -185,7 +185,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel1.setText("INVENTARIO");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(77, 110, 69, 16);
+        jLabel1.setBounds(77, 110, 74, 16);
 
         boton_competidores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/competidores2.png"))); // NOI18N
         getContentPane().add(boton_competidores);
@@ -193,7 +193,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel2.setText("COMPETIDORES");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(205, 110, 92, 16);
+        jLabel2.setBounds(205, 110, 97, 16);
 
         boton_modulo_venta.setBackground(new java.awt.Color(255, 255, 255));
         boton_modulo_venta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventas5.1.png"))); // NOI18N
@@ -207,15 +207,20 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel3.setText("VENTAS");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(372, 110, 46, 16);
+        jLabel3.setBounds(372, 110, 49, 16);
 
         boton_finanzas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/finanzas4.1.png"))); // NOI18N
+        boton_finanzas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_finanzasActionPerformed(evt);
+            }
+        });
         getContentPane().add(boton_finanzas);
         boton_finanzas.setBounds(498, 132, 96, 85);
 
         jLabel4.setText("FINANZAS");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(514, 110, 56, 16);
+        jLabel4.setBounds(514, 110, 61, 16);
 
         boton_Rhumanos_modulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recursoshumanos3.1.png"))); // NOI18N
         boton_Rhumanos_modulo.addActionListener(new java.awt.event.ActionListener() {
@@ -228,7 +233,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel5.setText("RECURSOS HUMANOS");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(635, 110, 126, 16);
+        jLabel5.setBounds(635, 110, 135, 16);
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion3.2.png"))); // NOI18N
@@ -237,16 +242,16 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel6.setText("CONFIGURACION");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(351, 259, 94, 16);
+        jLabel6.setBounds(351, 259, 103, 16);
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ayuda1.1.png"))); // NOI18N
         getContentPane().add(jButton7);
-        jButton7.setBounds(498, 281, 96, 97);
+        jButton7.setBounds(498, 281, 96, 103);
 
         jLabel7.setText("AYUDA");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(527, 259, 39, 16);
+        jLabel7.setBounds(527, 259, 44, 16);
 
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/compras3.1.png"))); // NOI18N
@@ -255,7 +260,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel8.setText("COMPRAS");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(224, 259, 59, 16);
+        jLabel8.setBounds(224, 259, 62, 16);
 
         fondo_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/fondo_menu_3.jpg"))); // NOI18N
         getContentPane().add(fondo_menu);
@@ -333,6 +338,12 @@ public class Menu extends javax.swing.JFrame {
         dialog_contra.setVisible(true);
         dialog_contra.setTitle("Rubix/Login/Recursos Humanos"); 
     }//GEN-LAST:event_boton_Rhumanos_moduloActionPerformed
+
+    private void boton_finanzasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_finanzasActionPerformed
+        FinanzaWIN wind = new FinanzaWIN();
+        wind.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_boton_finanzasActionPerformed
 
     /**
      * @param args the command line arguments
