@@ -170,7 +170,6 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(1, 2, 1920, 1080));
-        setMaximumSize(new java.awt.Dimension(802, 477));
         setMinimumSize(new java.awt.Dimension(802, 477));
         getContentPane().setLayout(null);
 
