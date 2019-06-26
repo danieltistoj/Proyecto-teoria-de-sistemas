@@ -5,6 +5,8 @@
  */
 package basedatosp1;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -44,7 +46,40 @@ public class Inventario extends javax.swing.JFrame {
        //BotonAgregar.setEnabled(false);
         Tabla();
         Bloquear();
+        Cerrar();
     }
+    
+     public void Cerrar(){
+        try {
+            this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e){
+                    confirmarSalida();
+                    
+                }
+               });
+            this.setVisible(true);
+        } catch (Exception e) {
+        }
+    }
+    //es para poner una condicion a la hora de cerrar la ventana 
+    public void confirmarSalida(){
+        if(nivel==1){
+            int confirmar = JOptionPane.showConfirmDialog(this,"¿Esta seguro de cerra la aplicacion?","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(confirmar==JOptionPane.YES_OPTION){
+                   System.exit(0);
+            }
+        }
+        else{
+            int confirmar = JOptionPane.showConfirmDialog(this,"¿Esta seguro de cerra la aplicacion?. Cualquier modificacion que haya hecho se perdera si no guarda","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+            if(confirmar==JOptionPane.YES_OPTION){
+                   System.exit(0);
+            }
+            
+        }
+    }
+
+    
     public void Bloquear(){
         try {
             if(nivel==1){

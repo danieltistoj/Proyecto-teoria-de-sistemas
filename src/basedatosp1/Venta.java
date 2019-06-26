@@ -119,7 +119,7 @@ public class Venta extends javax.swing.JFrame {
     }
     //es para poner una condicion a la hora de cerrar la ventana 
     public void confirmarSalida(){
-        int confirmar = JOptionPane.showConfirmDialog(this,"Esta seguro de cerra la aplicacion?. Perdera la cotizacion que haya realizado","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        int confirmar = JOptionPane.showConfirmDialog(this,"¿Esta seguro de cerra la aplicacion?. Perdera la cotizacion que haya realizado","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
         if(confirmar==JOptionPane.YES_OPTION){
                if(Tabla_productosC.getRowCount()!=0){
                 Nodo aux = productos.getTope();
@@ -1308,7 +1308,7 @@ public class Venta extends javax.swing.JFrame {
     }//GEN-LAST:event_boto_agregarcompraActionPerformed
 //boton cancelar pedido
     private void boton_concelarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_concelarcompraActionPerformed
-       int confirmar = JOptionPane.showConfirmDialog(null,"Esta seguro que quiere cancelar ?","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+       int confirmar = JOptionPane.showConfirmDialog(null,"¿Esta seguro que quiere cancelar ?","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
        if(confirmar==JOptionPane.YES_OPTION){
                 if(Tabla_productosC.getRowCount()!=0){
                 Nodo aux = productos.getTope();
@@ -1569,6 +1569,7 @@ public class Venta extends javax.swing.JFrame {
     private void boton_agregar_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_agregar_clienteActionPerformed
         IngresarCliente1();
         IngresarCliente.dispose();
+        JOptionPane.showMessageDialog(null,"Vuelva a cargar","Mensaje",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_boton_agregar_clienteActionPerformed
     //actualizar tabla de historial 
     public void TablaHistorialVenta(){
