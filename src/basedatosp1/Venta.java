@@ -102,6 +102,7 @@ public class Venta extends javax.swing.JFrame {
         Cerrar();
        CerrarFacturacion();
        CerrarNuevoCliente();
+     
     }
     //en esta funcion hace que la ventana de venta no se cierre 
     public void Cerrar(){
@@ -1584,12 +1585,13 @@ public class Venta extends javax.swing.JFrame {
             modelo1.addColumn("ID Venta");
             modelo1.addColumn("ID Empleado");
             modelo1.addColumn("ID Cliente");
+            modelo1.addColumn("Total");
             modelo1.addColumn("Fecha Hora");
             
             
             TablaHistorial.setModel(modelo1);
             
-            String[] dato = new String[4];
+            String[] dato = new String[5];
         try{
             st = conexion.createStatement();   
             ResultSet result = st.executeQuery(sql);
@@ -1599,6 +1601,7 @@ public class Venta extends javax.swing.JFrame {
                 dato[1] = result.getString(2);
                 dato[2] = result.getString(3);
                 dato[3] = result.getString(4);
+                dato[4] = result.getString(5);
                 modelo1.addRow(dato);
             }
             TablaHistorial.setModel(modelo1);
@@ -1619,17 +1622,18 @@ public class Venta extends javax.swing.JFrame {
         return nuevaLista;
     }
     //ingresa los datos de la facturacion a la tabla venta en la base de datos
-    public void IngresarVentaBaseDatos(int id_cliente,int id_usuario, String FechaHora) {
+    public void IngresarVentaBaseDatos(int id_cliente,int id_usuario, String FechaHora,float total_venta) {
         
          Conexion con = new Conexion();
          Connection conexion = con.Conectar();
         try {
            
-            String query ="INSERT INTO venta (Usuario_id,cliente_id,FechaHora) values(?,?,?)";
+            String query ="INSERT INTO venta (Usuario_id,cliente_id,Total_venta,FechaHora) values(?,?,?,?)";
             PreparedStatement statement = conexion.prepareStatement(query);
             statement.setInt(1,id_usuario);
             statement.setInt(2,id_cliente);
-            statement.setString(3,FechaHora);
+            statement.setFloat(3,total_venta);
+            statement.setString(4,FechaHora);
 
             statement.executeUpdate();
             conexion.close(); 
@@ -1643,7 +1647,7 @@ public class Venta extends javax.swing.JFrame {
     }
     //Con esta funcion retornamos el id de la venta a la hora de facturar para luego poder relacionarla cono los productos que se vendieron 
     public int ObtenerIdVenta(){
-        int id_producto =0;
+        int id_venta =0;
             Conexion con = new Conexion();
             Connection conexion = con.Conectar();
             String sql = "SELECT * FROM venta";
@@ -1675,7 +1679,7 @@ public class Venta extends javax.swing.JFrame {
                     ids[conta2] =result2.getString(1);//ingresamos los IDs de ventas en el vector 
                     conta2++;
                 }
-                id_producto = Integer.parseInt(ids[conta-1]);
+                id_venta = Integer.parseInt(ids[conta-1]);
             } catch (Exception e) {
                 System.out.println("erro ***");
                  Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, e);
@@ -1686,7 +1690,7 @@ public class Venta extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
-       return id_producto;
+       return id_venta;
     }
     
     //esta funcion relaciona todos los productos con la venta. Las relaciones las va ingresando en detalleventa.
@@ -1711,6 +1715,14 @@ public class Venta extends javax.swing.JFrame {
         } 
         
     }
+    public float TotalDeVenta(Nodo producto){
+        float total_venta=0;
+        while(producto!=null){
+            total_venta+= producto.getProducto().getPrecioTotal();
+            producto = producto.getSig();
+        }
+        return total_venta;
+    }
     public void LimpiarCajasTextoFactura(){
         txtNit.setText(null);
         txtnombreF.setText(null);
@@ -1723,7 +1735,7 @@ public class Venta extends javax.swing.JFrame {
  // es el boton que termina con la venta, y realiza la facturacion 
     private void boton_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_FacturarActionPerformed
          if(txtnombreF.getText().length()!=0){
-        String formato = "yyyy-MM-dd HH:mm:ss";
+         String formato = "yyyy-MM-dd HH:mm:ss";
          DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
          LocalDateTime ahora = LocalDateTime.now();
          String FechaHora=formateador.format(ahora); //fecha y hora 
@@ -1732,17 +1744,18 @@ public class Venta extends javax.swing.JFrame {
        
          int id_cliente = clienteId;
          int id_usuario = Integer.parseInt(txtIDempleadoF.getText());
-         IngresarVentaBaseDatos(id_cliente, id_usuario, FechaHora);
-         
-         int id_venta = ObtenerIdVenta();
+         float total_venta = TotalDeVenta(aux); // se obtiene el total de la venta. producto.setPrecioTotal = producto.getCantidad*producto.getPrecio ----- total_venta += producto.setPrecioTotal
+         IngresarVentaBaseDatos(id_cliente, id_usuario, FechaHora,total_venta); // se hace la venta y se el manda el id del cliente, el id del empleado y la hora y fecha. en la base de datos se le estaria agregando un nuevo registro a (venta)
+       
+         int id_venta = ObtenerIdVenta(); // se obtiene el id de la venta creanda anteriormente 
          while(aux!=null){
-             RelacionarProductoVenta(id_venta,aux.getProducto().getId_producto(),aux.getProducto().getPrecioTotal(),aux.getProducto().getCantidad());
+             RelacionarProductoVenta(id_venta,aux.getProducto().getId_producto(),aux.getProducto().getPrecioTotal(),aux.getProducto().getCantidad());// se relaciona la venta con el producto y se estaria ingresando el registro a (detalleventa) en la base de datos
              aux = aux.getSig();
          }
-        LimpiarTablaC();
-        TablaHistorialVenta();
-        LimpiarCajasTextoFactura();
-        Facturacion.dispose();
+        LimpiarTablaC();// se limpia la tabla de productos a comprar 
+        TablaHistorialVenta();// se actualiza la tabla de histotial de venta 
+        LimpiarCajasTextoFactura();// se limpian las cajas de texto (Jtextfile) del dialog facturacion 
+        Facturacion.dispose();// se cierra el dialog 
          }
          else{
              JOptionPane.showMessageDialog(null,"Debe de cargar para cumplir con todos los campos de la factura","Error",JOptionPane.ERROR_MESSAGE);
@@ -1760,7 +1773,7 @@ public class Venta extends javax.swing.JFrame {
          id_aux = Integer.parseInt(TablaHistorial.getValueAt(fila,0).toString());
          idE_temp = Integer.parseInt(TablaHistorial.getValueAt(fila,1).toString());
          idC_temp = Integer.parseInt(TablaHistorial.getValueAt(fila,2).toString());
-         contenido_encebezado += TablaHistorial.getValueAt(fila,3).toString()+"\n";//se le une al encabezado la fecha y hora 
+         contenido_encebezado += TablaHistorial.getValueAt(fila,4).toString()+"\n";//se le une al encabezado la fecha y hora 
          contenido_encebezado+="No. "+id_aux+"\n\n";
          
        
@@ -1984,7 +1997,7 @@ public class Venta extends javax.swing.JFrame {
       BuscarEmpleadoDetalle();// se busca el empleado segun el empleado para pasar sus datos al Label correspondiente 
       BuscarClienteDetalle();// con esta funcion se busca el cliente para pasar sus datos al Label correspondiente 
       contenidofinal = contenido_encebezado+contenido_Empleado+"\n\n"+conte_cliente+contenido_productos;//se unen todos los encabezados 
-        System.out.println(contenidofinal);
+      System.out.println(contenidofinal);
     }
     else{
         JOptionPane.showMessageDialog(this,"Debe de seleccionar una venta","Advertencia",JOptionPane.WARNING_MESSAGE);
