@@ -411,7 +411,6 @@ public class Venta extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        boton_prueba_ = new javax.swing.JToggleButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         Tabla_productosD = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -1006,13 +1005,6 @@ public class Venta extends javax.swing.JFrame {
 
         jLabel22.setText("Facturar");
 
-        boton_prueba_.setText("Boton prueba");
-        boton_prueba_.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_prueba_ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -1045,12 +1037,9 @@ public class Venta extends javax.swing.JFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(jLabel22))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(boton_prueba_)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(boton_finalizarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(99, 99, 99)
-                                        .addComponent(jLabel13)))
+                                .addComponent(boton_finalizarcompra, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(99, 99, 99)
+                                .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
@@ -1094,16 +1083,11 @@ public class Venta extends javax.swing.JFrame {
                             .addComponent(jLabel20)
                             .addComponent(jLabel21)
                             .addComponent(jLabel22))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCantida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(boton_prueba_)
-                        .addGap(27, 27, 27)))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtCantida, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1764,6 +1748,7 @@ public class Venta extends javax.swing.JFrame {
         }
         return total_venta;
     }
+    //limpiar cajas de texto de el dialog de facturacion
     public void LimpiarCajasTextoFactura(){
         txtNit.setText(null);
         txtnombreF.setText(null);
@@ -1772,6 +1757,48 @@ public class Venta extends javax.swing.JFrame {
         txtIDempleadoF.setText(null);
         txtTlefonoF.setText(null);
         
+    }
+    // se modifica la liquidez 
+    public void ModificarLiquidez(int cantidad){
+        Conexion con = new Conexion();
+        Connection conexion = con.Conectar();
+       
+         try {
+            PreparedStatement statement = conexion.prepareStatement("UPDATE dinero SET cantidad='"+cantidad+"'WHERE idDinero='"+1+"' ");
+            statement.executeUpdate();
+               
+         } catch (SQLException ex) {
+             System.out.println("error al Modificar liquidez");
+         }
+        
+    }
+    // se suman todos los totales de las ventas y luego se manda a modificar la liquidez 
+    public void IncrementarDinero(){
+        int contador = 0;
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+            
+            String sql = "SELECT * FROM venta";
+            
+            Statement st;
+                   
+        try{
+            st = conexion.createStatement();   
+            ResultSet result = st.executeQuery(sql);
+            
+            while(result.next()){
+              
+              int total_venta = Integer.parseInt(result.getString("Total_venta"));
+              contador += total_venta;
+             
+            }
+            
+            ModificarLiquidez(contador);
+            
+        } catch (SQLException ex) {
+            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error en IncrementarDinero");
+        }
     }
  // es el boton que termina con la venta, y realiza la facturacion 
     private void boton_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_FacturarActionPerformed
@@ -1796,6 +1823,7 @@ public class Venta extends javax.swing.JFrame {
         LimpiarTablaC();// se limpia la tabla de productos a comprar 
         TablaHistorialVenta();// se actualiza la tabla de histotial de venta 
         LimpiarCajasTextoFactura();// se limpian las cajas de texto (Jtextfile) del dialog facturacion 
+        IncrementarDinero(); // es para aumentar la liquidez 
         Facturacion.dispose();// se cierra el dialog 
          }
          else{
@@ -2149,112 +2177,6 @@ public class Venta extends javax.swing.JFrame {
            
         }
     }//GEN-LAST:event_boton_generar_pdf_ActionPerformed
-public ArrayList lista_id_pro_detalle(Nodo tope_productos){
-    Conexion con = new Conexion();
-    Connection conexion = con.Conectar();
-    ArrayList<String> lista_ventas_id = new ArrayList<>();       
-            String sql = "SELECT * FROM detalleventa";
-            Statement st;
-                   
-        try{
-            st = conexion.createStatement();   
-            ResultSet result = st.executeQuery(sql);
-            
-            while(result.next()){
-             lista_ventas_id.add(result.getString("producto_id"));
-            }
-            
-            
-        } catch (SQLException ex) {
-            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error*/*/*");
-        }
-    return lista_ventas_id;
-}
-     public void Ordenar(Lista lista_pro){
-         Nodo aux = lista_pro.getTope();
-         while(aux!=null){
-             Nodo aux2 = aux.getSig();
-             while(aux2!=null){
-                 if(aux.getProducto().getCuanto_seV()<aux2.getProducto().getCuanto_seV()){
-                     
-                     int temp_CuantoSeV = aux2.getProducto().getCuanto_seV();
-                     int  id = aux2.getProducto().getId_producto();
-                     
-                     
-                     aux2.getProducto().setCuanto_seV(aux.getProducto().getCuanto_seV());
-                     aux2.getProducto().setId_producto(aux.getProducto().getId_producto());
-                     
-                     aux.getProducto().setCuanto_seV(temp_CuantoSeV);
-                     aux.getProducto().setId_producto(id);
-                     
-                 }
-                 aux2=aux2.getSig();
-             }
-             aux = aux.getSig();
-         }
-         
-         Nodo aux3 = lista_pro.getTope();
-         while(aux3!=null){
-             System.out.println("Se han vendido: "+aux3.getProducto().getCuanto_seV()+" unidades del producto: "+aux3.getProducto().getId_producto());
-             aux3 = aux3.getSig();
-         }
-    
-         
-         
-         
-       }
-
-public void llenar_lista(Lista lista_productos){
-  Conexion con = new Conexion();
-  Connection conexion = con.Conectar();
-            
-            String sql = "SELECT * FROM inventario";
-            
-            Statement st;
-                   
-        try{
-            st = conexion.createStatement();   
-            ResultSet result = st.executeQuery(sql);
-            
-            while(result.next()){
-              String nombre = result.getString("nombre");
-              int id = Integer.parseInt(result.getString("ID"));
-              Producto nuevo_producto = new Producto(id,0,nombre,0);
-              Nodo nuevo_nodo = new Nodo();
-              nuevo_nodo.setProducto(nuevo_producto);
-              lista_productos.InsertarFondo(nuevo_nodo);
-            }
-            
-            
-        } catch (SQLException ex) {
-            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("error*/*/*");
-        }
-         
-}
-    private void boton_prueba_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_prueba_ActionPerformed
-     Lista lista_productos = new Lista();
-        llenar_lista(lista_productos);
-        Nodo aux = lista_productos.getTope();
-       ArrayList<String> listaIDs = new ArrayList<String>(lista_id_pro_detalle(aux)); 
-       int size = listaIDs.size();
-       int conta =0;
-       while(aux!=null){
-           conta=0;
-           while(conta<size){
-             if(aux.getProducto().getId_producto()==Integer.parseInt(listaIDs.get(conta))){
-                aux.getProducto().setCuanto_seV(aux.getProducto().getCuanto_seV()+1);
-                 
-             }
-             conta++;  
-           }
-           System.out.println("ID producto: "+aux.getProducto().getId_producto()+" --- ha vendido: "+aux.getProducto().getCuanto_seV());
-          aux = aux.getSig();
-      }
-       Ordenar(lista_productos);
-        
-    }//GEN-LAST:event_boton_prueba_ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2316,7 +2238,6 @@ public void llenar_lista(Lista lista_productos){
     private javax.swing.JButton boton_concelarcompra;
     private javax.swing.JButton boton_finalizarcompra;
     private javax.swing.JToggleButton boton_generar_pdf_;
-    private javax.swing.JToggleButton boton_prueba_;
     private javax.swing.JLabel cuiE;
     private javax.swing.JLabel emailClien_label;
     private javax.swing.JLabel jLabel1;
