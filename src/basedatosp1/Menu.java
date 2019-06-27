@@ -252,7 +252,7 @@ public class Menu extends javax.swing.JFrame {
 
         fondo_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/fondo_menu_3.jpg"))); // NOI18N
         getContentPane().add(fondo_menu);
-        fondo_menu.setBounds(-240, -10, 1090, 440);
+        fondo_menu.setBounds(0, 0, 810, 430);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
