@@ -10,7 +10,7 @@ package basedatosp1;
  * @author Usuario
  */
 public class Producto {
-    private int  id_producto, cantidad;
+    private int  id_producto, cantidad, cuanto_seV;
     private float precio, precioTotal, costo;
     private String nombre;
 
@@ -72,7 +72,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    public int getCuanto_seV() {
+        return cuanto_seV;
+    }
+
+    public void setCuanto_seV(int cuanto_seV) {
+        this.cuanto_seV = cuanto_seV;
+    }
    
-    
-    
 }

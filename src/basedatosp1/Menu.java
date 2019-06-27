@@ -291,6 +291,7 @@ public class Menu extends javax.swing.JFrame {
             resultado.first();
              contra2 = resultado.getString("contrasena");
              int nivel = Integer.parseInt(resultado.getString("nivel_acceso"));
+             int id_empleado = Integer.parseInt(resultado.getString("idempleado"));
             
             if(resultado.first()){
                 // contra2 = resultado.getString("contraseña");
@@ -302,7 +303,7 @@ public class Menu extends javax.swing.JFrame {
                     dialog_contra.dispose();
                 }
                 if(clave_entrar_modulo==3){
-                    Venta venta = new Venta();
+                    Venta venta = new Venta(id_empleado);
                     venta.setVisible(true);
                     dialog_contra.dispose();
                 }
