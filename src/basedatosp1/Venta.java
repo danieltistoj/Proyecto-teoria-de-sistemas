@@ -2200,6 +2200,9 @@ public ArrayList lista_id_pro_detalle(Nodo tope_productos){
              aux3 = aux3.getSig();
          }
     
+         
+         
+         
        }
 
 public void llenar_lista(Lista lista_productos){
