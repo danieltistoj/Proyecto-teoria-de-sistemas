@@ -15,6 +15,8 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,6 +25,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FinanzaWIN2 extends javax.swing.JFrame {
     private DefaultTableModel modelo; 
+    private String A1;
+    private String A2;
+    private String A3;
+    private String A4;
+    private String A5;
+    private String A6;
+    private String A7;
+    private String A8;
     /**
      * Creates new form pprueb
      */
@@ -53,11 +63,20 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
             
             String[] dato = new String[2];
             int total = 0;
+            int contador = 0;
         try{
             st = conexion.createStatement();   
             ResultSet result = st.executeQuery(sql);
             
             while(result.next()){
+                if(contador == 0 && contador < 1){
+                    A1 = result.getString(2);
+                    A2 = result.getString(3);
+                }else if (contador == 1 && contador < 2){
+                    A3 = result.getString(2);
+                    A4 = result.getString(3);
+                }
+                contador ++;
                 dato[0] = result.getString(2);
                 dato[1] = result.getString(3);
                 total = total + Integer.valueOf(result.getString(3));
@@ -65,11 +84,15 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
             }
             String[] otrasColumnas = new String[2];
             otrasColumnas[0] = "Valor de Inventario";
+            A5 = "Valor de inventario";
+            A6  = String.valueOf(this.saberCuantoHayInventario());
             otrasColumnas[1] = String.valueOf(this.saberCuantoHayInventario());
             modelo.addRow(otrasColumnas);
             String[] otrasColumnas1 = new String[2];
             otrasColumnas1[0] = "Valor total";
             total = total + this.saberCuantoHayInventario();
+            A7 = "Total";
+            A8 = String.valueOf(total);
             otrasColumnas1[1] = String.valueOf(total);
             modelo.addRow(otrasColumnas1);
         } catch (SQLException ex) {
@@ -115,7 +138,7 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        Imprimir = new javax.swing.JButton();
+        Pdf = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -151,10 +174,10 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        Imprimir.setText("jButton3");
-        Imprimir.addActionListener(new java.awt.event.ActionListener() {
+        Pdf.setText("Crear PDF");
+        Pdf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ImprimirActionPerformed(evt);
+                PdfActionPerformed(evt);
             }
         });
 
@@ -171,21 +194,24 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Imprimir))
-                        .addGap(0, 116, Short.MAX_VALUE)))
+                        .addGap(54, 54, 54)
+                        .addComponent(Pdf)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 68, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel5)
-                .addGap(31, 31, 31)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addComponent(Imprimir)
-                .addGap(120, 120, 120)
+                .addGap(59, 59, 59)
+                .addComponent(Pdf)
+                .addGap(119, 119, 119)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -284,9 +310,18 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
-        
-    }//GEN-LAST:event_ImprimirActionPerformed
+    private void PdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PdfActionPerformed
+        JFileChooser jf = new JFileChooser();
+        jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);//para que solo pueda guardar al seleccionar carpetas
+        int option = jf.showOpenDialog(FinanzaWIN2.this);
+        if(option == 0){
+            String nombre = JOptionPane.showInputDialog("Cual es el nombre del archivo a guardar ");
+            String nombreArchivo = jf.getSelectedFile().getAbsolutePath() + "/" +  nombre + ".pdf";
+            nombreArchivo  = nombreArchivo.replace("\\", "/");
+            System.out.println(nombreArchivo);
+            PruebaPDF pdf = new PruebaPDF( nombreArchivo, A1, A2, A3, A4, A5, A6, A7, A8);
+        }
+    }//GEN-LAST:event_PdfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,7 +360,7 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Imprimir;
+    private javax.swing.JButton Pdf;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton7;
