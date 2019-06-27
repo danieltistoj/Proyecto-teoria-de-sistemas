@@ -301,19 +301,34 @@ public class Menu extends javax.swing.JFrame {
                     Inventario inventario = new Inventario(nivel);
                     inventario.setVisible(true);
                     dialog_contra.dispose();
+                    this.dispose();
                 }
                 if(clave_entrar_modulo==3){
                     Venta venta = new Venta(id_empleado);
                     venta.setVisible(true);
                     dialog_contra.dispose();
+                    this.dispose();
+                }
+                if(clave_entrar_modulo==4){
+                            if(nivel==1){
+                                JOptionPane.showMessageDialog(null,"No tiene acceso a este modulo","Advertencia!",JOptionPane.WARNING_MESSAGE);
+                                dialog_contra.dispose();
+                            }
+                            else{
+                            FinanzaWIN2 wind = new FinanzaWIN2();
+                            wind.setVisible(true);
+                            dialog_contra.dispose();
+                            this.dispose();
+                            }
+                    
                 }
                 if(clave_entrar_modulo==5){
                     recursosHumanos recursos = new recursosHumanos();
                     recursos.setVisible(true);
                     dialog_contra.dispose();
-                    
+                    this.dispose();
                 }
-                this.dispose();
+                
                     
                    
                         }
@@ -340,9 +355,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_Rhumanos_moduloActionPerformed
 
     private void boton_finanzasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_finanzasActionPerformed
-        FinanzaWIN2 wind = new FinanzaWIN2();
-        wind.setVisible(true);
-        this.dispose();
+        clave_entrar_modulo = 4;
+        dialog_contra.setVisible(true);
     }//GEN-LAST:event_boton_finanzasActionPerformed
 
     /**

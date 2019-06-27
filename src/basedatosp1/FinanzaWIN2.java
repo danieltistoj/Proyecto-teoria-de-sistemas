@@ -5,17 +5,22 @@
  */
 package basedatosp1;
 
+import java.awt.Cursor;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,6 +38,9 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
     private String A6;
     private String A7;
     private String A8;
+    private DefaultTableModel modelo1 = new DefaultTableModel();
+    private ArrayList<Producto> lista_productos = new ArrayList<>();
+    private int nivel;
     /**
      * Creates new form pprueb
      */
@@ -46,6 +54,33 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Rubix/Finanzas");
         Tabla();
+        Cerrar();
+        
+        Pdf.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_regresar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        boton_top_pro.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+    
+    public void Cerrar(){
+        try {
+            this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+            addWindowListener(new WindowAdapter() {
+                public void windowClosing(WindowEvent e){
+                    confirmarSalida();
+                    
+                }
+               });
+            this.setVisible(true);
+        } catch (Exception e) {
+        }
+    }
+    //es para poner una condicion a la hora de cerrar la ventana 
+    public void confirmarSalida(){
+        int confirmar = JOptionPane.showConfirmDialog(this,"¿Esta seguro de cerra la aplicacion?.","Advertencia",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+        if(confirmar==JOptionPane.YES_OPTION){
+               System.exit(0);
+        }
+        
     }
     public void Tabla(){
         
@@ -134,27 +169,26 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
+        boton_regresar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         Pdf = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        boton_top_pro = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        Tabla_productosM = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Modulo Finanza");
         setLocation(new java.awt.Point(350, 150));
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.1.png"))); // NOI18N
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        boton_regresar.setBackground(new java.awt.Color(255, 255, 255));
+        boton_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.1.png"))); // NOI18N
+        boton_regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                boton_regresarActionPerformed(evt);
             }
         });
 
@@ -186,99 +220,83 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(Pdf)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(boton_regresar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 68, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Pdf)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(58, 58, 58))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel5)
-                .addGap(33, 33, 33)
+                .addGap(56, 56, 56)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(18, 18, 18)
                 .addComponent(Pdf)
-                .addGap(119, 119, 119)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addComponent(boton_regresar)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Balance General", jPanel4);
 
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.1.png"))); // NOI18N
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Dosis", 3, 24)); // NOI18N
         jLabel4.setText("jLabel1");
 
-        jButton1.setText("Top Productos Mas Vendidos");
+        boton_top_pro.setText("Top Productos Mas Vendidos");
+        boton_top_pro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_top_proActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Top Productos Menos Vendidos");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        Tabla_productosM.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Tabla_productosM);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(80, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addComponent(boton_top_pro)
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(53, 53, 53))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                        .addComponent(boton_top_pro)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -298,17 +316,11 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void boton_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_regresarActionPerformed
         Menu menu = new Menu();
         menu.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton7ActionPerformed
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-         Menu menu = new Menu();
-        menu.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_boton_regresarActionPerformed
 
     private void PdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PdfActionPerformed
         JFileChooser jf = new JFileChooser();
@@ -322,6 +334,138 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
             PruebaPDF pdf = new PruebaPDF( nombreArchivo, A1, A2, A3, A4, A5, A6, A7, A8);
         }
     }//GEN-LAST:event_PdfActionPerformed
+public ArrayList lista_id_pro_detalle(Nodo tope_productos){
+    Conexion con = new Conexion();
+    Connection conexion = con.Conectar();
+    ArrayList<String> lista_ventas_id = new ArrayList<>();       
+            String sql = "SELECT * FROM detalleventa";
+            Statement st;
+                   
+        try{
+            st = conexion.createStatement();   
+            ResultSet result = st.executeQuery(sql);
+            
+            while(result.next()){
+             lista_ventas_id.add(result.getString("producto_id"));
+            }
+            
+            
+        } catch (SQLException ex) {
+            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error*/*/*");
+        }
+    return lista_ventas_id;
+}
+     public void Ordenar(Lista lista_pro){
+         Nodo aux = lista_pro.getTope();
+         while(aux!=null){
+             Nodo aux2 = aux.getSig();
+             while(aux2!=null){
+                 if(aux.getProducto().getCuanto_seV()<aux2.getProducto().getCuanto_seV()){
+                     
+                     int temp_CuantoSeV = aux2.getProducto().getCuanto_seV();
+                     int  id = aux2.getProducto().getId_producto();
+                     String nombre = aux2.getProducto().getNombre();
+                     
+                     
+                     aux2.getProducto().setCuanto_seV(aux.getProducto().getCuanto_seV());
+                     aux2.getProducto().setId_producto(aux.getProducto().getId_producto());
+                     aux2.getProducto().setNombre(aux.getProducto().getNombre());
+                     
+                     aux.getProducto().setCuanto_seV(temp_CuantoSeV);
+                     aux.getProducto().setId_producto(id);
+                     aux.getProducto().setNombre(nombre);
+                     
+                 }
+                 aux2=aux2.getSig();
+             }
+             aux = aux.getSig();
+         }
+               
+         
+       }
+
+public void llenar_lista(Lista lista_productos){
+  Conexion con = new Conexion();
+  Connection conexion = con.Conectar();
+            
+            String sql = "SELECT * FROM inventario";
+            
+            Statement st;
+                   
+        try{
+            st = conexion.createStatement();   
+            ResultSet result = st.executeQuery(sql);
+            
+            while(result.next()){
+              String nombre = result.getString("nombre");
+              int id = Integer.parseInt(result.getString("ID"));
+              Producto nuevo_producto = new Producto(id,0,nombre,0);
+              Nodo nuevo_nodo = new Nodo();
+              nuevo_nodo.setProducto(nuevo_producto);
+              lista_productos.InsertarFondo(nuevo_nodo);
+            }
+            
+            
+        } catch (SQLException ex) {
+            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error*/*/*");
+        }
+         
+}
+
+public void setDatosProductos(){
+        Object[] datos = new Object[modelo1.getColumnCount()];
+        int i=1;
+        modelo1.setRowCount(0);
+        for(Producto producto: lista_productos){
+            datos[0] = producto.getId_producto();
+            datos[1] = producto.getNombre();
+            datos[2] = producto.getCuanto_seV();
+            i++;
+            modelo1.addRow(datos);
+        }
+        Tabla_productosM.setModel(modelo1);
+        
+    }
+    // con esta funcion se le ponen los encabezados a cado columna de la tabla de detalle de venta 
+     public void setModelProductos(){
+        String[] cabecera = {"ID","Nombre","Cantidad vendida"};
+        modelo1.setColumnIdentifiers(cabecera);
+        Tabla_productosM.setModel(modelo1);
+                    
+    }
+     public void Ingresar_Productos_En_Array(Lista lista_producto){
+         Nodo aux = lista_producto.getTope();
+         while(aux!=null){
+             this.lista_productos.add(aux.getProducto());
+             aux = aux.getSig();
+         }
+     }
+    private void boton_top_proActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_top_proActionPerformed
+     Lista lista_productos = new Lista();
+        llenar_lista(lista_productos);
+        Nodo aux = lista_productos.getTope();
+        ArrayList<String> listaIDs = new ArrayList<String>(lista_id_pro_detalle(aux));
+        int size = listaIDs.size();
+        int conta =0;
+        while(aux!=null){
+            conta=0;
+            while(conta<size){
+                if(aux.getProducto().getId_producto()==Integer.parseInt(listaIDs.get(conta))){
+                    aux.getProducto().setCuanto_seV(aux.getProducto().getCuanto_seV()+1);
+
+                }
+                conta++;
+            }
+            aux = aux.getSig();
+        }
+        Ordenar(lista_productos);
+        Ingresar_Productos_En_Array(lista_productos);
+        setModelProductos();
+        setDatosProductos();
+        boton_top_pro.setEnabled(false);
+    }//GEN-LAST:event_boton_top_proActionPerformed
 
     /**
      * @param args the command line arguments
@@ -361,10 +505,9 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Pdf;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JTable Tabla_productosM;
+    private javax.swing.JButton boton_regresar;
+    private javax.swing.JButton boton_top_pro;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel3;
@@ -372,7 +515,6 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 }
