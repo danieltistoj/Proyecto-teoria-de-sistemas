@@ -103,8 +103,6 @@ public class Menu extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         fondo_menu = new javax.swing.JLabel();
 
         dialog_contra.setBounds(new java.awt.Rectangle(0, 0, 400, 350));
@@ -184,7 +182,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel1.setText("INVENTARIO");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(77, 110, 74, 16);
+        jLabel1.setBounds(77, 110, 69, 16);
 
         boton_competidores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/competidores2.png"))); // NOI18N
         getContentPane().add(boton_competidores);
@@ -192,7 +190,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel2.setText("COMPETIDORES");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(205, 110, 97, 16);
+        jLabel2.setBounds(205, 110, 92, 16);
 
         boton_modulo_venta.setBackground(new java.awt.Color(255, 255, 255));
         boton_modulo_venta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventas5.1.png"))); // NOI18N
@@ -206,7 +204,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel3.setText("VENTAS");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(372, 110, 49, 16);
+        jLabel3.setBounds(372, 110, 46, 16);
 
         boton_finanzas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/finanzas4.1.png"))); // NOI18N
         boton_finanzas.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +217,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel4.setText("FINANZAS");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(514, 110, 61, 16);
+        jLabel4.setBounds(514, 110, 56, 16);
 
         boton_Rhumanos_modulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recursoshumanos3.1.png"))); // NOI18N
         boton_Rhumanos_modulo.addActionListener(new java.awt.event.ActionListener() {
@@ -232,38 +230,29 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel5.setText("RECURSOS HUMANOS");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(635, 110, 135, 16);
+        jLabel5.setBounds(635, 110, 126, 16);
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion3.2.png"))); // NOI18N
         getContentPane().add(jButton6);
-        jButton6.setBounds(351, 281, 94, 97);
+        jButton6.setBounds(260, 290, 94, 97);
 
         jLabel6.setText("CONFIGURACION");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(351, 259, 103, 16);
+        jLabel6.setBounds(260, 260, 94, 20);
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ayuda1.1.png"))); // NOI18N
         getContentPane().add(jButton7);
-        jButton7.setBounds(498, 281, 96, 103);
+        jButton7.setBounds(430, 290, 96, 97);
 
         jLabel7.setText("AYUDA");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(527, 259, 44, 16);
-
-        jButton8.setBackground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/compras3.1.png"))); // NOI18N
-        getContentPane().add(jButton8);
-        jButton8.setBounds(209, 281, 96, 97);
-
-        jLabel8.setText("COMPRAS");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(224, 259, 62, 16);
+        jLabel7.setBounds(460, 260, 39, 16);
 
         fondo_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/fondo_menu_3.jpg"))); // NOI18N
         getContentPane().add(fondo_menu);
-        fondo_menu.setBounds(-270, -10, 1090, 440);
+        fondo_menu.setBounds(-240, -10, 1090, 440);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -405,7 +394,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel fondo_menu;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -414,7 +402,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField txtContrasena;
