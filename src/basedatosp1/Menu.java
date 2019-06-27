@@ -340,7 +340,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_boton_Rhumanos_moduloActionPerformed
 
     private void boton_finanzasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_finanzasActionPerformed
-        FinanzaWIN wind = new FinanzaWIN();
+        FinanzaWIN2 wind = new FinanzaWIN2();
         wind.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_boton_finanzasActionPerformed
