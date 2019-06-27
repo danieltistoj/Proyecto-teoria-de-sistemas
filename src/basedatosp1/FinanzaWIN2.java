@@ -8,6 +8,7 @@ package basedatosp1;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -26,6 +27,9 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
         jLabel3.setText(df.format(calobj.getTime()));
         jLabel4.setText(df.format(calobj.getTime()));
         jLabel5.setText(df.format(calobj.getTime()));
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
+        setLocationRelativeTo(null);
+        setTitle("Rubix/Finanzas");
     }
 
     /**
