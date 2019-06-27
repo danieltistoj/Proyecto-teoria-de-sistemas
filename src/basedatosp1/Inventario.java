@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import sun.awt.image.IntegerInterleavedRaster;
 
 /**
  *
@@ -77,6 +78,41 @@ public class Inventario extends javax.swing.JFrame {
             }
             
         }
+    }
+    public void ModificarLiquidez(int liquidez_modificada){
+        Conexion con = new Conexion();
+        Connection conexion = con.Conectar();
+       
+         try {
+            PreparedStatement statement = conexion.prepareStatement("UPDATE dinero SET cantidad='"+liquidez_modificada+"'WHERE idDinero='"+1+"' ");
+            statement.executeUpdate();
+               
+         } catch (SQLException ex) {
+             System.out.println("error al Modificar liquidez en inventario");
+         }
+    }
+    public int ObtenerLiquidez(){
+        int liquidez = 0;
+         
+         String sql = "SELECT * FROM dinero"+" WHERE idDinero='"+1+"'";
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         Statement st;
+         try{
+            st = conexion.createStatement();   
+            ResultSet resultado = st.executeQuery(sql);
+           
+            if(resultado.first()){
+               liquidez = Integer.parseInt(resultado.getString("cantidad"));
+              
+                        }
+                
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null,"Datos incorrectos","",JOptionPane.ERROR_MESSAGE);
+             
+            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return liquidez;
     }
 
     
@@ -438,35 +474,48 @@ public class Inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtExisActionPerformed
 //con esta funcion agregamos a la base de datos un nuevo producto 
     public void Agregar(){
-   Conexion con = new Conexion();
-         Connection conexion = con.Conectar();
-        try {
-           
-            String query ="INSERT INTO inventario (nombre,costo,precio,existencia) values(?,?,?,?)";
-            PreparedStatement statement = conexion.prepareStatement(query);
-            statement.setString(1,txtnombre.getText());
-            statement.setFloat(2,Float.parseFloat(txtCosto.getText()));
-            statement.setFloat(3,Float.parseFloat(txtPrecio.getText()) );
-            statement.setInt(4,Integer.parseInt(txtExis.getText()));
-
-            statement.executeUpdate();
-            conexion.close(); 
-            JOptionPane.showMessageDialog(null,"Producto agregado correctamente","",JOptionPane.INFORMATION_MESSAGE); 
+        
+        if(Integer.parseInt(txtCosto.getText())<=ObtenerLiquidez()){
             
-            //limpiar las cajas de texto
-            txtnombre.setText(null);
-            txtCosto.setText(null);
-            txtPrecio.setText(null);
-            txtExis.setText(null);
-            Tabla();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
-            e.printStackTrace();
-        } 
+            Conexion con = new Conexion();
+            Connection conexion = con.Conectar();
+                 try {
+
+                     String query ="INSERT INTO inventario (nombre,costo,precio,existencia) values(?,?,?,?)";
+                     PreparedStatement statement = conexion.prepareStatement(query);
+                     statement.setString(1,txtnombre.getText());
+                     statement.setFloat(2,Float.parseFloat(txtCosto.getText()));
+                     statement.setFloat(3,Float.parseFloat(txtPrecio.getText()) );
+                     statement.setInt(4,Integer.parseInt(txtExis.getText()));
+                     
+                     int liquidez_modificada = ObtenerLiquidez()-Integer.parseInt(txtPrecio.getText());
+                     ModificarLiquidez(liquidez_modificada);
+                     
+                     statement.executeUpdate();
+                     conexion.close(); 
+                     JOptionPane.showMessageDialog(null,"Producto agregado correctamente","",JOptionPane.INFORMATION_MESSAGE); 
+
+                     //limpiar las cajas de texto
+                     txtnombre.setText(null);
+                     txtCosto.setText(null);
+                     txtPrecio.setText(null);
+                     txtExis.setText(null);
+                     Tabla();
+                 } catch (Exception e) {
+                     JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
+                     e.printStackTrace();
+                 } 
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Ya no hay fondos para efectuar la compra","Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+        
+       
 }
 
 //Agregar elementos. Ingresamos nuevos elementos a la base de datos 
     private void BotonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarActionPerformed
+     
         if(txtnombre.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Ingrese un nombre","Error",JOptionPane.ERROR_MESSAGE);
         }
@@ -482,8 +531,9 @@ public class Inventario extends javax.swing.JFrame {
         else{
             Agregar();//se llama a la funcion Agregar
         }
-        
        
+        
+
     }//GEN-LAST:event_BotonAgregarActionPerformed
 // buscar un elemento 
     private void txtbuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarKeyPressed
