@@ -30,20 +30,33 @@ public class Inventario extends javax.swing.JFrame {
     private int nivel;
     private DefaultTableModel modelo;
     public Inventario(int nivel) {
+        initComponents();
+        /*
+        Imagen img1 = new Imagen("/basedatosp1/fonodo_menu_1.jpg", 737, 511);
+        Imagen img2 = new Imagen("/basedatosp1/fonodo_menu_1.jpg", 737, 511);
+       
+        this.PanelAgregar.add(img1);
+        this.PanelAgregar.repaint();
+        
+        this.PanelTabla.add(img2);
+        this.PanelTabla.repaint();
+        */
         this.nivel = nivel;
         
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
-        initComponents();
+        
         this.setResizable(false);
         setTitle("Rubix/Inventario");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        Imagen img1 = new Imagen("/Imagenes/Agregar1.jpg", 733, 510);
-        Imagen img2 = new Imagen("/Imagenes/inventario1.jpg", 733, 510);
+        
+        Imagen img1 = new Imagen("/Imagenes/fondo_inventario2.png", 733, 570);
+        Imagen img2 = new Imagen("/Imagenes/fondo_inventario3.png", 733, 570);
         this.PanelAgregar.add(img1);
         this.PanelAgregar.repaint();
         this.PanelTabla.add(img2);
         this.PanelTabla.repaint();
+        
        //BotonAgregar.setEnabled(false);
         Tabla();
         Bloquear();
@@ -188,7 +201,6 @@ public class Inventario extends javax.swing.JFrame {
         txtPrecio = new javax.swing.JTextField();
         txtExis = new javax.swing.JTextField();
         BotonAgregar = new javax.swing.JButton();
-        jLabel12 = new javax.swing.JLabel();
         BotonRegreasarMenu1 = new javax.swing.JButton();
         PanelTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -251,8 +263,6 @@ public class Inventario extends javax.swing.JFrame {
             }
         });
 
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/caja3.png"))); // NOI18N
-
         BotonRegreasarMenu1.setBackground(new java.awt.Color(255, 255, 255));
         BotonRegreasarMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.1.png"))); // NOI18N
         BotonRegreasarMenu1.addActionListener(new java.awt.event.ActionListener() {
@@ -268,7 +278,6 @@ public class Inventario extends javax.swing.JFrame {
             .addGroup(PanelAgregarLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addGroup(PanelAgregarLayout.createSequentialGroup()
                         .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -293,7 +302,7 @@ public class Inventario extends javax.swing.JFrame {
         PanelAgregarLayout.setVerticalGroup(
             PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAgregarLayout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
+                .addContainerGap(90, Short.MAX_VALUE)
                 .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelAgregarLayout.createSequentialGroup()
                         .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -314,10 +323,8 @@ public class Inventario extends javax.swing.JFrame {
                 .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtExis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addGroup(PanelAgregarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonRegreasarMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(192, 192, 192)
+                .addComponent(BotonRegreasarMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -443,8 +450,8 @@ public class Inventario extends javax.swing.JFrame {
                     .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
                 .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -718,7 +725,6 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
