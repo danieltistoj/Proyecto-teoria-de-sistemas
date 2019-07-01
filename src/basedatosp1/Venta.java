@@ -57,8 +57,8 @@ public class Venta extends javax.swing.JFrame {
     private Lista ventas, productos, productos2;
     public Venta(int id_empleado) {
         initComponents();
-        Imagen img1 = new Imagen("/basedatosp1/fondo_modulo_2.jpg", 1075, 770);
-        Imagen img2 = new Imagen("/basedatosp1/fondo_modulo_2.jpg", 1075, 770);
+        Imagen img1 = new Imagen("/Imagenes/fondo3.jpg", 1075, 770);
+        Imagen img2 = new Imagen("/Imagenes/fondo6.jpg", 1075, 770);
        
         this.panel_detalleVenta.add(img1);
         this.panel_detalleVenta.repaint();
@@ -972,11 +972,11 @@ public class Venta extends javax.swing.JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 153, 255));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Productos Disponibles");
 
         jLabel30.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(0, 153, 225));
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setText("Producto A Vender");
 
         boto_agregarcompra.setBackground(new java.awt.Color(255, 255, 255));
@@ -1022,23 +1022,23 @@ public class Venta extends javax.swing.JFrame {
         });
 
         jLabel33.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(0, 153, 225));
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setText("Cantida");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 153, 225));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Buscar");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 153, 225));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("ID");
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 153, 225));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Nombre");
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 153, 225));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Precio");
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -1046,15 +1046,15 @@ public class Venta extends javax.swing.JFrame {
         jLabel12.setText("Total");
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 153, 225));
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Agregar");
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 153, 225));
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Cancelar");
 
         jLabel21.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 153, 225));
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Facturar");
 
         javax.swing.GroupLayout panel_cotizacionVentaLayout = new javax.swing.GroupLayout(panel_cotizacionVenta);
@@ -1177,7 +1177,7 @@ public class Venta extends javax.swing.JFrame {
                             .addComponent(jLabel30))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panel_cotizacionVentaLayout.createSequentialGroup()
-                        .addGap(0, 9, Short.MAX_VALUE)
+                        .addGap(0, 19, Short.MAX_VALUE)
                         .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -1210,6 +1210,7 @@ public class Venta extends javax.swing.JFrame {
             }
         });
 
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setText("Detalle Venta");
 
         txt_buscar_venta.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1234,34 +1235,36 @@ public class Venta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
-                    .addGroup(panel_detalleVentaLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(281, 281, 281)
                         .addGroup(panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_buscar_venta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
-                                .addComponent(jLabel32)
-                                .addGap(43, 43, 43)))))
+                                .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(474, 474, 474))
+                            .addComponent(txt_buscar_venta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel32)
+                .addGap(49, 49, 49))
         );
         panel_detalleVentaLayout.setVerticalGroup(
             panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_detalleVentaLayout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_detalleVentaLayout.createSequentialGroup()
-                        .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
                         .addComponent(jLabel32)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txt_buscar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+                        .addGap(29, 29, 29))
+                    .addGroup(panel_detalleVentaLayout.createSequentialGroup()
+                        .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84)))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(186, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Historial", null, panel_detalleVenta, "");
