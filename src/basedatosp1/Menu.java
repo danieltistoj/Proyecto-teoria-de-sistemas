@@ -53,6 +53,10 @@ public class Menu extends javax.swing.JFrame {
         boton_ingre.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
         dialog_contra.setLocationRelativeTo(null);
+        dialog_contra.setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
+        Imagen img1 = new Imagen("/basedatosp1/fonodo_menu_1.jpg", 400, 350);
+        this.jPanel1.add(img1);
+        this.jPanel1.repaint();
         Cerrar();        
     }
 
@@ -107,8 +111,12 @@ public class Menu extends javax.swing.JFrame {
 
         dialog_contra.setBounds(new java.awt.Rectangle(0, 0, 400, 350));
 
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Usuario ");
 
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Contraseña");
 
         boton_ingre.setBackground(new java.awt.Color(255, 255, 255));
@@ -182,7 +190,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel1.setText("INVENTARIO");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(77, 110, 69, 16);
+        jLabel1.setBounds(77, 110, 62, 14);
 
         boton_competidores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/competidores2.png"))); // NOI18N
         getContentPane().add(boton_competidores);
@@ -190,7 +198,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel2.setText("COMPETIDORES");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(205, 110, 92, 16);
+        jLabel2.setBounds(205, 110, 79, 14);
 
         boton_modulo_venta.setBackground(new java.awt.Color(255, 255, 255));
         boton_modulo_venta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ventas5.1.png"))); // NOI18N
@@ -204,7 +212,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel3.setText("VENTAS");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(372, 110, 46, 16);
+        jLabel3.setBounds(372, 110, 38, 14);
 
         boton_finanzas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/finanzas4.1.png"))); // NOI18N
         boton_finanzas.addActionListener(new java.awt.event.ActionListener() {
@@ -217,7 +225,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel4.setText("FINANZAS");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(514, 110, 56, 16);
+        jLabel4.setBounds(514, 110, 50, 14);
 
         boton_Rhumanos_modulo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/recursoshumanos3.1.png"))); // NOI18N
         boton_Rhumanos_modulo.addActionListener(new java.awt.event.ActionListener() {
@@ -230,7 +238,7 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel5.setText("RECURSOS HUMANOS");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(635, 110, 126, 16);
+        jLabel5.setBounds(635, 110, 107, 14);
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion3.2.png"))); // NOI18N
@@ -239,16 +247,16 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel6.setText("CONFIGURACION");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(260, 260, 94, 20);
+        jLabel6.setBounds(260, 260, 86, 20);
 
         jButton7.setBackground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ayuda1.1.png"))); // NOI18N
         getContentPane().add(jButton7);
-        jButton7.setBounds(430, 290, 96, 97);
+        jButton7.setBounds(430, 290, 96, 95);
 
         jLabel7.setText("AYUDA");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(460, 260, 39, 16);
+        jLabel7.setBounds(460, 260, 34, 14);
 
         fondo_menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/fondo_menu_3.jpg"))); // NOI18N
         getContentPane().add(fondo_menu);
@@ -340,7 +348,6 @@ public class Menu extends javax.swing.JFrame {
     private void boton_Rhumanos_moduloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_Rhumanos_moduloActionPerformed
         clave_entrar_modulo = 5;
         dialog_contra.setVisible(true);
-        dialog_contra.setTitle("Rubix/Login/Recursos Humanos"); 
     }//GEN-LAST:event_boton_Rhumanos_moduloActionPerformed
 
     private void boton_finanzasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_finanzasActionPerformed
