@@ -1286,6 +1286,7 @@ public class Venta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 //boton agregar 
     private void boto_agregarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boto_agregarcompraActionPerformed
+        System.out.println("entro ");
         if(txtnombre.getText().length()!=0){// este  if ve si se a seleccionado un producto
        
         if(txtCantida.getText().length()!=0){// este if ve si se a ingresado una cantidad de producto
@@ -1646,7 +1647,7 @@ public class Venta extends javax.swing.JFrame {
 
             statement.executeUpdate();
             conexion.close(); 
-            JOptionPane.showMessageDialog(null,"Producto agregado correctamente","",JOptionPane.INFORMATION_MESSAGE); 
+             
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error al conectarse a la base de datos","Error",JOptionPane.ERROR_MESSAGE);
@@ -1743,23 +1744,61 @@ public class Venta extends javax.swing.JFrame {
         txtTlefonoF.setText(null);
         
     }
-    // se modifica la liquidez 
-    public void ModificarLiquidez(int cantidad){
+    // se modifica la liquidez se aumenta la cantidad de efectivo
+    public void ModificarLiquidez(float cantidad){
         Conexion con = new Conexion();
         Connection conexion = con.Conectar();
        
          try {
             PreparedStatement statement = conexion.prepareStatement("UPDATE dinero SET cantidad='"+cantidad+"'WHERE idDinero='"+1+"' ");
             statement.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Venta hecha con exito","",JOptionPane.INFORMATION_MESSAGE);
                
          } catch (SQLException ex) {
              System.out.println("error al Modificar liquidez");
          }
         
     }
+    // se modifica el iva. se cambia en la base de datos 
+    public void ModificarIVA(float iva_total){
+        Conexion con = new Conexion();
+        Connection conexion = con.Conectar();
+       
+         try {
+            PreparedStatement statement = conexion.prepareStatement("UPDATE dinero SET cantidad='"+iva_total+"'WHERE idDinero='"+2+"' ");
+            statement.executeUpdate();
+               
+         } catch (SQLException ex) {
+             System.out.println("error al Modificar IVA");
+         }
+        
+    }
+    //se aumenta la cantidad de iva 
+    public void IncremetarIVA(float iva){
+         float cantidad;
+         String sql = "SELECT * FROM dinero"+" WHERE idDinero='"+2+"'";
+         Conexion con = new Conexion();
+         Connection conexion = con.Conectar();
+         Statement st;
+         try{
+            st = conexion.createStatement();   
+            ResultSet resultado = st.executeQuery(sql);
+           
+            if(resultado.first()){
+             cantidad = iva + Float.parseFloat(resultado.getString("cantidad"));
+             ModificarIVA(cantidad);
+              
+            }
+            
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null,"erro al aumentar IVA","",JOptionPane.ERROR_MESSAGE);
+             
+            //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }    
+    }
     // se suman todos los totales de las ventas y luego se manda a modificar la liquidez 
     public void IncrementarDinero(){
-        int contador = 0;
+         float contador = 0;
          Conexion con = new Conexion();
          Connection conexion = con.Conectar();
             
@@ -1777,8 +1816,10 @@ public class Venta extends javax.swing.JFrame {
               contador += total_venta;
              
             }
-            
+           
             ModificarLiquidez(contador);
+            
+            
             
         } catch (SQLException ex) {
             //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
@@ -1787,7 +1828,8 @@ public class Venta extends javax.swing.JFrame {
     }
  // es el boton que termina con la venta, y realiza la facturacion 
     private void boton_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_FacturarActionPerformed
-         if(txtnombreF.getText().length()!=0){
+        float iva1; 
+        if(txtnombreF.getText().length()!=0){
          String formato = "yyyy-MM-dd HH:mm:ss";
          DateTimeFormatter formateador = DateTimeFormatter.ofPattern(formato);
          LocalDateTime ahora = LocalDateTime.now();
@@ -1798,6 +1840,10 @@ public class Venta extends javax.swing.JFrame {
          int id_cliente = clienteId;
          int id_usuario = Integer.parseInt(txtIDempleadoF.getText());
          float total_venta = TotalDeVenta(aux); // se obtiene el total de la venta. producto.setPrecioTotal = producto.getCantidad*producto.getPrecio ----- total_venta += producto.setPrecioTotal
+           
+            iva1 = (float) (total_venta*0.05); // se saca el iva de la venta
+            IncremetarIVA(iva1);// se manda el iva de la venta para aumentarla a la que ya esta en la base de datos 
+         
          IngresarVentaBaseDatos(id_cliente, id_usuario, FechaHora,total_venta); // se hace la venta y se el manda el id del cliente, el id del empleado y la hora y fecha. en la base de datos se le estaria agregando un nuevo registro a (venta)
        
          int id_venta = ObtenerIdVenta(); // se obtiene el id de la venta creanda anteriormente 
