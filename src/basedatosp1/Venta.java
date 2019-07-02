@@ -74,7 +74,7 @@ public class Venta extends javax.swing.JFrame {
     
         setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icono.jpg")).getImage());
         setLocationRelativeTo(null);
-        setTitle("RUBIX / VENTAS");
+        setTitle("Rubix/ Ventas");
         this.setResizable(false);
         //Imagen img1 = new Imagen("/Imagenes/VentasFondo.jpg", 1078, 760);
         //this.jPanel2.add(img1);
@@ -1023,7 +1023,7 @@ public class Venta extends javax.swing.JFrame {
 
         jLabel33.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel33.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel33.setText("Cantida");
+        jLabel33.setText("Cantidad");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -1067,7 +1067,7 @@ public class Venta extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(panel_cotizacionVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(panel_cotizacionVentaLayout.createSequentialGroup()
-                                .addComponent(jLabel33)
+                                .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtCantida, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panel_cotizacionVentaLayout.createSequentialGroup()
@@ -1114,7 +1114,7 @@ public class Venta extends javax.swing.JFrame {
                                 .addComponent(jLabel30)
                                 .addGap(99, 99, 99)
                                 .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 11, Short.MAX_VALUE))
+                                .addGap(0, 15, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_cotizacionVentaLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(panel_cotizacionVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1291,7 +1291,9 @@ public class Venta extends javax.swing.JFrame {
         if(txtCantida.getText().length()!=0){// este if ve si se a ingresado una cantidad de producto
             if(existencia_aux==0){// este if ve si hay existencias del producto
                 JOptionPane.showMessageDialog(null,"Ya no hay existencias de este producto","Error",JOptionPane.ERROR_MESSAGE);
-            }
+            }else if(Integer.parseInt(txtCantida.getText()) < 0){//Y una condicional para evitar agregar numeros negativos  
+                JOptionPane.showMessageDialog(null,"La cantidad que ingreso es un número negativo","Error",JOptionPane.ERROR_MESSAGE);
+            }  
             else if(Integer.parseInt(txtCantida.getText())<=existencia_aux){//este else if ve si la cantidad ingresada es menor o igual a las existencias del producto
         LlamarLista();
         setDatos();
@@ -1302,13 +1304,13 @@ public class Venta extends javax.swing.JFrame {
        ModificarExistencia(RetornarExistencias());
             }
             else if(Integer.parseInt(txtCantida.getText())>existencia_aux){// si en dado caso la cantidad ingresada es mayor a las existencias, va a dar un error
-                JOptionPane.showMessageDialog(null,"La cantidad que ingreso es mayor a las existencias del producto","Error",JOptionPane.ERROR_MESSAGE);
-            }
+                JOptionPane.showMessageDialog(null,"La cantidad que ingreso es mayor a las existencias del producto","Error",JOptionPane.ERROR_MESSAGE);  
+            }          
         }
         else{
             JOptionPane.showMessageDialog(null,"Ingrese una cantidad","ERROR",JOptionPane.ERROR_MESSAGE);
         }
-    }
+    }  
     else{
            JOptionPane.showMessageDialog(null,"Seleccione antes un producto","Error",JOptionPane.ERROR_MESSAGE);
       }

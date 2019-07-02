@@ -59,7 +59,7 @@ public class recursosHumanos extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         nacimiento = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        telEmergencia = new javax.swing.JTextField();
+        sueldo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         genero = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -107,7 +107,7 @@ public class recursosHumanos extends javax.swing.JFrame {
 
         jLabel4.setText("Municipio de nacimiento");
 
-        jLabel5.setText("Teléfono emergencia");
+        jLabel5.setText("Sueldo");
 
         jLabel6.setText("Genero");
 
@@ -154,16 +154,21 @@ public class recursosHumanos extends javax.swing.JFrame {
                 .addGap(51, 51, 51)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addGap(96, 96, 96)
+                        .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(214, 214, 214))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel7)
-                                    .addComponent(jLabel5))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(29, 29, 29)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(estadocivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(telEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(acceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,27 +178,22 @@ public class recursosHumanos extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cui, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel8)
-                                .addComponent(jLabel10)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(genero, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(519, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addGap(96, 96, 96)
-                        .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(genero, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(515, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(jButton2)
@@ -227,7 +227,7 @@ public class recursosHumanos extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(jLabel5)
-                        .addComponent(telEmergencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -240,7 +240,7 @@ public class recursosHumanos extends javax.swing.JFrame {
                     .addComponent(contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
                     .addComponent(acceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 28, Short.MAX_VALUE)
+                .addGap(0, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,7 +248,7 @@ public class recursosHumanos extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(122, 122, 122)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(23, Short.MAX_VALUE))
+                        .addContainerGap(31, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
@@ -392,13 +392,13 @@ public class recursosHumanos extends javax.swing.JFrame {
             Connection conexion = con.Conectar();
             try {
 
-                String query ="INSERT INTO empleados (nombreempleado, cui, telefono, nacimiento, telemergencia, genero, estadocivil, cargar, contrasena, nivel_acceso, email_empleado) values(?,?,?,?,?,?,?,?,?,?,?)";
+                String query ="INSERT INTO empleados (nombreempleado, cui, telefono, nacimiento, sueldo, genero, estadocivil, cargar, contrasena, nivel_acceso, email_empleado) values(?,?,?,?,?,?,?,?,?,?,?)";
                 PreparedStatement statement = conexion.prepareStatement(query);
                 statement.setString(1,nombre.getText());
                 statement.setInt(2, Integer.valueOf(cui.getText()));
                 statement.setInt(3,Integer.valueOf(telefono.getText()) );
                 statement.setString(4, nacimiento.getText());
-                statement.setInt(5, Integer.valueOf(telEmergencia.getText()));
+                statement.setInt(5, Integer.valueOf(sueldo.getText()));
                 statement.setString(6, genero.getSelectedItem().toString());
                 statement.setString(7, estadocivil.getSelectedItem().toString());
                 statement.setString(8, "src\\ImagenesEmpleados\\" + nombre.getText() + ".jpg");
@@ -417,7 +417,7 @@ public class recursosHumanos extends javax.swing.JFrame {
             cui.setText("");
             telefono.setText("");
             nacimiento.setText("");
-            telEmergencia.setText("");
+            sueldo.setText("");
             correo.setText("");
             contrasena.setText("");
             actualizarTabla();
@@ -451,7 +451,7 @@ public class recursosHumanos extends javax.swing.JFrame {
             modelo.addColumn("No. identificación");
             modelo.addColumn("Teléfono");
             modelo.addColumn("Lugar de nacimiento");
-            modelo.addColumn("Teléfono de Emergencia");
+            modelo.addColumn("Sueldo");
             modelo.addColumn("Genero");
             modelo.addColumn("Estado Civil");
             modelo.addColumn("Cargar");
@@ -496,7 +496,7 @@ public class recursosHumanos extends javax.swing.JFrame {
        String content = tablaEmpleados.getValueAt(fila,8).toString();
        content = content.replace("src", "");
        content = content.replace("\\", "/");
-       System.out.println(content);
+       //System.out.println("Esto es el content" + content);
         Imagen img1 = new Imagen(content, 733, 510);
         this.foto.add(img1);
         this.foto.repaint();
@@ -548,8 +548,8 @@ public class recursosHumanos extends javax.swing.JFrame {
         if (nacimiento.getText().equals("")){
             salida += "---> REVISAR EL CAMPO DEL LUGAR DE NACIMIENTO\n";
         }
-        if (!esNumero(telEmergencia.getText())) {
-            salida += "--> REVISAR CAMPO DE TELÉFONO DE EMERGENCIA \n";
+        if (!esNumero(sueldo.getText())) {
+            salida += "--> REVISAR CAMPO DE SUELDO \n";
         }
         if(primeraVez == 0){
             salida += "--> REVISAR SI CARGO LA FOTO \n";
@@ -649,8 +649,8 @@ public class recursosHumanos extends javax.swing.JFrame {
     private javax.swing.JTextField nacimiento;
     private javax.swing.JLabel name;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTextField sueldo;
     private javax.swing.JTable tablaEmpleados;
-    private javax.swing.JTextField telEmergencia;
     private javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
 }
