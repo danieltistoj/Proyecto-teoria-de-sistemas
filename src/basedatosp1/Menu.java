@@ -301,7 +301,7 @@ public class Menu extends javax.swing.JFrame {
                     this.dispose();
                 }
                 if(clave_entrar_modulo==3){
-                    Venta venta = new Venta(id_empleado);
+                    Venta venta = new Venta(id_empleado,nivel);
                     venta.setVisible(true);
                     dialog_contra.dispose();
                     this.dispose();

@@ -5,14 +5,22 @@
  */
 package basedatosp1;
 
-
+import java.util.*;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.List;
+import java.util.ArrayList;
+
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfTable;
 import java.awt.Cursor;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.time.LocalDateTime;
@@ -22,7 +30,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -30,7 +41,15 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class Venta extends javax.swing.JFrame {
     /*
@@ -42,7 +61,7 @@ public class Venta extends javax.swing.JFrame {
     private  float total = 0;
     private boolean aux_boolean;
     // las variables idE_temp y idC_temp se utilizan como variables temporales a la hora de buscar los datos de un empleado o cliente. Se utiliza en Detalle Venta 
-    private int clienteId,telefonoCliente, id_aux, existencia_aux, idE_temp, idC_temp, id_empleado;
+    private int clienteId,telefonoCliente, id_aux, existencia_aux, idE_temp, idC_temp, id_empleado, nivel_acceso;
     private DefaultTableModel modeloProducto = new DefaultTableModel();
     private DefaultTableModel modeloProductoF = new DefaultTableModel();
     private DefaultTableModel modeloProductoH = new DefaultTableModel();
@@ -55,8 +74,9 @@ public class Venta extends javax.swing.JFrame {
     ArrayList<Producto> listaDetalle = new ArrayList<>();// array para detalle
    
     private Lista ventas, productos, productos2;
-    public Venta(int id_empleado) {
+    public Venta(int id_empleado, int nivel) {
         initComponents();
+        nivel_acceso = nivel; // se obtiene el nivel de acceso 
         Imagen img1 = new Imagen("/Imagenes/fondo3.jpg", 1075, 770);
         Imagen img2 = new Imagen("/Imagenes/fondo6.jpg", 1075, 770);
        
@@ -111,6 +131,7 @@ public class Venta extends javax.swing.JFrame {
         boton_buscar_archivo_.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         boton_generar_pdf_.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         
+        pdf_ventas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         botonRegresar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         TablaHistorialVenta();
         setModelo();
@@ -118,8 +139,10 @@ public class Venta extends javax.swing.JFrame {
         setModelDetalle();
         Tabla();
         Cerrar();
-       CerrarFacturacion();
-       CerrarNuevoCliente();
+        CerrarFacturacion();
+        CerrarNuevoCliente();
+        
+        
      
     }
     //en esta funcion hace que la ventana de venta no se cierre 
@@ -434,6 +457,8 @@ public class Venta extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         txt_buscar_venta = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
+        pdf_ventas = new javax.swing.JToggleButton();
+        jLabel22 = new javax.swing.JLabel();
 
         Facturacion.setBounds(new java.awt.Rectangle(0, 0, 445, 930));
 
@@ -1223,48 +1248,62 @@ public class Venta extends javax.swing.JFrame {
         jLabel32.setForeground(new java.awt.Color(51, 153, 255));
         jLabel32.setText("Buscar por fecha");
 
+        pdf_ventas.setBackground(new java.awt.Color(255, 255, 255));
+        pdf_ventas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/basedatosp1/pdf2.1.png"))); // NOI18N
+        pdf_ventas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pdf_ventasActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel22.setText("Descargar");
+
         javax.swing.GroupLayout panel_detalleVentaLayout = new javax.swing.GroupLayout(panel_detalleVenta);
         panel_detalleVenta.setLayout(panel_detalleVentaLayout);
         panel_detalleVentaLayout.setHorizontalGroup(
             panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_detalleVentaLayout.createSequentialGroup()
-                .addGap(496, 496, 496)
-                .addComponent(jLabel26)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panel_detalleVentaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
-                                .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(474, 474, 474))
-                            .addComponent(txt_buscar_venta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(231, 231, 231)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 619, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(txt_buscar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel32)
-                .addGap(49, 49, 49))
+                .addGroup(panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
+                        .addComponent(jLabel26)
+                        .addGap(244, 244, 244)
+                        .addComponent(jLabel22)
+                        .addGap(377, 377, 377))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
+                        .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(200, 200, 200)
+                        .addComponent(pdf_ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(356, 356, 356))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
+                        .addComponent(jLabel32)
+                        .addGap(60, 60, 60))))
         );
         panel_detalleVentaLayout.setVerticalGroup(
             panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_detalleVentaLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jLabel26)
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel22))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pdf_ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addComponent(jLabel32)
+                .addGap(18, 18, 18)
                 .addGroup(panel_detalleVentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_detalleVentaLayout.createSequentialGroup()
-                        .addComponent(jLabel32)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_buscar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(panel_detalleVentaLayout.createSequentialGroup()
-                        .addComponent(boton_DetalleDeVemta, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84)))
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(186, Short.MAX_VALUE))
+                    .addComponent(txt_buscar_venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Historial", null, panel_detalleVenta, "");
@@ -1376,7 +1415,7 @@ public class Venta extends javax.swing.JFrame {
        existencia_aux = Integer.parseInt(Tabla_productosD.getValueAt(fila,4).toString());
        
     }//GEN-LAST:event_Tabla_productosDMouseClicked
- 
+ // este boton es el de facturar que aparece en cotizacion. abre el dialog facturar 
     private void boton_finalizarcompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_finalizarcompraActionPerformed
       if(this.Tabla_productosC.getRowCount() == 0 && this.Tabla_productosC.getSelectedRow() == -1){
           JOptionPane.showMessageDialog(this,"Debe de realizar una cotizacion antes de facturar","Error",JOptionPane.ERROR_MESSAGE);
@@ -2250,6 +2289,18 @@ public class Venta extends javax.swing.JFrame {
             Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_txt_buscar_ventaKeyPressed
+
+    private void pdf_ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdf_ventasActionPerformed
+        MessageFormat header  = new MessageFormat("lista ventas");
+        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        try {
+            TablaHistorial.print(JTable.PrintMode.NORMAL, header, footer);
+            
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("",e.getMessage());
+        }
+        
+    }//GEN-LAST:event_pdf_ventasActionPerformed
    
     /**
      * @param args the command line arguments
@@ -2327,6 +2378,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
@@ -2360,6 +2412,7 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JLabel nombreClabel;
     private javax.swing.JPanel panel_cotizacionVenta;
     private javax.swing.JPanel panel_detalleVenta;
+    private javax.swing.JToggleButton pdf_ventas;
     private javax.swing.JTable tabla_factura;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCantida;
