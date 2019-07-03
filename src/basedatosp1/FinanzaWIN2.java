@@ -102,7 +102,7 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
             jTable2.setModel(modelo);
             
             String[] dato = new String[2];
-            int total = 0;
+            float total = 0;
             int contador = 0;
         try{
             st = conexion.createStatement();   
@@ -119,7 +119,7 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
                 contador ++;
                 dato[0] = result.getString(2);
                 dato[1] = result.getString(3);
-                total = total + Integer.valueOf(result.getString(3));
+                total = total + Float.valueOf(result.getString(3));
                 modelo.addRow(dato);
             }
             String[] otrasColumnas = new String[2];
@@ -259,6 +259,7 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
         jTabbedPane1.addTab("Balance General", jPanel4);
 
         jLabel4.setFont(new java.awt.Font("Dosis", 3, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("jLabel1");
 
         boton_top_pro.setText("Top Productos Mas Vendidos");
