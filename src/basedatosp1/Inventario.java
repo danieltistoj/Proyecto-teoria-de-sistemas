@@ -13,11 +13,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.MessageFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import sun.awt.image.IntegerInterleavedRaster;
 
@@ -135,6 +137,7 @@ public class Inventario extends javax.swing.JFrame {
                 BotonAgregar.setEnabled(false);
                 Guardar.setEnabled(false);
                 botonEliminar.setEnabled(false);
+                boton_pdf.setEnabled(false);
             }
         } catch (Exception e) {
             System.out.println("error");
@@ -219,6 +222,7 @@ public class Inventario extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txtIDm = new javax.swing.JTextField();
+        boton_pdf = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -388,6 +392,14 @@ public class Inventario extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("ID");
 
+        boton_pdf.setBackground(new java.awt.Color(255, 255, 255));
+        boton_pdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pdf_1.1.jpg"))); // NOI18N
+        boton_pdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_pdfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelTablaLayout = new javax.swing.GroupLayout(PanelTabla);
         PanelTabla.setLayout(PanelTablaLayout);
         PanelTablaLayout.setHorizontalGroup(
@@ -402,6 +414,8 @@ public class Inventario extends javax.swing.JFrame {
                         .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(80, 80, 80)
                         .addComponent(botonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
+                        .addComponent(boton_pdf, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelTablaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -442,11 +456,7 @@ public class Inventario extends javax.swing.JFrame {
                             .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelTablaLayout.createSequentialGroup()
                         .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombreM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -461,7 +471,12 @@ public class Inventario extends javax.swing.JFrame {
                             .addComponent(jLabel10)
                             .addComponent(txtPrecioM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addGroup(PanelTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(boton_pdf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Inventario", PanelTabla);
@@ -683,6 +698,17 @@ public class Inventario extends javax.swing.JFrame {
             menu.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_BotonRegreasarMenu1ActionPerformed
+
+    private void boton_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_pdfActionPerformed
+        MessageFormat header  = new MessageFormat("Lista Inventario");
+        MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+        try {
+            Tabla1.print(JTable.PrintMode.NORMAL, header, footer);
+            
+        } catch (java.awt.print.PrinterException e) {
+            System.err.format("error exportar",e.getMessage());
+        }
+    }//GEN-LAST:event_boton_pdfActionPerformed
   
     /**
      * @param args the command line arguments
@@ -728,6 +754,7 @@ public class Inventario extends javax.swing.JFrame {
     private javax.swing.JPanel PanelTabla;
     private javax.swing.JTable Tabla1;
     private javax.swing.JButton botonEliminar;
+    private javax.swing.JToggleButton boton_pdf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -138,12 +138,22 @@ public class Venta extends javax.swing.JFrame {
         setModelFactura();
         setModelDetalle();
         Tabla();
+        Bloquear();
         Cerrar();
         CerrarFacturacion();
         CerrarNuevoCliente();
-        
-        
      
+    }
+    public void Bloquear(){
+        try {
+            if(nivel_acceso==1){
+               pdf_ventas.setEnabled(false);
+            }
+        } catch (Exception e) {
+            System.out.println("error");
+        }
+        
+        
     }
     //en esta funcion hace que la ventana de venta no se cierre 
     public void Cerrar(){
