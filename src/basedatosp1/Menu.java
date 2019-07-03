@@ -193,6 +193,11 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setBounds(70, 110, 80, 16);
 
         boton_competidores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/competidores2.png"))); // NOI18N
+        boton_competidores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_competidoresActionPerformed(evt);
+            }
+        });
         getContentPane().add(boton_competidores);
         boton_competidores.setBounds(205, 132, 100, 85);
 
@@ -242,6 +247,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/configuracion3.2.png"))); // NOI18N
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6);
         jButton6.setBounds(260, 290, 94, 97);
 
@@ -305,6 +315,12 @@ public class Menu extends javax.swing.JFrame {
                     dialog_contra.dispose();
                     this.dispose();
                 }
+                if(clave_entrar_modulo==2){
+                    compe comp = new compe();
+                    comp.setVisible(true);
+                    dialog_contra.dispose();
+                    this.dispose();
+                }
                 if(clave_entrar_modulo==3){
                     Venta venta = new Venta(id_empleado,nivel);
                     venta.setVisible(true);
@@ -330,7 +346,12 @@ public class Menu extends javax.swing.JFrame {
                     dialog_contra.dispose();
                     this.dispose();
                 }
-                
+                if(clave_entrar_modulo==6){
+                    Configuracion confi = new Configuracion(nombre, contra2,id_empleado);
+                    confi.setVisible(true);
+                    dialog_contra.dispose();
+                    this.dispose();
+                }
                     
                    
                         }
@@ -362,11 +383,22 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         try {
-            Runtime.getRuntime().exec("rundll32 url.dll, FileProtocolHandler " + "C:\\Users\\Usuario\\Documents\\print1.pdf");
+            Runtime.getRuntime().exec("rundll32 url.dll, FileProtocolHandler " + "src\\PDF\\Inventario.pdf");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error al abrir el archivo","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        clave_entrar_modulo = 6;
+        dialog_contra.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void boton_competidoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_competidoresActionPerformed
+       clave_entrar_modulo = 2;
+       dialog_contra.setVisible(true);
+              
+    }//GEN-LAST:event_boton_competidoresActionPerformed
 
     /**
      * @param args the command line arguments

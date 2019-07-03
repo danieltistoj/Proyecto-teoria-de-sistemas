@@ -598,6 +598,7 @@ public class Inventario extends javax.swing.JFrame {
  
        
        String id = JOptionPane.showInputDialog(null, "Ingrese el ID del producto que desea eliminar");
+       if(id!=null){
        String sql = "DELETE FROM inventario WHERE ID="+id;
        int res = 0;
        Conexion con = new Conexion();
@@ -615,6 +616,7 @@ public class Inventario extends javax.swing.JFrame {
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(null,"Intente de nuevo. Valor incorrecto","Error",JOptionPane.ERROR_MESSAGE);
         }
+       }
         
     }//GEN-LAST:event_botonEliminarActionPerformed
 // cuando seleccione un fila de la tabla lo datos se pasaran a las cajas de texto del panel de la tabla inventario
