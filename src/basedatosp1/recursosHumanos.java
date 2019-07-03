@@ -86,8 +86,8 @@ public class recursosHumanos extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         name = new javax.swing.JLabel();
-        doc = new javax.swing.JLabel();
         level = new javax.swing.JLabel();
+        doc = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         foto = new javax.swing.JPanel();
 
@@ -302,9 +302,9 @@ public class recursosHumanos extends javax.swing.JFrame {
 
         name.setForeground(new java.awt.Color(255, 255, 255));
 
-        doc.setForeground(new java.awt.Color(255, 255, 255));
-
         level.setForeground(new java.awt.Color(255, 255, 255));
+
+        doc.setForeground(new java.awt.Color(255, 255, 255));
 
         jButton4.setText("Despedir");
         jButton4.addActionListener(new java.awt.event.ActionListener() {

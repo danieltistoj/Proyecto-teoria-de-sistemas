@@ -30,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FinanzaWIN2 extends javax.swing.JFrame {
     private DefaultTableModel modelo; 
-    private String A1;
+    private String A1;//Lo ideal seria enviar un arreglo de strings....
     private String A2;
     private String A3;
     private String A4;
@@ -38,6 +38,8 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
     private String A6;
     private String A7;
     private String A8;
+    private String A9;
+    private String A10;
     private DefaultTableModel modelo1 = new DefaultTableModel();
     private ArrayList<Producto> lista_productos = new ArrayList<>();
     private int nivel;
@@ -124,13 +126,19 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
             }
             String[] otrasColumnas = new String[2];
             otrasColumnas[0] = "Valor de Inventario";
-            A5 = "Valor de inventario";
+            A5 = "+ Valor de inventario";
             A6  = String.valueOf(this.saberCuantoHayInventario());
             otrasColumnas[1] = String.valueOf(this.saberCuantoHayInventario());
             modelo.addRow(otrasColumnas);
+            String [] otrasColumnas2 = new String[2];
+            otrasColumnas2[0] = "Total de pago a trabajadores";
+            otrasColumnas2[1] = String.valueOf(SaberCuantoPagarTrabajadores()); 
+            A9 = "- Total de pago a trabajadores";
+            A10 = String.valueOf(this.SaberCuantoPagarTrabajadores());
+            modelo.addRow(otrasColumnas2);
             String[] otrasColumnas1 = new String[2];
             otrasColumnas1[0] = "Valor total";
-            total = total + this.saberCuantoHayInventario();
+            total = total + this.saberCuantoHayInventario() - SaberCuantoPagarTrabajadores();
             A7 = "Total";
             A8 = String.valueOf(total);
             otrasColumnas1[1] = String.valueOf(total);
@@ -139,6 +147,29 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
             Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    public int SaberCuantoPagarTrabajadores(){
+         int cant = 0;
+        Conexion con = new Conexion();
+        Connection conexion = con.Conectar();
+
+        String sql = "SELECT * FROM empleados";
+
+        Statement st;
+        try{
+            st = conexion.createStatement();   
+            ResultSet result = st.executeQuery(sql);
+
+            while(result.next()){
+                //aqui se suman los sueldos
+                cant = cant + (Integer.valueOf(result.getString(6)));
+            }
+
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cant;
     }
     public int saberCuantoHayInventario(){
         int cant = 0;
@@ -342,7 +373,7 @@ public class FinanzaWIN2 extends javax.swing.JFrame {
             String nombreArchivo = jf.getSelectedFile().getAbsolutePath() + "/" +  nombre + ".pdf";
             nombreArchivo  = nombreArchivo.replace("\\", "/");
             System.out.println(nombreArchivo);
-            PruebaPDF pdf = new PruebaPDF( nombreArchivo, A1, A2, A3, A4, A5, A6, A7, A8);
+            PruebaPDF pdf = new PruebaPDF( nombreArchivo, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10);
         }
     }//GEN-LAST:event_PdfActionPerformed
 public ArrayList lista_id_pro_detalle(Nodo tope_productos){

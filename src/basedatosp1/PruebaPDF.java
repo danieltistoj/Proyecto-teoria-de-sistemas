@@ -33,7 +33,9 @@ public class PruebaPDF {
     private String A6;
     private String A7;
     private String A8;
-    public PruebaPDF(String Direccion,String a1,String a2,String a3,String a4,String a5, String a6, String a7, String a8){
+    private String A9;
+    private String A10;
+    public PruebaPDF(String Direccion,String a1,String a2,String a3,String a4,String a5, String a6, String a7, String a8, String a9, String a10){
         Ruta = Direccion;
         A1= a1;
         A2= a2;
@@ -43,6 +45,8 @@ public class PruebaPDF {
         A6 = a6;
         A7 = a7;
         A8 = a8;
+        A9 = a9;
+        A10 = a10;
         crear();
     }
     private String Ruta;
@@ -122,6 +126,8 @@ public class PruebaPDF {
         table.addCell(A4);
         table.addCell(A5);
         table.addCell(A6);
+        table.addCell(A9);
+        table.addCell(A10);
         table.addCell(A7);
         table.addCell(A8);
         subCatPart.add(table);
