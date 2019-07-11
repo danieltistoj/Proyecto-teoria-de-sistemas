@@ -383,7 +383,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         try {
-            Runtime.getRuntime().exec("rundll32 url.dll, FileProtocolHandler " + "src\\PDF\\Inventario.pdf");
+            Runtime.getRuntime().exec("rundll32 url.dll, FileProtocolHandler " + "src\\PDF\\MODuLo3.pdf");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error al abrir el archivo","Error",JOptionPane.ERROR_MESSAGE);
         }

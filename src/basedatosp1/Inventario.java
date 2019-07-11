@@ -595,26 +595,34 @@ public class Inventario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtbuscarKeyPressed
 //Eliminar un elemento
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
- 
+            
        
-       String id = JOptionPane.showInputDialog(null, "Ingrese el ID del producto que desea eliminar");
+       String id = JOptionPane.showInputDialog(null,"Ingrese el ID del producto que desea eliminar");
        if(id!=null){
-       String sql = "DELETE FROM inventario WHERE ID="+id;
-       int res = 0;
+        System.out.println(id);
+      
+  
        Conexion con = new Conexion();
        Connection conect = con.Conectar();
+      
         try {
-            Statement st = (Statement) conect.createStatement();
-           int num = st.executeUpdate(sql);
+          PreparedStatement pps = conect.prepareStatement("DELETE FROM Inventario WHERE ID=?");
+          pps.setInt(1,Integer.parseInt(id));
+          int num = pps.executeUpdate();
            if(num>0){
-            Tabla();
-            JOptionPane.showMessageDialog(null,"Producto eliminado","Mensaje",JOptionPane.INFORMATION_MESSAGE);
-           }else{
+           Tabla();
+          JOptionPane.showMessageDialog(null,"Producto eliminado","Mensaje",JOptionPane.INFORMATION_MESSAGE);  
+           }
+           else{
                JOptionPane.showMessageDialog(null,"El producto no existe","Error",JOptionPane.ERROR_MESSAGE);
            }
+          
             
         } catch (SQLException ex) {
-          JOptionPane.showMessageDialog(null,"Intente de nuevo. Valor incorrecto","Error",JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(null,"Error! No puede eliminar el producto porque esta relacionado con una venta.\n"+"Solo puede eliminar "
+                  + "productos que no se hayan vendido aun."
+                  ,"Error",JOptionPane.ERROR_MESSAGE);
+          //Logger.getLogger(Inventario.class.getName()).log(Level.SEVERE, null, ex);
         }
        }
         
@@ -658,13 +666,40 @@ public class Inventario extends javax.swing.JFrame {
      }
      // Este es el boton de guardar del panel de la tabla de inventario que manda los datos de las cajas de texto a la funcion Actualizar 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-       int fila = Tabla1.getSelectedRow();
-        if(fila>=0){
-            Actualizar(txtNombreM.getText(),Float.parseFloat(txtCostoM.getText()),Float.parseFloat(txtPrecioM.getText()),Integer.parseInt(txtExisM.getText()),Integer.parseInt(txtIDm.getText()));
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"No ha seleccionado una fila","Error",JOptionPane.ERROR_MESSAGE);
-        }
+        int fila = Tabla1.getSelectedRow();
+       
+            
+               if(fila>=0){
+                      if(txtCostoM.getText()!=null){
+                          JOptionPane.showMessageDialog(null,"Debe de llenar todos los campos","Advertencia!",JOptionPane.WARNING_MESSAGE);
+
+                      }
+                      else if(txtExisM.getText()!=null){
+                          JOptionPane.showMessageDialog(null,"Debe de llenar todos los campos","Advertencia!",JOptionPane.WARNING_MESSAGE);
+
+                      }
+                      else if(txtNombreM.getText()!=null){
+                          JOptionPane.showMessageDialog(null,"Debe de llenar todos los campos","Advertencia!",JOptionPane.WARNING_MESSAGE);
+
+                      }
+                      else if(txtPrecioM!=null){
+                          JOptionPane.showMessageDialog(null,"Debe de llenar todos los campos","Advertencia!",JOptionPane.WARNING_MESSAGE);
+
+                      }
+                      else if(txtIDm.getText()!=null){
+                          JOptionPane.showMessageDialog(null,"Debe de llenar todos los campos","Advertencia!",JOptionPane.WARNING_MESSAGE);
+
+                      }
+                      else{
+                    Actualizar(txtNombreM.getText(),Float.parseFloat(txtCostoM.getText()),Float.parseFloat(txtPrecioM.getText()),Integer.parseInt(txtExisM.getText()),Integer.parseInt(txtIDm.getText()));
+                      }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"No ha seleccionado una fila","Error",JOptionPane.ERROR_MESSAGE);
+                }
+        
+              
+       
     }//GEN-LAST:event_GuardarActionPerformed
 //Accion de la caja de texto costo. solo permite numeros
     private void txtCostoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCostoKeyTyped
